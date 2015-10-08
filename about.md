@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-triphere is the web-related-stuff side of my brain
+Used to be an actor, now I code. Moved to NYC in 2003.

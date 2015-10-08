@@ -8,6 +8,13 @@ url: "http://scottnath.github.io" # the base hostname & protocol for your site
 twitter_username: scottnath
 github_username:  scottnath
 
+exclude:
+  - node_modules
+  - global-assets
+  - patterns
+  - styles
+  - lib
+
 timezone: America/New_York
 
 # Build settings

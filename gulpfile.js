@@ -587,7 +587,7 @@ gulp.task('watch', function () {
     );
   });
   // Global Assets SASS
-  watch(['index.html', '_includes/*.html', '_layouts/*.html', '*.md', '_posts/*'], function () {
+  watch(['index.html', '_includes/*.html', '_layouts/*.html', '*.html', '*.md', '_posts/*'], function () {
     log.info('Jekyll files change');
     runSequence(
       'jekyll-rebuild'

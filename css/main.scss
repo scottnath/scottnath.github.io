@@ -3,15 +3,18 @@
 ---
 @charset "utf-8";
 
+@import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
+@import '../node_modules/sass-toolkit/stylesheets/toolkit';
 
 
 // Our variables
 $base-font-family: Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
+$base-font-size:   1.2em;
+$base-font-weight: 300;
 $small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+$base-line-height: 1.25rem;
 
-$spacing-unit:     30px;
+$spacing-unit:     2rem;
 
 $text-color:       #111;
 $background-color: #f5f5f5;
@@ -35,13 +38,27 @@ $on-laptop:        800px;
 //     }
 // }
 @mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
+  @media screen and (max-width: $device) {
+  @content;
+  }
 }
+$basic: 543px;
+$pair: 456px 794px;
 
+#foo {
+  content: 'No Media Queries';
+
+  @include breakpoint($basic) {
+    content: 'Basic Media Query';
+  }
+
+  @include breakpoint($pair) {
+    content: 'Paired Media Query';
+  }
+}
 // Import partials from `sass_dir` (defaults to `_sass`)TEST
 @import
+  "fonts",
   "base",
   "layout",
   "resume",

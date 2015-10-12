@@ -16,6 +16,8 @@
     "run-sequence": "^1.1.2"
   },
   "dependencies": {
-    "pattern-library": "^0.1.4"
+    "breakpoint-sass": "^2.6.1",
+    "pattern-library": "^0.1.4",
+    "sass-toolkit": "^2.9.0"
   }
 }

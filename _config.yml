@@ -1,5 +1,6 @@
 # Site settings
-title: scott nath
+title: Scott Nath
+subtitle: Web Development Architect
 email: online@scottnath.com
 description: > # this means to ignore newlines until "baseurl:"
   Coding-related things by Scott Nath. Many smarts, much wizard!
@@ -14,6 +15,7 @@ exclude:
   - patterns
   - styles
   - lib
+  - config.yml
 
 timezone: America/New_York
 

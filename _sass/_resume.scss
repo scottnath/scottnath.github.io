@@ -28,21 +28,16 @@
   }
 }
 
-.skills dt {
+
+%skillstitle {
   display: inline;
 
   &::after {
     content: ': ';
   }
 
-  @include breakpoint(600px) {
-    display: block;
-    &::after {
-      content: '';
-    }
-  }
 }
-.skills dd {
+%skillsitem {
   display: inline;
   margin: 0;
   font-size: .9em;
@@ -55,6 +50,19 @@
     content: '';
   }
 
+}
+.skills dt {
+  @extend %skillstitle;
+  @include breakpoint(600px) {
+    display: block;
+    &::after {
+      content: '';
+    }
+  }
+}
+
+.skills dd {
+  @extend %skillsitem;
   @include breakpoint(600px) {
     display: block;
     line-height: 1rem;
@@ -82,17 +90,17 @@
 
   .job-title {
     display: block;
-    font-size: .9rem;
+    font-size: .9em;
   }
 }
 
 .resume__experience__date {
-  font-size: .8rem;
+  font-size: .8em;
   margin-bottom: $spacing-unit / 6;
 }
 
 .resume__experience__summary {
-  font-size: .9rem;
+  font-size: .9em;
   p {
     margin-bottom: $spacing-unit / 6;
   }

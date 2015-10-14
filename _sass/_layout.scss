@@ -21,7 +21,7 @@
 
     &,
     &:visited {
-        color: $grey-color-dark;
+      color: $grey-color-dark;
     }
   }
   .subtitle {
@@ -41,11 +41,11 @@
   overflow: hidden;
   margin: .3rem 0 0;
   text-align: center;
+  font-size: 1rem;
   @include breakpoint(600px) {
     float: right;
   }
 }
-
 .nav__list__title {
   font-weight: 300;
   font-size: .7rem;
@@ -54,15 +54,13 @@
 
 .nav__list__item {
   display: inline;
-  font-size: 2rem;
+  font-size: 2em;
   margin: 0 .4rem;
 
   span {
     display: none;
   }
 }
-
-
 
 
 /**

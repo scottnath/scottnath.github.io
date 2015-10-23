@@ -6,6 +6,9 @@
 \*------------------------------------*/
 
 // inject:npm:base:scss
+@import '../../../node_modules/pattern-library/patterns/atoms/global/colors/colors.scss';
+@import '../../../node_modules/pattern-library/patterns/atoms/global/visibility/visibility.scss';
+@import '../../../node_modules/pattern-library/patterns/molecules/global/animations/animations.scss';
 // endinjectnpmbase
 
 /*------------------------------------*\
@@ -18,4 +21,5 @@
     LOCAL PATTERN LIBRARY STYLES
 \*------------------------------------*/
 // inject:local:scss
+@import '../../../patterns/templates/resumes/resume/resume.scss';
 // endinjectlocal

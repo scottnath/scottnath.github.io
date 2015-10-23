@@ -487,7 +487,7 @@ function importSinglePattern(file) {
     'sass',
     function () {
       browserSync.reload();
-      log.info('Local pattern file triggered a watch event. The full Pattern has been re-imported into ' + configuration.patternlab.dest);
+      log.info('Local pattern file triggered a watch event. The full Pattern has been re-imported.');
     }
   );
 }
@@ -587,7 +587,7 @@ gulp.task('watch', function () {
     );
   });
   // Global Assets SASS
-  watch(['index.html', '_includes/*.html', '_layouts/*.html', '*.html', '*.md', '_posts/*'], function () {
+  watch(['index.html', '_includes/*.html', '_layouts/*.html', '*.html', '*.md', '_posts/*', '_data/*'], function () {
     log.info('Jekyll files change');
     runSequence(
       'jekyll-rebuild'

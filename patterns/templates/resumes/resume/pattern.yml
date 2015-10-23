@@ -1,0 +1,21 @@
+name: resume
+description: PATTERN DESCRIPTION GOES HERE
+html: resume.html
+sass: resume.scss
+category: _includes # import to jekyll as an include
+data:
+  resume:
+    class: resume
+    header:
+      class: resume__header
+      h1:
+        class: title resume__title
+        content: Scott Nath
+      h2:
+        class: subtitle resume__subtitle
+        content: Web Development Architect
+      summary:
+        class: summary resume__summary
+        content: "<p>Web architect, front-end developer, and team leader. 15 years of experience. I like clean &amp; testable code, clear documentation, and growth through challenged pull requests.</p>"
+    skills:
+      class: resume__section resume__tech-skills

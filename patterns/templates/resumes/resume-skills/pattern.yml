@@ -1,0 +1,47 @@
+name: resume-skills
+description: Resume section for listing out skills.
+html: resume-skills.html
+# category: templates
+# subcategory: resumes
+category: _includes # import to jekyll as an include
+data:
+  skillsets:
+    class: resume-skills
+    sets:
+      -
+        title:
+          class:
+          content:
+        subsets:
+            -
+              class: skills skills--recently
+              title:
+                class:
+                content: Daily development with
+              skills:
+                - Node.js &amp; NPM
+                - HTML5
+                - CSS3
+                - Sass/SCSS
+                - Javascript (+ES6)
+                - Javascript Unit Testing
+                - git/GitHub
+                - Scrum/agile development
+                - Pattern Lab
+            -
+              class: skills skills--recently
+              title:
+                class:
+                title: Recent experience with
+              skills:
+                - Compass
+                - Wordpress development
+                - PHP
+                - AngularJS
+                - ExpressJS
+                - Polymer
+                - Web Components
+                - Raspi
+
+
+    content: "This is example content"

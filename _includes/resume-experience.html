@@ -1,0 +1,14 @@
+<!-- Pattern: resume-experience -->
+<section class="{{resume.experience.class}}">
+  <h2 class="{{resume.experience.title.class}}">{{resume.experience.title.content}}</h2>
+  {% for item in resume.experience.items %}
+    <section class="{{item.class}}">
+      <h3 class="{{item.header.class}}">
+        <span class="{{item.header.name.class}}">{{item.header.name.content}}</span>
+        <span class="{{item.header.position.class}}">{{item.header.position.content}}</span>
+      </h3>
+      <p class="{{item.dates.class}}">{{item.dates.content}}</p>
+      <div class="{{item.summary.class}}">{{item.summary.content}}</div>
+    </section>
+  {% endfor %}
+</section>

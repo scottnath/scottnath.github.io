@@ -11,5 +11,12 @@
 
   {% include resume-experience.html %}
 
+  {% if projects %}
+    {% assign experience = projects %}
+
+    {% include resume-experience.html %}
+
+  {% endif %}
+
 </article>
 

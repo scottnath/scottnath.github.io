@@ -47,6 +47,58 @@ skillsets:
                 - Polymer
                 - Web Components
                 - Raspi
+projects:
+  class: resume__section resume__projects
+  title:
+    class: resume__section__title
+    content: Projects
+  items:
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
+          content: Pattern Library
+        position:
+          class: job-title position
+          content: Architect and Primary Developer
+      dates:
+        class: date resume__project__date
+        content: 2014 &#8211; Present
+      summary:
+        class: summary resume__project__summary
+        content: <p>A Node.js storage-and-sharing solution for functioning UX patterns. Allows usage of html/css/javascript across multiple systems and includes tools for *design-in-browser* methodologies.</p>
+      urls:
+        -
+          content: Pattern Library homepage
+          url: http://pattern-library.github.io
+        -
+          content: Primary Pattern Library Functionality
+          url: https://github.com/pattern-library/pattern-library-utilities
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
+          content: Runnerpi - a wifi-streaming POV camera
+        position:
+          class: job-title position
+          content: Architect and Primary Developer
+      dates:
+        class: date resume__experience__date resume__project__date
+        content: 2015
+      summary:
+        class: summary resume__experience__summary resume__project__summary
+        content: <p>Building multiple, Raspberry Pi-based, wifi-streaming cameras for my IRL game The Chase.</p>
+      urls:
+        -
+          content: Instrucable for building Raspi cameras
+          url: http://www.instructables.com/id/Runnerpi-a-wifi-streaming-POV-camera/
+        -
+          content: The Chase
+          url: http://videogame.camp/the-chase/about/
 experience:
   class: resume__section resume__experience
   title:

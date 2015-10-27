@@ -48,7 +48,7 @@ skillsets:
                 - Web Components
                 - Raspi
 projects:
-  class: resume__section resume__projects
+  class: resume__section resume__projects resume__experience
   title:
     class: resume__section__title
     content: Projects
@@ -67,7 +67,7 @@ projects:
         class: date resume__project__date
         content: 2014 &#8211; Present
       summary:
-        class: summary resume__project__summary
+        class: summary resume__experience__summary resume__project__summary
         content: <p>A Node.js storage-and-sharing solution for functioning UX patterns. Allows usage of html/css/javascript across multiple systems and includes tools for *design-in-browser* methodologies.</p>
       urls:
         -

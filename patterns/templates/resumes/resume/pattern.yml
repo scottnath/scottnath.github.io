@@ -13,7 +13,7 @@ data:
         content: Scott Nath
       h2:
         class: subtitle resume__subtitle
-        content: Web Development Architect
+        content: Senior Front End Developer, IBM
       summary:
         class: summary resume__summary
         content: "<p>Web architect, front-end developer, and team leader. 15 years of experience. I like clean &amp; testable code, clear documentation, and growth through challenged pull requests.</p>"

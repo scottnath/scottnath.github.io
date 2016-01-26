@@ -6,7 +6,7 @@ header:
     content: Scott Nath
   subtitle:
     class: subtitle resume__subtitle
-    content: Web Development Architect
+    content: Senior Front End Developer, IBM Watson
   summary:
     class: summary resume__summary
     content: "<p>Web architect, front-end developer, and team leader. 15 years of experience. I like clean &amp; testable code, clear documentation, and growth through challenged pull requests.</p>"
@@ -111,16 +111,33 @@ experience:
         class: resume__section__subtitle resume__experience__title
         name:
           class: business
+          content: IBM
+        position:
+          class: job-title
+          content: Senior Front End Developer
+      dates:
+        class: date resume__experience__date
+        content: 2016
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Just started...so...wait...</p>
+    -
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
           content: NBCUniversal
         position:
           class: job-title
           content: Software Architect
       dates:
         class: date resume__experience__date
-        content: 2014 &#8211; Present
+        content: 2014 &#8211; 2015
       summary:
         class: summary resume__experience__summary
-        content: <p>I work for an internal agency at NBCUniversal that provides technology services to the company's many networks, studios, and brands.</p><p>As Software Architect, I've planned and built an open source, NodeJS-based Pattern Library System (<a href="http://pattern-library.github.io">pattern-library.github.io</a>), which creates stackable and reusable component libraries, bundled with a GulpJS-based development environment. It's a cool thing.</p>
+        content: <p>I work for an internal agency at NBCUniversal that provides technology services to the company's many networks, studios, and brands.</p><p>As Software Architect, I've planned and built an open source, NodeJS-based Pattern Library System (<a href="http://pattern-library.github.io">pattern-library.github.io</a>), which creates stackable and reusable component libraries, bundled with a GulpJS-based development environment. It was a cool thing.</p>
     -
       class: resume__experience__employer
       header:

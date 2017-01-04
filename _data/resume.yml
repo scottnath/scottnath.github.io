@@ -120,8 +120,7 @@ experience:
         content: 2016 &#8211; Present
       summary:
         class: summary resume__experience__summary
-        content: <p>Working in the Watson organization within IBM. Spent 2016 building an open-source content management system: <a href="https://github.com/punchcard-cms/punchcard">Punchcard CMS</a>.</p>
-    -
+        content: <p>Working in the Watson organization within IBM. Spent 2016 building an open-source content management system&#58; <a href="https://github.com/punchcard-cms/punchcard">Punchcard CMS</a>.</p>
     -
       class: resume__experience__employer
       header:

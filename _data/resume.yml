@@ -59,6 +59,29 @@ projects:
         class: resume__section__subtitle resume__experience__title resume__project__title
         name:
           class: business project
+          content: Punchcard CMS
+        position:
+          class: job-title position
+          content: Primary Developer
+      dates:
+        class: date resume__project__date
+        content: 2016 &#8211; Present
+      summary:
+        class: summary resume__experience__summary resume__project__summary
+        content: <p>A headless NodeJS-based Content Management System designed with Content Strategy at its heart.</p>
+      urls:
+        -
+          content: Punchcard GitHub Org
+          url: https://github.com/punchcard-cms
+        -
+          content: Punchcard CMS
+          url: https://github.com/punchcard-cms/punchcard
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
           content: Pattern Library
         position:
           class: job-title position

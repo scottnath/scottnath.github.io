@@ -1,0 +1,15 @@
+<!-- Pattern: resume-skills -->
+<section class="{{skillsets.class}}">
+
+  {{#each skillsets.sets as |set| }}
+  <h2 class="{{set.title.class}}">{{set.title.content}}</h2>
+    {{#each set.subsets as |subset|}}
+      <dl class="{{subset.class}}">
+        <dt class="{{subset.title.class}}">{{subset.title.content}}</dt>
+          {{#each subset.skills as |skill| }}
+            <dd>{{skill}}</dd>
+          {{/each}}
+      </dl>
+    {{/each}}
+  {{/each}}
+</section>

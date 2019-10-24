@@ -1,0 +1,24 @@
+<!-- Pattern: resume -->
+<article class="{{class}}">
+
+  <header class="{{header.class}}">
+    <h1 class="{{header.title.class}}">{{header.title.content}}</h1>
+    <h2 class="{{header.subtitle.class}}">{{header.subtitle.content}}</h2>
+    <div class="{{header.summary.class}}">{{header.summary.content}}</div>
+  </header>
+
+  {{> @resume-skills--default this}}
+
+  {{!-- {% include resume-skills.html %}
+
+  {% include resume-experience.html %}
+
+  {% if projects %}
+    {% assign experience = projects %}
+
+    {% include resume-experience.html %}
+
+  {% endif %} --}}
+
+</article>
+

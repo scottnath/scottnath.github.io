@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ path '{{_config.components.preview.favicon}}' }}" type="image/ico">
+    {{#if style}}
+      <link type="text/css" rel="stylesheet" href="{{ path (get style _config.components.preview.css) }}">
+    {{else}}
+      <link type="text/css" rel="stylesheet" href="{{ path _config.components.preview.css.default }}">
+    {{/if}}
+    <title>{{ _target.title }}: Preview Layout</title>
+</head>
+<body>
+  <header role="banner">
+    <a href="#main-content" class="wh-u-a11yFocusable">Skip to Content</a>
+  </header>
+
+  <main
+    id="main-content"
+    {{#if classNames}}class="{{classNames}}" {{/if}}
+    style="min-height: 100vh"
+    data-floating-menu-container
+  >
+    {{{ yield }}}
+  </main>
+
+  {{#each _config.components.preview.js}}
+  <script src="{{ path '{{file}}' }}"></script>
+  {{/each}}
+</body>
+</html>

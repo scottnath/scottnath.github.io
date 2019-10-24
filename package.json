@@ -16,6 +16,7 @@
     "run-sequence": "^1.1.2"
   },
   "dependencies": {
+    "@frctl/fractal": "^1.2.0",
     "breakpoint-sass": "^2.6.1",
     "pattern-library": "^0.1.4",
     "sass-toolkit": "^2.9.0"

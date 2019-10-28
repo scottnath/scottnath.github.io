@@ -1,0 +1,21 @@
+<!-- Pattern: resume-experience -->
+<section class="{{class}}">
+  <h2 class="{{title.class}}">{{title.content}}</h2>
+  {{#each experiences as |experience| }}
+    <section class="{{experience.class}}">
+      <h3 class="{{experience.header.class}}">
+        <span class="{{experience.header.name.class}}">{{experience.header.name.content}}</span>
+        <span class="{{experience.header.position.class}}">{{experience.header.position.content}}</span>
+      </h3>
+      <p class="{{experience.dates.class}}">{{experience.dates.content}}</p>
+      <div class="{{experience.summary.class}}">{{experience.summary.content}}</div>
+      {{#if experience.urls }}
+        <ul class="urls">
+          {{#each experience.urls as |url| }}
+            <li><a href="{{url.url}}" title="{{url.content}}">{{url.content}}</a></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </section>
+  {{/each}}
+</section>

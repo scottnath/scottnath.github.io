@@ -140,7 +140,7 @@ experience:
           content: System Architect
       dates:
         class: date resume__experience__date
-        content: 2017 &#8211; Present
+        content: Fall 2017 &#8211; Present
       summary:
         class: summary resume__experience__summary
         content: <p>Created and currently maintain the Watson Health Pattern & Asset Library</p>
@@ -156,7 +156,7 @@ experience:
           content: Senior Front End Developer
       dates:
         class: date resume__experience__date
-        content: 2016 &#8211; Present
+        content: 2016 &#8211; Summer 2017
       summary:
         class: summary resume__experience__summary
         content: <p>Working in the Watson organization within IBM. Spent 2016 building an open-source content management system&#58; <a href="https://github.com/punchcard-cms/punchcard">Punchcard CMS</a>.</p>

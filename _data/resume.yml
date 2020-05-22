@@ -134,7 +134,23 @@ experience:
         class: resume__section__subtitle resume__experience__title
         name:
           class: business
-          content: IBM
+          content: IBM Watson Health
+        position:
+          class: job-title
+          content: System Architect
+      dates:
+        class: date resume__experience__date
+        content: 2017 &#8211; Present
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Created and currently maintain the Watson Health Pattern & Asset Library</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: IBM Watson
         position:
           class: job-title
           content: Senior Front End Developer

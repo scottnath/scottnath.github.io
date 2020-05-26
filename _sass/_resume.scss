@@ -1,0 +1,110 @@
+
+.resume__header, .resume__section, .resume__footer {
+  background-color: #fff;
+  margin: $spacing-unit/2 auto;
+  padding: $spacing-unit / 2;
+  border-radius: $spacing-unit / 4;
+  overflow: hidden;
+}
+
+.resume__title, .resume__subtitle {
+  display: none;
+}
+
+.resume__summary {
+  p {
+    margin-bottom: 0;
+  }
+}
+.resume__tech-skills {
+  font-size: .8rem;
+
+  @include breakpoint(600px) {
+    .skills {
+      float: left;
+      width: 50%;
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+%skillstitle {
+  display: inline;
+
+  &::after {
+    content: ': ';
+  }
+
+}
+%skillsitem {
+  display: inline;
+  margin: 0;
+  font-size: .9em;
+
+  &::after {
+    content: ', '
+  }
+
+  &:last-of-type::after {
+    content: '';
+  }
+
+}
+.skills dt {
+  @extend %skillstitle;
+  @include breakpoint(600px) {
+    display: block;
+    &::after {
+      content: '';
+    }
+  }
+}
+
+.skills dd {
+  @extend %skillsitem;
+  @include breakpoint(600px) {
+    display: block;
+    line-height: 1rem;
+    &::after {
+      content: '';
+    }
+  }
+}
+
+.resume__experience__employer {
+  padding-bottom: $spacing-unit / 2;
+  &:last-of-type {
+    padding-bottom: 0;
+  }
+}
+
+.resume__experience__title {
+
+  margin: 0;
+
+  .business {
+    display: block;
+    border-bottom: 1px solid;
+  }
+
+  .job-title {
+    display: block;
+    font-size: .9em;
+  }
+}
+
+.resume__experience__date {
+  font-size: .8em;
+  margin-bottom: $spacing-unit / 6;
+}
+
+.resume__experience__summary {
+  font-size: .9em;
+  p {
+    margin-bottom: $spacing-unit / 6;
+  }
+}
+.resume__experience .urls {
+  font-size: .9em;
+}

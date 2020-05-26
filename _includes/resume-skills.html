@@ -1,0 +1,15 @@
+<!-- Pattern: resume-skills -->
+<section class="{{resume.skillsets.class}}">
+
+  {% for set in resume.skillsets.sets %}
+  <h2 class="{{set.title.class}}">{{set.title.content}}</h2>
+    {% for subset in set.subsets %}
+      <dl class="{{subset.class}}">
+        <dt class="{{subset.title.class}}">{{subset.title.content}}</dt>
+          {% for skill in subset.skills %}
+            <dd>{{skill}}</dd>
+          {% endfor %}
+      </dl>
+    {% endfor %}
+  {% endfor %}
+</section>

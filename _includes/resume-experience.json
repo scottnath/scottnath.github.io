@@ -1,0 +1,7 @@
+{
+  "resumeExperience": {
+    "class": "resume-experience",
+    "content": "This is example content"
+  },
+  "patternSource": "patterns/templates/resumes/resume-experience"
+}

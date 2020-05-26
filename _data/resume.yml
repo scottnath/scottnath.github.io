@@ -1,0 +1,258 @@
+class: resume
+header:
+  class: resume__header
+  title:
+    class: title resume__title
+    content: Scott Nath
+  subtitle:
+    class: subtitle resume__subtitle
+    content: Senior Front End Developer, IBM Watson
+  summary:
+    class: summary resume__summary
+    content: "<p>Web architect, front-end developer, and team leader. 15 years of experience. I like clean &amp; testable code, clear documentation, and growth through challenged pull requests.</p>"
+skillsets:
+    class: resume__section resume__tech-skills
+    sets:
+      -
+        title:
+          class: title resume__section__title
+          content: Technical Skills
+        subsets:
+            -
+              class: skills skills--recently
+              title:
+                class: subtitle skills__subtitle
+                content: Daily development with
+              skills:
+                - Node.js &amp; NPM
+                - HTML5
+                - CSS3
+                - Sass/SCSS
+                - Javascript (+ES6)
+                - Javascript Unit Testing
+                - git/GitHub
+                - Scrum/agile development
+                - Pattern Lab
+            -
+              class: skills skills--recently
+              title:
+                class: subtitle skills__subtitle
+                content: Recent experience with
+              skills:
+                - Compass
+                - Wordpress development
+                - PHP
+                - AngularJS
+                - ExpressJS
+                - Polymer
+                - Web Components
+                - Raspi
+projects:
+  class: resume__section resume__projects resume__experience
+  title:
+    class: resume__section__title
+    content: Projects
+  items:
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
+          content: Punchcard CMS
+        position:
+          class: job-title position
+          content: Primary Developer
+      dates:
+        class: date resume__project__date
+        content: 2016 &#8211; Present
+      summary:
+        class: summary resume__experience__summary resume__project__summary
+        content: <p>A headless NodeJS-based Content Management System designed with Content Strategy at its heart.</p>
+      urls:
+        -
+          content: Punchcard GitHub Org
+          url: https://github.com/punchcard-cms
+        -
+          content: Punchcard CMS
+          url: https://github.com/punchcard-cms/punchcard
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
+          content: Pattern Library
+        position:
+          class: job-title position
+          content: Architect and Primary Developer
+      dates:
+        class: date resume__project__date
+        content: 2014 &#8211; Present
+      summary:
+        class: summary resume__experience__summary resume__project__summary
+        content: <p>A Node.js storage-and-sharing solution for functioning UX patterns. Allows usage of html/css/javascript across multiple systems and includes tools for *design-in-browser* methodologies.</p>
+      urls:
+        -
+          content: Pattern Library homepage
+          url: http://pattern-library.github.io
+        -
+          content: Primary Pattern Library Functionality
+          url: https://github.com/pattern-library/pattern-library-utilities
+    -
+      class: resume__projects__project
+      header:
+        class: resume__section__subtitle resume__experience__title resume__project__title
+        name:
+          class: business project
+          content: Runnerpi - a wifi-streaming POV camera
+        position:
+          class: job-title position
+          content: Architect and Primary Developer
+      dates:
+        class: date resume__experience__date resume__project__date
+        content: 2015
+      summary:
+        class: summary resume__experience__summary resume__project__summary
+        content: <p>Building multiple, Raspberry Pi-based, wifi-streaming cameras for my IRL game The Chase.</p>
+      urls:
+        -
+          content: Instrucable for building Raspi cameras
+          url: http://www.instructables.com/id/Runnerpi-a-wifi-streaming-POV-camera/
+        -
+          content: The Chase
+          url: http://videogame.camp/the-chase/about/
+experience:
+  class: resume__section resume__experience
+  title:
+    class: resume__section__title
+    content: Employment History
+  items:
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: IBM Watson Health
+        position:
+          class: job-title
+          content: System Architect
+      dates:
+        class: date resume__experience__date
+        content: Fall 2017 &#8211; Present
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Created and currently maintain the Watson Health Pattern & Asset Library</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: IBM Watson
+        position:
+          class: job-title
+          content: Senior Front End Developer
+      dates:
+        class: date resume__experience__date
+        content: 2016 &#8211; Summer 2017
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Working in the Watson organization within IBM. Spent 2016 building an open-source content management system&#58; <a href="https://github.com/punchcard-cms/punchcard">Punchcard CMS</a>.</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: NBCUniversal
+        position:
+          class: job-title
+          content: Software Architect
+      dates:
+        class: date resume__experience__date
+        content: 2014 &#8211; 2015
+      summary:
+        class: summary resume__experience__summary
+        content: <p>I work for an internal agency at NBCUniversal that provides technology services to the company's many networks, studios, and brands.</p><p>As Software Architect, I've planned and built an open source, NodeJS-based Pattern Library System (<a href="http://pattern-library.github.io">pattern-library.github.io</a>), which creates stackable and reusable component libraries, bundled with a GulpJS-based development environment. It was a cool thing.</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: NBCUniversal
+        position:
+          class: job-title
+          content: Senior Development Lead
+      dates:
+        class: date resume__experience__date
+        content: 2009 &#8211; 2014
+      summary:
+        class: summary resume__experience__summary
+        content: "<p>During my years as Senior Dev Lead, I spearheaded NBC's Wordpress program, NBCUPress. We built and maintained a re-usable, share-able Wordpress deployment system to keep site styling and building away from CMS maintenance. Then we built a gazillion sites on it.</p>"
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: NBCUniversal
+        position:
+          class: job-title
+          content: Senior Site Developer
+      dates:
+        class: date resume__experience__date
+        content: 2006 &#8211; 2009
+      summary:
+        class: summary resume__experience__summary
+        content: <p>These four years I was bangin out sites, creating reusable HTML/Sass patterns, and meticulously documenting our development processes.</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: Atmosphere BBDO
+        position:
+          class: job-title
+          content: Freelance HTML/CSS Developer
+      dates:
+        class: date resume__experience__date
+        content: 2006
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Built out HTML/CSS structures for multiple campaigns. Clients included Emirates Airlines and the NFL.</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: AKQA
+        position:
+          class: job-title
+          content: Freelance HTML/CSS Developer
+      dates:
+        class: date resume__experience__date
+        content: 2006
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Built out HTML/CSS structures for multiple campaigns, primarily Coca-Cola.</p>
+    -
+      class: resume__experience__employer
+      header:
+        class: resume__section__subtitle resume__experience__title
+        name:
+          class: business
+          content: Theatre Puget Sound
+        position:
+          class: job-title
+          content: Website Architect
+      dates:
+        class: date resume__experience__date
+        content: 2000 &#8211; 2008
+      summary:
+        class: summary resume__experience__summary
+        content: <p>Creating and maintaining entire online web presence from interface design to back-end MySQL database development, for a large member-driven non-profit organization.</p>

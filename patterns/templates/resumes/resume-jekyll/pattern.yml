@@ -1,0 +1,8 @@
+name: resume-jekyll
+description: PATTERN DESCRIPTION GOES HERE
+html: resume.html
+category: ./ # using ./ for category should transfer this to ./
+data:
+  resumeJekyll:
+    class: resume-jekyll
+    content: "This is example content"

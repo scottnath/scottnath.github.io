@@ -1,0 +1,8 @@
+name: resume-experience
+description: PATTERN DESCRIPTION GOES HERE
+html: resume-experience.html
+category: _includes #jekyll includes directory
+data:
+  resumeExperience:
+    class: resume-experience
+    content: "This is example content"

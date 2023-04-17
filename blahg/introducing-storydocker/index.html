@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="generator" content="Astro v2.3.0">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://scottnath.com/blahg/introducing-storydocker/">
+
+<!-- Primary Meta Tags -->
+<title>StoryDocker: Storybook, but it&#39;s a microservice</title>
+<meta name="title" content="StoryDocker: Storybook, but it's a microservice">
+<meta name="description" content="StoryDocker is an open-source tool which allows local Storybook development without dependencies by leveraging docker containers">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scottnath.com/blahg/introducing-storydocker/">
+<meta property="og:title" content="StoryDocker: Storybook, but it's a microservice">
+<meta property="og:description" content="StoryDocker is an open-source tool which allows local Storybook development without dependencies by leveraging docker containers">
+<meta property="og:image" content="https://scottnath.com/storydocker-underwater.jpeg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://scottnath.com/blahg/introducing-storydocker/">
+<meta property="twitter:title" content="StoryDocker: Storybook, but it's a microservice">
+<meta property="twitter:description" content="StoryDocker is an open-source tool which allows local Storybook development without dependencies by leveraging docker containers">
+<meta property="twitter:image" content="https://scottnath.com/storydocker-underwater.jpeg">
+	<link rel="stylesheet" href="/_astro/_...slug_.677bb50b.css" /></head>
+
+	<body>
+		<header class="astro-3EF6KSR2">
+	<h2 class="astro-3EF6KSR2">
+		Scott Nath
+	</h2>
+	<nav class="astro-3EF6KSR2">
+		<a href="/" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Home
+</a>
+		<a href="/blahg" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Blahg
+</a>
+		<a href="/resume" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Resume
+</a>
+	</nav>
+</header>
+		<main>
+      
+	<article>
+		<img width="720" height="360" src="/storydocker-underwater.jpeg" alt="">
+		<h1 class="title">StoryDocker: Storybook, but it&#39;s a microservice</h1>
+		<time datetime="2023-04-10T00:00:00.000Z">
+	Apr 10, 2023
+</time>
+		
+		<hr>
+		
+	<p>Problem: your UI application is complicated and requires a lot of dependencies, but you also need to use <a href="https://storybook.js.org/docs/html/get-started/why-storybook">Storybook</a> to prototype, test, and collaborate with non-technical folks.</p>
+<p>Solution: A full-featured Storybook development environment without all those pesky dependencies!</p>
+<h2 id="tldr">tl;dr</h2>
+<p>StoryDocker is an open-source tool which allows local Storybook development without dependencies by leveraging docker containers</p>
+<ul>
+<li><a href="https://github.com/storydocker/storydocker">StoryDocker on GitHub</a></li>
+<li>Multiple <a href="https://github.com/storydocker/storydocker-examples">StoryDocker examples</a> including React, Vue, Svelte, Lit, and vanilla/no-framework</li>
+</ul>
+<h2 id="why-storybook-as-a-microservice">Why Storybook as a microservice?</h2>
+<p>A NodeJS application’s dependencies are time-consuming to maintain. Your app probably has a bunch of dependencies too - for app-building, connecting to your back-end, external component libraries, all the devOps doo-dads, it can get <em>big</em>.</p>
+<p>A typical setup to implement Storybook will add a whole stack of new dependencies that have nothing to do with your app! Sometimes Storybook’s dependencies will fight with your app’s dependencies…in which case, you may go without Storybook features, reducing it’s usefulness.</p>
+<p>A popular solution for implementing Storybook for a large app is giving it a separate workspace in a monorepo. But that Storybook instance is tied to that repo - so if you have other UI repos you maintain, they’ll need their own Storybook workspace. <a href="https://nx.dev/recipes/storybook">Nx has some excellent monorepo+Storybook solutions</a> but those require all your micro-frontends and UI apps to be in the one monorepo - not ideal if you have a lot of cooks in that kitchen.</p>
+<p>Removing Storybook’s implementation from your application’s environment reduces overhead and dependency overload. Making it a microservice allows it to be used when it’s needed and stay out of the way when it’s not.</p>
+<h2 id="how-storydocker-works">How StoryDocker works</h2>
+<p>StoryDocker internally creates a very basic monorepo using out-of-the-box <a href="https://docs.npmjs.com/cli/v9/using-npm/workspaces">npm workspaces</a>. The Storybook setup is contained in it’s own workspace and includes dependencies for Storybook implementations that generate dev environments for React, Vue, Svelte, Lit, and/or non-js-frameworks applications. Currently it only works for apps which use Vite as their builder.</p>
+<p>StoryDocker generates <a href="https://github.com/storydocker/storydocker/pkgs/container/storydocker">a docker image</a> available via GitHub’s Container registry. This docker image can be combined with your app using a <code>Dockerfile</code> and a <code>docker-compose.yml</code> file.</p>
+<p>Full instructions available in <a href="https://github.com/storydocker/storydocker#getting-started">StoryDocker’s <code>getting started</code> section</a></p>
+<h2 id="how-to-use-storydocker-with-your-ui">How to use StoryDocker with your UI</h2>
+<p>The best way is to checkout the StoryDocker getting started instructions or to dig through or directory any of the <a href="https://github.com/storydocker/storydocker-examples">StoryDocker examples</a>. The example apps include React, Vue, Svelte, Lit, and vanilla/no-framework implementations. Copy the directory and run <code>docker compose up</code> and you’re good to go.</p>
+<p>It should work great for any app that uses Vite and any of the listed frameworks. It’s a fast way to get a Storybook instance quickly attached to your application.</p>
+<h2 id="you-should-steal-the-concept-tho">You should steal the concept tho</h2>
+<p>StoryDocker is a catch-all to add Storybook to a wide range of apps quickly. It was made using the default scaffolding tools from Storybook and Vite. It uses an extremely basic monorepo, with a simple npm-workspaces structure. It is easy to duplicate.</p>
+<p>Your organization might want more/different features beyond what StoryDocker provides, you might need older/different versions of things, or you just don’t want to be dependent on another external library - so I encourage you to copy the concept and add your own spin. Extracting a dependency-heavy setup from your current app environment, while still retaining all it’s features, can save tons of time and money.</p>
+
+	</article>
+
+		</main>
+		<footer class="astro-SZ7XMLTE">
+	<hr class="astro-SZ7XMLTE">
+	&copy; 2023 Scott Nath All rights reserved.
+</footer>
+	</body></html>

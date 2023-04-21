@@ -51,13 +51,20 @@
 	<article>
 		<img width="720" height="360" src="/storybook-shared-tests.jpeg" alt="">
 		<h1 class="title">Reusable Storybook Interaction Tests</h1>
-		<time datetime="2023-04-19T00:00:00.000Z">
-	Apr 19, 2023
+		<time datetime="2023-04-20T00:00:00.000Z">
+	Apr 20, 2023
 </time>
 		
 		<hr>
 		
-	<p>Writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage</p>
+	<h2 id="tldr">tl;dr</h2>
+<p>Writing reusable tests means they can be shared within and between components.</p>
+<p>Goal: reduce your testing footprint while increasing coverage</p>
+<ul>
+<li><a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">codesandbox Storybook appliction with shared tests</a></li>
+<li><a href="https://github.com/storydocker/storydocker/blob/main/package/storybook-setup/src/stories/Button.shared-spec.ts">Button.shared-spec.ts</a> (example file on GitHub with shared tests)</li>
+<li><a href="https://github.com/storydocker/storydocker/blob/main/package/storybook-setup/src/stories/Button.stories.ts">Button.stories.ts</a> (example file on GitHub using shared tests)</li>
+</ul>
 <h2 id="what-are-shared-tests">What are shared tests?</h2>
 <p>Shared tests are a concept for creating reusable <a href="https://testing-library.com">Testing Library</a> tests for UI components. Writing reusable tests which conform to Testing Library’s paradigm of querying the DOM for nodes allows shared tests to generally be <em>javascript framework agnostic</em>.</p>
 <p>The concept expects test suites to be within functions which receive as arguments the rendered UI and the props used to render the UI. Inside the method, it should conditionally run assertions according the props used to configure the UI.</p>
@@ -180,7 +187,49 @@
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// clear out the mock which resets calls to zero</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> onClick.</span><span style="color: #D2A8FF">mockClear</span><span style="color: #C9D1D9">();</span></span>
 <span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
-<p>Next up, Part 2 “Sharing tests between a child and parent component”</p>
+<h2 id="how-theyre-using-in-storybook-interaction-tests">How they’re using in Storybook Interaction tests</h2>
+<p>See <a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup?file=%2Fsrc%2Fstories%2FButton.stories.ts">Button.stories.ts on codesandbox</a></p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Button.stories.ts</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Primary</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
+<span class="line"><span style="color: #C9D1D9">    primary: </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">play</span><span style="color: #C9D1D9">: </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> ({ </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9"> }) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "What was rendered?"</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Did it render correctly?"</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Does it function as expected for mouse users?"</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Does it function as expected for keyboard-only users?"</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
+<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"><span style="color: #C9D1D9">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Secondary</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
+<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// Reuse the exact same tests</span></span>
+<span class="line"><span style="color: #C9D1D9">  play: Primary.play,</span></span>
+<span class="line"><span style="color: #C9D1D9">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Large</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
+<span class="line"><span style="color: #C9D1D9">    size: </span><span style="color: #A5D6FF">'large'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// again and again</span></span>
+<span class="line"><span style="color: #C9D1D9">  play: Primary.play,</span></span>
+<span class="line"><span style="color: #C9D1D9">};</span></span></code></pre>
+<p><strong>Next up, Part 2 “Sharing tests between a child and parent component”</strong></p>
 
 	</article>
 

@@ -62,8 +62,6 @@
 <p>Goal: reduce your testing footprint while increasing coverage</p>
 <ul>
 <li><a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">codesandbox Storybook appliction with shared tests</a></li>
-<li><a href="https://github.com/storydocker/storydocker/blob/main/package/storybook-setup/src/stories/Button.shared-spec.ts">Button.shared-spec.ts</a> (example file on GitHub with shared tests)</li>
-<li><a href="https://github.com/storydocker/storydocker/blob/main/package/storybook-setup/src/stories/Button.stories.ts">Button.stories.ts</a> (example file on GitHub using shared tests)</li>
 </ul>
 <h2 id="what-are-shared-tests">What are shared tests?</h2>
 <p>Shared tests are a concept for creating reusable <a href="https://testing-library.com">Testing Library</a> tests for UI components. Writing reusable tests which conform to Testing Library’s paradigm of querying the DOM for nodes allows shared tests to generally be <em>javascript framework agnostic</em>.</p>
@@ -188,9 +186,9 @@
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> onClick.</span><span style="color: #D2A8FF">mockClear</span><span style="color: #C9D1D9">();</span></span>
 <span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
 <h2 id="how-theyre-using-in-storybook-interaction-tests">How they’re using in Storybook Interaction tests</h2>
-<p>See <a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup?file=%2Fsrc%2Fstories%2FButton.stories.ts">Button.stories.ts on codesandbox</a></p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Button.stories.ts</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Primary</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<p>See <a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">./src/Button.stories.js on codesandbox</a></p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Button.stories.js</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Primary</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
 <span class="line"><span style="color: #C9D1D9">  args: {</span></span>
 <span class="line"><span style="color: #C9D1D9">    primary: </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
 <span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
@@ -211,7 +209,7 @@
 <span class="line"><span style="color: #C9D1D9">  },</span></span>
 <span class="line"><span style="color: #C9D1D9">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Secondary</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Secondary</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
 <span class="line"><span style="color: #C9D1D9">  args: {</span></span>
 <span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
 <span class="line"><span style="color: #C9D1D9">  },</span></span>
@@ -220,7 +218,7 @@
 <span class="line"><span style="color: #C9D1D9">  play: Primary.play,</span></span>
 <span class="line"><span style="color: #C9D1D9">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Large</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">Story</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Large</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
 <span class="line"><span style="color: #C9D1D9">  args: {</span></span>
 <span class="line"><span style="color: #C9D1D9">    size: </span><span style="color: #A5D6FF">'large'</span><span style="color: #C9D1D9">,</span></span>
 <span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>

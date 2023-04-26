@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="generator" content="Astro v2.3.0">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://scottnath.com/blahg/sharing-tests-between-components/">
+
+<!-- Primary Meta Tags -->
+<title>Sharing Interaction Tests Between Components</title>
+<meta name="title" content="Sharing Interaction Tests Between Components">
+<meta name="description" content="How to share testing-library UI tests between child and parent components">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scottnath.com/blahg/sharing-tests-between-components/">
+<meta property="og:title" content="Sharing Interaction Tests Between Components">
+<meta property="og:description" content="How to share testing-library UI tests between child and parent components">
+<meta property="og:image" content="https://scottnath.com/sharing-tests-with-a-handshake.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://scottnath.com/blahg/sharing-tests-between-components/">
+<meta property="twitter:title" content="Sharing Interaction Tests Between Components">
+<meta property="twitter:description" content="How to share testing-library UI tests between child and parent components">
+<meta property="twitter:image" content="https://scottnath.com/sharing-tests-with-a-handshake.png">
+	<link rel="stylesheet" href="/_astro/_...slug_.425165c8.css" /></head>
+
+	<body>
+		<header class="astro-3EF6KSR2">
+	<h2 class="astro-3EF6KSR2">
+		Scott Nath
+	</h2>
+	<nav class="astro-3EF6KSR2">
+		<a href="/" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Home
+</a>
+		<a href="/blahg" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Blahg
+</a>
+		<a href="/resume" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Resume
+</a>
+	</nav>
+</header>
+		<main>
+      
+	<article>
+		<img width="720" height="360" src="/sharing-tests-with-a-handshake.png" alt="">
+		<h1 class="title">Sharing Interaction Tests Between Components</h1>
+		<time datetime="2023-04-26T00:00:00.000Z">
+	Apr 26, 2023
+</time>
+		
+		<hr>
+		
+	<h2 id="tldr">tl;dr</h2>
+<p>Descriptions and code examples for sharing tests between components. Includes info on writing tests for Storybook’s boilerplate components.</p>
+<p><strong>Goal: reduce your testing footprint while increasing coverage</strong></p>
+<ul>
+<li><a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">codesandbox Storybook appliction with shared tests</a></li>
+<li><a href="/blahg/shared-storybook-tests/">PART 1: Reusable Storybook Interaction Tests</a></li>
+</ul>
+<details>
+<summary>Prerequisite knowledge</summary>
+<ul>
+<li><a href="https://storybook.js.org/docs/react/writing-tests/interaction-testing">Storybook interactive tests</a></li>
+<li><a href="https://testing-library.com">Testing Library</a></li>
+</ul>
+</details>
+<h2 id="why-share-tests-between-components">Why share tests between components?</h2>
+<p>Time and money!</p>
+<p>Shared tests keep your overall codebase DRY, as in <code>Don't Repeat Yourself</code>.</p>
+<p>Sharing tests between different parts of your codebase can have several benefits. If you have two or more modules that depend on the same functionality, it can be useful to write tests that cover that functionality once and then share those tests between the modules. For UI components, that means sharing unit tests, user-interaction tests, and you can stack them together to make in-depth E2E test suites.</p>
+<h2 id="testing-the-storybook-boilerplate-stories">Testing the Storybook Boilerplate Stories</h2>
+<p>When using Storybook’s installer to add Storybook to your project, the installer includes three components with <code>stories</code> files to get you started. The three boilerplate stories are:</p>
+<ul>
+<li>Button</li>
+<li>Header, which imports Button</li>
+<li>Page, which imports Header</li>
+</ul>
+<p>These are generally the same components and stories across all frameworks. Since they build on each other, they’re a great use-case for shared tests.</p>
+<h3 id="testing-the-button">Testing the Button</h3>
+<p>The Button is the most complex with three props for styling, one for content, and one for user actions.</p>
+<p>The Button tests were detailed in <a href="/blahg/shared-storybook-tests/">Reusable Storybook Interaction Tests</a>. The <code>Button.shared-spec.js</code> which contains the Button’s tests exports the following:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>method</th><th>description</th></tr></thead><tbody><tr><td><code>getElements</code></td><td>returns the elements to be tested</td></tr><tr><td><code>ensureElements</code></td><td>conditionally tests the elements</td></tr><tr><td><code>mouseInteraction</code></td><td>conditionally tests the mouse interactions</td></tr><tr><td><code>keyboardInteraction</code></td><td>conditionally tests the keyboard interactions</td></tr></tbody></table>
+<h3 id="testing-the-header">Testing the Header</h3>
+<p>The Header internally configures the Button component and has it’s own props. The following table shows the props the Header accepts:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>prop</th><th>description</th></tr></thead><tbody><tr><td><code>user</code></td><td>a simple object with a <code>name</code> property</td></tr><tr><td><code>onLogout</code></td><td>function called when a user triggers the <code>Log Out</code> button</td></tr><tr><td><code>onLogin</code></td><td>function called when a user triggers the <code>Log In</code> button</td></tr><tr><td><code>onCreateAccount</code></td><td>function called when a user triggers the <code>Sign Up</code> button</td></tr></tbody></table>
+<h4 id="elements-to-gather-from-the-header">Elements to gather from the Header</h4>
+<p>Things that will conditionally change based on the props:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>element</th><th>description</th></tr></thead><tbody><tr><td><code>buttons</code></td><td>an array of all buttons in Header</td></tr><tr><td><code>title</code></td><td>the <code>heading</code> (<code>h1</code>) element</td></tr><tr><td><code>header</code></td><td>the <code>header</code> element</td></tr></tbody></table>
+<p><code>header</code> and <code>title</code> will always be the same since they are not changed by <code>props</code>, but we are testing them anyway to ensure they are present.</p>
+<p><code>buttons</code> will change based on the <code>user</code> prop.</p>
+<h4 id="tests-that-headers-tests-will-run">Tests that Header’s tests will run</h4>
+<ul>
+<li>Does the <code>header</code> element exist?</li>
+<li>Does the <code>title</code> element exist?</li>
+<li>Does the <code>title</code> element contain the text <code>Acme</code>?</li>
+<li>If the user is logged in:
+<ul>
+<li>Is there one Button?</li>
+</ul>
+</li>
+<li>If the user is not logged in:
+<ul>
+<li>Are there two Buttons?</li>
+</ul>
+</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Ensure elements are present and have the correct attributes/content</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.header).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.title).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.title).</span><span style="color: #D2A8FF">toHaveTextContent</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Acme'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons).</span><span style="color: #D2A8FF">toHaveLength</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons).</span><span style="color: #D2A8FF">toHaveLength</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">...</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h4 id="header-lets-button-test-itself">Header lets Button test itself</h4>
+<p>Because the Button component has it’s own tests, the Header component doesn’t need to know how the Button works. It only needs to know that the Button works.</p>
+<p>The Header tests each Button by using the Button’s <code>ensureElements</code> method.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Import the Button's shared tests</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { ensureElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> buttonEnsureElements } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">"./Button.shared-spec"</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">...</span><span style="color: #C9D1D9"> </span><span style="color: #8B949E">// Header's tests, see above</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Recreates button configuration from Header</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log out'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log in'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Sign up'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      primary: </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span></code></pre>
+<h4 id="user-interactions-are-owned-by-button">User interactions are owned by Button</h4>
+<p>The only interactive elements in the Header are the Buttons, so the only thing the Header needs to test for is how a keyboard user gets to the Button(s). Everything else, including whether the <code>onLogout</code>, <code>onLogin</code>, and <code>onCreateAccount</code> functions are called, are owned by the Button.</p>
+<p>The Header tests it can get to the Button(s) by triggering a <code>tab</code> UserEvent within itself.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test keyboard interaction</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">buttons</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">header</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// `focusTrap` keeps the user's keyboard within the `header` HTMLElement</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Log Out` button to have focus</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Uses Button's keyboard interaction tests</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log out'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      onClick: args.onLogout,</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// again, starts within Header</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Log In` button to have focus</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// User hits `tab` once more</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Sign Up` button to have focus</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Button tests for first button</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">...</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Button tests for second button</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] }, {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">...</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h3 id="testing-the-page">Testing the Page</h3>
+<p>The Page component has no props, but in some frameworks the Page boilerplate component, relies on the JS Framework to control it’s state. All of the page content is inside the code (tsk tsk), so we’ll use the Header’s tests to test the Page.</p>
+<h4 id="elements-to-gather-from-the-page">Elements to gather from the Page</h4>
+<p>In this instance, we’ll use the Header’s <code>getElements</code> method to get the elements we need.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Import the Button's shared tests</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { getElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerGetElements } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'./Header.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Extract elements from an HTMLElement</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">screen</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">within</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// Header knows how to get it's own elements</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">headerElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerGetElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// spreads the headerElements into this object</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">...</span><span style="color: #C9D1D9">headerElements,</span></span>
+<span class="line"><span style="color: #C9D1D9">    screen,</span></span>
+<span class="line"><span style="color: #C9D1D9">  };</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h4 id="tests-that-pages-tests-will-run">Tests that Page’s tests will run</h4>
+<p>It’ll just use Header’s tests:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { </span></span>
+<span class="line"><span style="color: #C9D1D9">    ensureElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerEnsureElements,</span></span>
+<span class="line"><span style="color: #C9D1D9">    mouseInteraction </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerMouseInteraction,</span></span>
+<span class="line"><span style="color: #C9D1D9">    keyboardInteraction </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerKeyboardInteraction</span></span>
+<span class="line"><span style="color: #C9D1D9">} </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'./Header.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Ensure elements are present and have the correct attributes/content</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerEnsureElements</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test mouse interaction</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerMouseInteraction</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test keyboard interaction</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerKeyboardInteraction</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>Self-knowledge for components is the lynchpin with sharing tests. As deeply as possible, a component should know every possible change that can happen to it, and how to test for each possibility.</p>
+<p>Using this across a design-system, this should vastly reduce the testing footprint. As long as you’re writing <code>testing-library</code> tests, this concept should allow the <code>shared-spec</code> tests to be used within your unit tests in addition to being used by Storybook stories.</p>
+<p>Efficiency in all things - and productivity will follow!</p>
+
+	</article>
+
+		</main>
+		<footer class="astro-SZ7XMLTE">
+	<hr class="astro-SZ7XMLTE">
+	&copy; 2023 Scott Nath All rights reserved.
+</footer>
+	</body></html>

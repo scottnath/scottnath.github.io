@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-B00ZXZSE29" type="text/partytown"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B00ZXZSE29');
+</script>
+
+<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="generator" content="Astro v2.3.0">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://scottnath.com/blahg/multi-framework-composition-storybook-local/">
+
+<!-- Primary Meta Tags -->
+<title>Running a local multi-framework composition Storybook</title>
+<meta name="title" content="Running a local multi-framework composition Storybook">
+<meta name="description" content="How to run a local multi-framework composition Storybook instance with one command">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scottnath.com/blahg/multi-framework-composition-storybook-local/">
+<meta property="og:title" content="Running a local multi-framework composition Storybook">
+<meta property="og:description" content="How to run a local multi-framework composition Storybook instance with one command">
+<meta property="og:image" content="https://scottnath.com/astro-multiframework-storybook.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://scottnath.com/blahg/multi-framework-composition-storybook-local/">
+<meta property="twitter:title" content="Running a local multi-framework composition Storybook">
+<meta property="twitter:description" content="How to run a local multi-framework composition Storybook instance with one command">
+<meta property="twitter:image" content="https://scottnath.com/astro-multiframework-storybook.png">
+	<link rel="stylesheet" href="/_astro/_...slug_.425165c8.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
+!function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.7.6":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script></head>
+
+	<body>
+		<header class="astro-3EF6KSR2">
+	<h2 class="astro-3EF6KSR2">
+		Scott Nath
+	</h2>
+	<nav class="astro-3EF6KSR2">
+		<a href="/" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Home
+</a>
+		<a href="/blahg" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Blahg
+</a>
+		<a href="/resume" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Resume
+</a>
+	</nav>
+</header>
+		<main>
+      
+	<article>
+		<img width="720" height="360" src="/astro-multiframework-storybook.png" alt="">
+		<h1 class="title">Running a local multi-framework composition Storybook</h1>
+		<time datetime="2023-05-17T00:00:00.000Z">
+	May 17, 2023
+</time>
+		
+		<hr>
+		
+	<p>How to run a local multi-framework composition Storybook instance with one command</p>
+<h2 id="tldr">tl;dr</h2>
+<p><strong>problem</strong>: we can’t compose multiple Storybooks in the same process without getting CORS errors</p>
+<p><strong>typical solution</strong>: run one storybook, open a new terminal tab, run the next, new tab, start the main composed storybook</p>
+<p><strong>one-tab solution</strong>: Use <code>concurrently</code> and <code>wait-on</code> to run multiple Storybooks in one terminal tab.</p>
+<p>See this <a href="https://github.com/storydocker/storydocker-examples/tree/main/experimental/astro-framework-multiple">example of a multi-framework composition Storybook</a> for working code.</p>
+<h2 id="prerequisite-knowledge">Prerequisite knowledge</h2>
+<ul>
+<li><a href="https://storybook.js.org/docs/react/sharing/storybook-composition">Storybook Composition</a></li>
+</ul>
+<p><strong>note</strong>: This article is specific to running Storybook <em>locally</em>.</p>
+<h2 id="problem-1-storybook-composition-cors-bugs">Problem 1: Storybook Composition CORS bugs</h2>
+<p>The most common errors when using Storybook Composition seem to be related to CORS (Cross-Origin Resource Sharing). You can see how often CORS is mentioned when <a href="https://github.com/search?q=repo%3Astorybookjs%2Fstorybook+cors+composition&#x26;type=issues">searching Storybook’s GitHub repo’s issues for CORS + Composition</a>.</p>
+<p>Basically, if the parent Storybook (the Storybook instance which references the child Storybooks) is started before the child Storybooks have <em>completely launched and are viewable in browser</em>, then the parent Storybook will throw CORS errors. The CORS errors will block the parent Storybook from loading the child Storybooks. No clear fix has been found for this issue - and I’ve tried a bunch.</p>
+<p>The common solution is to use multiple terminal windows and wait for the child Storybooks to be fully launched before starting the parent Storybook.</p>
+<p>Why do we have to do it that way?</p>
+<p>See: ⬇️</p>
+<h2 id="nodejs-is-single-threaded">NodeJS is single-threaded …</h2>
+<p>When running a script in a NodeJS process, it is the only script which can run in that process at that time. So, if you’re in a terminal window you cannot run another script in that window until the first script has finished.</p>
+<h2 id="-and-storybook-composition-requires-waiting">… and Storybook composition requires waiting</h2>
+<p>When running Storybook locally in dev mode, it does not exit or otherwise programatically indicate that Storybook has started. A composed Storybook should not start until the child Storybooks are running. But using scripts like <code>concurrently</code> or <code>npm-run-all</code> has not consistently worked for me <em>when the parent/composed Storybook instance is in the list of scripts running concurrently</em>.</p>
+<p>Of course, you can open a new tab/terminal window for each command, but that means all users of your repo need to know that trick too. Inefficient!</p>
+<p>The following is a solution that works consistently with a single NPM script.</p>
+<h2 id="example-code">Example code</h2>
+<h3 id="astros-kitchen-sink">Astro’s Kitchen Sink</h3>
+<p>We’ll be using Astro’s <a href="https://github.com/withastro/astro/tree/latest/examples/framework-multiple">Kitchen Sink: Microfrontends with Astro</a>, which showcases Astro’s built-in support for multiple frameworks (React, Preact, Svelte, and Vue (<code>v3.x</code>)). This a multi-framework application, meaning it can use components from multiple JS frameworks in the UI - very cool!</p>
+<h3 id="storydocker-storybook">StoryDocker-storybook</h3>
+<p>We’ll be adding <a href="https://github.com/storydocker/storydocker">StoryDocker</a>’s module <a href="https://www.npmjs.com/package/storydocker-storybook">StoryDocker-storybook</a> which injects the typical dependencies needed to set up Storybook.</p>
+<h3 id="working-codebase-on-github">Working codebase on GitHub</h3>
+<p>The code referenced is available on GitHub via <a href="https://github.com/storydocker/storydocker-examples/tree/main/experimental/astro-framework-multiple">the astro-framework-multiple example</a> in the StoryDocker-examples repo.</p>
+<h2 id="steps-to-compose-storybooks-locally">Steps to compose Storybooks locally</h2>
+<h3 id="step-1-start-up-the-child-storybooks-in-parallel">Step 1: Start up the child Storybook(s) in parallel</h3>
+<p>We’ll be using <code>concurrently</code>, an NPM module which allows running multiple commands at the same time. (<a href="https://www.npmjs.com/package/concurrently">Concurrently on npmjs</a>)</p>
+<p>The child Storybooks don’t need to know each other exist, so they can be started at the same time.</p>
+<p>Using <code>concurrently</code>, we’ll run each child-Storybook in parallel.</p>
+<h4 id="step-1a-running-one-child-storybook">Step 1.a: Running one child Storybook</h4>
+<p>This command will run one child Storybook:</p>
+<p><code>npm run storybook -- --config-dir .framework-storybooks/.storybook-preact --port 6001 --no-open</code></p>
+<p>Let’s break down that command:</p>
+<p><code>npm run storybook</code> is the command to run Storybook via the NPM script <code>storybook</code> in <code>package.json</code>. That script is calling the <a href="https://storybook.js.org/docs/react/api/cli-options">Storybook CLI</a> with the command <code>storybook dev</code>.</p>
+<p><code>-- </code> the extra double-dashes allow us to send flags-and-options directly to <code>storybook dev</code></p>
+<p><code>--config-dir .framework-storybooks/.storybook-preact</code> is the command to run Storybook with the <code>preact</code>-specific configuration found in the local directory</p>
+<p><code>--port 6001</code> is the command to run Storybook on port <code>6001</code></p>
+<p><code>--no-open</code> tells Storybook to not open a browser window when it starts.</p>
+<p>So, all that means we’re starting a Storybook instance using the configuration found in <code>.framework-storybooks/.storybook-preact</code> and we’re running it on port <code>6001</code> and telling Storybook to skip it’s default behavior of opening a browser window.</p>
+<h4 id="step-1b-the-other-child-storybooks">Step 1.b: The other child Storybooks</h4>
+<p>The example code has 3 other child Storybooks, so we’ll need to run those too. They are:</p>
+<p>React: <code>npm run storybook -- --config-dir .framework-storybooks/.storybook-react --port 6002 --no-open</code></p>
+<p>Svelte: <code>npm run storybook -- --config-dir .framework-storybooks/.storybook-svelte --port 6003 --no-open</code></p>
+<p>Vue: <code>npm run storybook -- --config-dir .framework-storybooks/.storybook-vue --port 6004 --no-open</code></p>
+<h4 id="step-1c-running-all-child-storybooks-in-parallel">Step 1.c: Running all child Storybooks in parallel</h4>
+<p>Putting them together, we’ll run all the child Storybooks in parallel using <code>concurrently</code>. This is the NPM script we’ll use:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">"sbook-children": "npx concurrently \"npm run storybook -- --config-dir .framework-storybooks/.storybook-preact --port 6001 --no-open\"  \"npm run storybook -- --config-dir .framework-storybooks/.storybook-react --port 6002 --no-open\" \"npm run storybook -- --config-dir .framework-storybooks/.storybook-svelte --port 6003 --no-open\" \"npm run storybook -- --config-dir .framework-storybooks/.storybook-vue --port 6004 --no-open\"",</span></span></code></pre>
+<p>Running <code>npm run sbook-children</code> will start all the child Storybooks in parallel. We use <code>npx</code> instead of <code>npm</code> so we can avoid adding <code>concurrently</code> as a dependency.</p>
+<h3 id="step-2-run-the-parent-storybook">Step 2: Run the parent Storybook</h3>
+<p>We do not want to start the parent Storybook until all the child Storybooks are running and viewable in browser.</p>
+<h4 id="step-2a-the-parent-storybook">Step 2.a: The parent Storybook</h4>
+<p>The main composed Storybook is configured like a normal Storybook within the <code>.storybook</code> directory. The only addition is the <a href="https://github.com/storydocker/storydocker-examples/blob/main/experimental/astro-framework-multiple/.storybook/refs.js"><code>refs.js</code> file</a> which is imported by <code>main.js</code> and contains the references to the child Storybooks. The contents of <code>refs.js</code> are:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">export default {</span></span>
+<span class="line"><span style="color: #c9d1d9">  "astro_preact": {</span></span>
+<span class="line"><span style="color: #c9d1d9">    "title": "preact",</span></span>
+<span class="line"><span style="color: #c9d1d9">    "url": "http://localhost:6001",</span></span>
+<span class="line"><span style="color: #c9d1d9">  },</span></span>
+<span class="line"><span style="color: #c9d1d9">  "astro_react": {</span></span>
+<span class="line"><span style="color: #c9d1d9">    "title": "react",</span></span>
+<span class="line"><span style="color: #c9d1d9">    "url": "http://localhost:6002",</span></span>
+<span class="line"><span style="color: #c9d1d9">  },</span></span>
+<span class="line"><span style="color: #c9d1d9">  "astro_svelte": {</span></span>
+<span class="line"><span style="color: #c9d1d9">    "title": "svelte",</span></span>
+<span class="line"><span style="color: #c9d1d9">    "url": "http://localhost:6003",</span></span>
+<span class="line"><span style="color: #c9d1d9">  },</span></span>
+<span class="line"><span style="color: #c9d1d9">  "astro_vue": {</span></span>
+<span class="line"><span style="color: #c9d1d9">    "title": "vue",</span></span>
+<span class="line"><span style="color: #c9d1d9">    "url": "http://localhost:6004",</span></span>
+<span class="line"><span style="color: #c9d1d9">  },</span></span>
+<span class="line"><span style="color: #c9d1d9">}</span></span></code></pre>
+<h4 id="step-2b-waiting-on-one-child-storybook">Step 2.b: Waiting on one child Storybook</h4>
+<p>We’ll use <code>wait-on</code>, an NPM module which stops Node from continuing a process until a condition is met. In this case, <code>wait-on</code> is going to check for each <code>localhost</code> port to be open before continuing. (<a href="https://www.npmjs.com/package/wait-on">wait-on on npmjs</a>)</p>
+<p>This command:</p>
+<p><code>npx wait-on http://localhost:6001</code></p>
+<p>will wait until <code>localhost:6001</code> is open and returns a <code>2xx</code> response before continuing.</p>
+<p>Port <code>6001</code> is the Storybook for Preact.</p>
+<h4 id="step-2c-waiting-on-all-child-storybooks">Step 2.c: Waiting on all child Storybooks</h4>
+<p>We’ll be adding a double-ampersand in between each localhost check, which means <code>wait-on</code> will wait for each port <em>sequentially</em>. After all the <code>wait-on</code>s, we’ll start Storybook with <code>npm run storybook</code>.</p>
+<p>The following NPM script will wait for all the child Storybooks to be open before continuing to open the parent Storybook.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">"sbook-parent": "npx wait-on http://localhost:6001 &#x26;&#x26; npx wait-on http://localhost:6002 &#x26;&#x26; npx wait-on http://localhost:6003  &#x26;&#x26; npx wait-on http://localhost:6004 &#x26;&#x26; npm run storybook",</span></span></code></pre>
+<h3 id="step-3-single-command-to-run-all-storybooks">Step 3: Single command to run all Storybooks</h3>
+<p>Using <code>concurrently</code> again, we’ll run both the child and parent NPM scripts:</p>
+<p><code>npx concurrently "npm run sbook-children" "npm run sbook-parent"</code></p>
+<p>and the NPM script in package.json:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">"sbook": "npx concurrently \"npm run sbook-children\" \"npm run sbook-parent\""</span></span></code></pre>
+<h3 id="step-4-profit">Step 4: Profit!</h3>
+<p>Happy coding folks!</p>
+
+	</article>
+
+		</main>
+		<footer class="astro-SZ7XMLTE">
+	<hr class="astro-SZ7XMLTE">
+	&copy; 2023 Scott Nath All rights reserved.
+</footer>
+	</body></html>

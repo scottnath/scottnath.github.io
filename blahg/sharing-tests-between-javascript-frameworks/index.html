@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-B00ZXZSE29" type="text/partytown"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B00ZXZSE29');
+</script>
+
+<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="generator" content="Astro v2.3.0">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://scottnath.com/blahg/sharing-tests-between-javascript-frameworks/">
+
+<!-- Primary Meta Tags -->
+<title>Sharing UI Tests Between Javascript Frameworks</title>
+<meta name="title" content="Sharing UI Tests Between Javascript Frameworks">
+<meta name="description" content="How to share testing-library UI tests between Javascript frameworks with the same or similar components and use them in Storybook and unit testing.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scottnath.com/blahg/sharing-tests-between-javascript-frameworks/">
+<meta property="og:title" content="Sharing UI Tests Between Javascript Frameworks">
+<meta property="og:description" content="How to share testing-library UI tests between Javascript frameworks with the same or similar components and use them in Storybook and unit testing.">
+<meta property="og:image" content="https://scottnath.com/js-framework-share-tests.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://scottnath.com/blahg/sharing-tests-between-javascript-frameworks/">
+<meta property="twitter:title" content="Sharing UI Tests Between Javascript Frameworks">
+<meta property="twitter:description" content="How to share testing-library UI tests between Javascript frameworks with the same or similar components and use them in Storybook and unit testing.">
+<meta property="twitter:image" content="https://scottnath.com/js-framework-share-tests.png">
+	<link rel="stylesheet" href="/_astro/_...slug_.6d68f6fb.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
+!function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.7.6":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script></head>
+
+	<body>
+		<header class="astro-3EF6KSR2">
+	<h2 class="astro-3EF6KSR2">
+		Scott Nath
+	</h2>
+	<nav class="astro-3EF6KSR2">
+		<a href="/" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Home
+</a>
+		<a href="/blahg" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Blahg
+</a>
+		<a href="/resume" class="astro-3EF6KSR2 astro-EIMMU3LG">
+	Resume
+</a>
+	</nav>
+</header>
+		<main>
+      
+	<article>
+		<img width="720" height="360" src="/js-framework-share-tests.png" alt="">
+		<h1 class="title">Sharing UI Tests Between Javascript Frameworks</h1>
+		<time datetime="2023-06-27T00:00:00.000Z">
+	Jun 27, 2023
+</time>
+		
+		<hr>
+		
+	<p>How to share testing-library UI tests between Javascript frameworks with the same or similar components and use them in Storybook and unit testing.</p>
+<h2 id="tldr">tl;dr</h2>
+<p>Tests can be shared between Javascript components which have a similar HTML structure and/or a similar UX. The same shared tests can be used in both Storybook’s <code>play</code> tests (Interaction testing) and Vitest unit tests.</p>
+<ul>
+<li><a href="https://github.com/storydocker/storydocker-examples/tree/main/experimental/astro-framework-multiple">working example on github</a></li>
+<li><a href="https://storydocker.github.io/storydocker-examples/astro-framework-multiple/?path=/story/astro--astro">live Storybook with working play tests</a></li>
+</ul>
+<details>
+<summary>Prerequisite knowledge</summary>
+<ul>
+<li><a href="https://storybook.js.org/docs/react/writing-tests/interaction-testing">Storybook interactive tests</a></li>
+<li><a href="https://testing-library.com/">Testing Library</a></li>
+</ul>
+</details>
+<h2 id="why-share-tests-between-javascript-frameworks">Why share tests between Javascript Frameworks?</h2>
+<ul>
+<li>You have one or more applications which share UX, but which are built with different JS Frameworks</li>
+<li>When converting an application from one JS Framework to another</li>
+<li>Your company maintains a design system with multiple component libraries built with different JS Frameworks, but the same UX</li>
+</ul>
+<h2 id="shared-tests-and-how-to-use-them">Shared tests and how to use them</h2>
+<p>Staying D.R.Y. so… dig through <a href="/blahg/shared-storybook-tests/">part 1 - “What are shared tests”</a>, <a href="/blahg/sharing-tests-between-components/">part 2 - “Sharing tests between components”</a>, and <a href="/blahg/sharing-tests-between-vitest-and-storybook/">part 3 - “Sharing tests between Vitest and Storybook”</a> to get the low-down on shared tests.</p>
+<h2 id="why-does-this-work-are-you-a-wizard">Why does this work? Are you a wizard?</h2>
+<p>As I’ve been writing this series, I realized it’s an ode to the magic of <a href="https://testing-library.com/">Testing Library</a>, which is built for testing UIs as a user would experience an app. This principle means <code>Testing Library</code> is not introduced to your UI until after it has already rendered…which means <code>Testing Library</code> is navigating a DOM just as a user would…and users do not know or care what framework you used to build your UI, just that it works as expected.</p>
+<p><code>Testing Library</code> is the real MVP here.</p>
+<h2 id="what-are-we-testing-this-time">What are we testing this time?</h2>
+<p>This article shows a set of shared-tests for testing a Counter component rewritten across multiple Javascript frameworks. We’ll be using the components found in the <a href="https://astro.build/">Astro Web Framework</a>’s example: <a href="https://github.com/withastro/astro/tree/latest/examples/framework-multiple?on=github"><code>Kitchen Sink (Multiple Frameworks)</code></a>. These are written in Preact, React, Svelte, SolidJS, and Vue. This Astro microfrontend example is fantastic in that it demonstrates how the Astro Web Framework can have multiple Javascript frameworks running on the same page at the same time.</p>
+<p>Fun fact! This is the codebase I used to demonstrate Storybook presenting multiple frameworks in the <a href="/blahg/multi-framework-composition-storybook-local/">DevOps for Multi-Framework Composition Storybooks series</a>.</p>
+<h3 id="what-is-the-counter-component">What is the Counter component?</h3>
+<p>The Counter component is a simple component which displays a number and has two buttons: one to increment the number and one to decrement the number. <strong>Each framework version has the exact same UX and HTML structure</strong>, with slight variations due to the syntax of the framework.</p>
+<h4 id="html-for-preactcountertsx">HTML for PreactCounter.tsx:</h4>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{subtract}</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>{count}&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{add}</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span></code></pre>
+<h4 id="html-for-reactcountertsx">HTML for ReactCounter.tsx:</h4>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">className</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{subtract}</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>{count}&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{add}</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span></code></pre>
+<h4 id="html-for-sveltecountersvelte">HTML for SvelteCounter.svelte:</h4>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">on:click</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{subtract}</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>{count}&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">on:click</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">{add}</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span></code></pre>
+<h4 id="html-for-vuecountervue">HTML for VueCounter.vue:</h4>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">@click</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"subtract()"</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>{{ count }}&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">@click</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"add()"</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span></code></pre>
+<h4 id="rendered-html-for-all-counter-components-is-the-same">Rendered HTML for all Counter components is the same</h4>
+<p><em>All</em> components output the same HTML, which is the voodoo which makes this possible. Same HTML? Same tests.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>0&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span></code></pre>
+<h2 id="the-shared-tests">The shared tests</h2>
+<h3 id="1-getting-the-elements">1. Getting the elements</h3>
+<p>The first step? Query the DOM for the elements we want to test.</p>
+<p>We need:</p>
+<ul>
+<li>the <code>+</code> (<code>plus</code>) button</li>
+<li>the <code>-</code> (<code>minus</code>) button</li>
+<li>the <code>pre</code> element which contains the count</li>
+<li>the container, which is a <code>div</code> with a class of <code>counter</code></li>
+</ul>
+<p>Using <code>Testing Library</code>’s queries, we’ll create an object by parsing the rendered HTML. In this method, <code>canvasElement</code> is the live DOM rendered by the framework.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { within } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'@storybook/testing-library'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Extract elements from an HTMLElement</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// `within` adds the testing-library query methods</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">screen</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">within</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> { </span></span>
+<span class="line"><span style="color: #C9D1D9">    screen,</span></span>
+<span class="line"><span style="color: #C9D1D9">    canvasElement,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// `querySelector` used here to find the generic `div` container</span></span>
+<span class="line"><span style="color: #C9D1D9">    container: </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> canvasElement.</span><span style="color: #D2A8FF">querySelector</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'.counter'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// `queryByRole` finds each button, using `name` to search the text</span></span>
+<span class="line"><span style="color: #C9D1D9">    minus: </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> screen.</span><span style="color: #D2A8FF">queryByRole</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'button'</span><span style="color: #C9D1D9">, { name:</span><span style="color: #A5D6FF"> /-/</span><span style="color: #FF7B72">i</span><span style="color: #C9D1D9"> }),</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// using `queryBy` instead of `getBy` to avoid errors in `getElements`</span></span>
+<span class="line"><span style="color: #C9D1D9">    plus: </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> screen.</span><span style="color: #D2A8FF">queryByRole</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'button'</span><span style="color: #C9D1D9">, { name:</span><span style="color: #A5D6FF"> /</span><span style="color: #7EE787; font-style: italic">\+</span><span style="color: #A5D6FF">/</span><span style="color: #FF7B72">i</span><span style="color: #C9D1D9"> }),</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// `querySelector` again as `pre` has no role and contains variable content</span></span>
+<span class="line"><span style="color: #C9D1D9">    count: </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> canvasElement.</span><span style="color: #D2A8FF">querySelector</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'pre'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">  };</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<p>This returns an object with our elements:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">{</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">screen</span><span style="color: #C9D1D9">: {object </span><span style="color: #FF7B72">with</span><span style="color: #C9D1D9"> testing</span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">library query methods},</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">: </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9">the</span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">initial</span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">html</span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">element,unchanged</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">container</span><span style="color: #C9D1D9">: &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">class</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">"counter"</span><span style="color: #C9D1D9">>...&#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9">{and query methods},</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">minus</span><span style="color: #C9D1D9">: &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">>-&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9">{and query methods},</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">plus</span><span style="color: #C9D1D9">: &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">>+&#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9">{and query methods},</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">count</span><span style="color: #C9D1D9">: &#x3C;</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">>0&#x3C;/</span><span style="color: #7EE787">pre</span><span style="color: #C9D1D9">></span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9">{and query methods},</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h3 id="2-testing-the-initial-rendered-elements">2. Testing the initial rendered elements</h3>
+<p>The Counter is a simple component that has no props, so this method just ensures the elements are present and the counter starts at <code>0</code>. <code>ensureElements</code> should be called before interaction tests to ensure the initial state of the component is what is tested.</p>
+<p>The <code>elements</code> arg is the object returned from <code>getElements</code>.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Ensure elements are present and have the correct attributes/content</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">minus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">plus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">count</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// `.toBeTruthy` ensures the element exists</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(minus).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(plus).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(count).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// ensures the count starts at zero</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(count).</span><span style="color: #D2A8FF">toHaveTextContent</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'0'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h3 id="3-testing-keyboard-navigation">3. Testing keyboard navigation</h3>
+<p>For keyboard-only users, we’ll need to ensure the buttons are focusable and in the expected order. We test navigation separate from interactions to keep the testing methods focused on one type of user experience at a time.</p>
+<p>The component only has two focus-able elements - which are the buttons.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test keyboard interaction</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardNavigation</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">minus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">plus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">container</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// tab within the container</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: container });</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(minus).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// `pre` is the next element, but it's not focusable</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: container });</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(plus).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h3 id="4-testing-keyboard-interactions">4. Testing keyboard interactions</h3>
+<p>For testing the interaction of the buttons, we’ll be adding or subtracting to the number in <code>pre</code>. We cannot ensure the order the testing methods will be used, which means <code>elements.count</code> might not be <code>0</code>. This test method will start by getting whatever number is in <code>elements.count</code> and use that number to test the expected addition or subtraction result.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test keyboard interactions</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">minus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">plus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">count</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">container</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// could be any number</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">initCount</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// navigation unimportant here, so we'll just focus on the button</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> plus.</span><span style="color: #D2A8FF">focus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// with the `plus` button in focus, hitting `enter` should increment</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> minus.</span><span style="color: #D2A8FF">focus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// reset user focus to nothing</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> minus.</span><span style="color: #D2A8FF">blur</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h3 id="5-testing-mouse-interactions">5. Testing mouse interactions</h3>
+<p>Same as keyboard interactions, but with mouse clicks instead of keyboard events.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Test mouse interaction</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">minus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">plus</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">count</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">initCount</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(plus);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(plus);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(minus);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(minus);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(minus);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseInt</span><span style="color: #C9D1D9">(count.textContent)).</span><span style="color: #D2A8FF">toBe</span><span style="color: #C9D1D9">(initCount </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// reset user focus</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> minus.</span><span style="color: #D2A8FF">blur</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h2 id="using-the-shared-tests-in-storybook">Using the shared tests in Storybook</h2>
+<p>Now that we have our shared tests, we can use them in Storybook. (see <a href="/blahg/shared-storybook-tests/">part 1</a>). Below is the React story file, see <a href="https://github.com/storydocker/storydocker-examples/tree/main/experimental/astro-framework-multiple/.framework-storybooks/stories">the full set of framework-specific stories here</a>. The test methods are broken out into <code>step</code> functions for legibility in the Storybook UI, but they are not required.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// ReactCounter.stories.js</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { ReactCounter } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'../../src/components/ReactCounter'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { getElements, ensureElements, mouseInteraction, keyboardNavigation, keyboardInteraction } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'../../src/components/tests/counter.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #FFA657"> </span><span style="color: #FF7B72">default</span><span style="color: #FFA657"> {</span></span>
+<span class="line"><span style="color: #FFA657">  </span><span style="color: #C9D1D9">title: </span><span style="color: #A5D6FF">'React'</span><span style="color: #FFA657">,</span></span>
+<span class="line"><span style="color: #FFA657">  </span><span style="color: #C9D1D9">component: ReactCounter</span><span style="color: #FFA657">,</span></span>
+<span class="line"><span style="color: #FFA657">}</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">React</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">play</span><span style="color: #C9D1D9">: </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> ({ </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9"> }) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">step</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'react tests'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">step</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'ensure elements'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">      });</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">step</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'mouse interaction'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">      });</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">step</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'keyboard navigation'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardNavigation</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">      });</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">step</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'keyboard interaction'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">      });</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"><span style="color: #C9D1D9">};</span></span></code></pre>
+<h2 id="using-the-shared-tests-in-vitest-unit-tests">Using the shared tests in Vitest unit tests</h2>
+<p>They also drop-in to our unit tests. (see <a href="/blahg/sharing-tests-between-vitest-and-storybook/">part 3</a>). Below is the React unit test file, see <a href="https://github.com/storydocker/storydocker-examples/tree/main/experimental/astro-framework-multiple/src/components/tests">the full set of framework-specific unit tests here</a>. The magic here is in the <code>render</code> function. Each framework has a different one, but once Vitest renders it, the resulting output of all frameworks is understood by the shared tests.</p>
+<p><em>note:</em> The separate <code>it</code> functions are required for now for React, which was having some issues isolating the user interactions when they are all ran together. The <code>it</code> functions are not required for all frameworks, but since they give legibility anyway, we’ll keep them.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Vue.spec.tsx</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { render } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'@testing-library/vue'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { describe, it, assert, expect } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'vitest'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> VueCounter </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'@/components/VueCounter.vue'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { getElements, ensureElements, mouseInteraction, keyboardNavigation, keyboardInteraction } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'@/components/tests/counter.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D2A8FF">describe</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Vue'</span><span style="color: #C9D1D9">, () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">describe</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Counter'</span><span style="color: #C9D1D9">, () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">it</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'ensure elements'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">rendered</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">render</span><span style="color: #C9D1D9">(VueCounter);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(rendered.container);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">it</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'mouse interaction'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">rendered</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">render</span><span style="color: #C9D1D9">(VueCounter);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(rendered.container);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">it</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'keyboard navigation'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">rendered</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">render</span><span style="color: #C9D1D9">(VueCounter);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(rendered.container);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardNavigation</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">it</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'keyboard interaction'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">rendered</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">render</span><span style="color: #C9D1D9">(VueCounter);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(rendered.container);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9">(elements);</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  });</span></span>
+<span class="line"><span style="color: #C9D1D9">})</span></span></code></pre>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>Writing sharable user-experience-based tests for your UI is really about planning for the future.</p>
+<p>The NewHotness™ UI framework is being built right now and in two years that React component you put your soul into is going to be deleted in lieu of the shiny thing. That doesn’t mean your UX needs to change … or your Design … or your tests. Just do the facelift next time.</p>
+<p><em>Efficiency in all things, and productivity will follow.</em></p>
+
+	</article>
+
+		</main>
+		<footer class="astro-SZ7XMLTE">
+	<hr class="astro-SZ7XMLTE">
+	&copy; 2023 Scott Nath All rights reserved.
+</footer>
+	</body></html>

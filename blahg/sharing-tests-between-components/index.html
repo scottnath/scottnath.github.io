@@ -13,7 +13,7 @@
 <!-- Global Metadata --><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="generator" content="Astro v2.3.0">
+<meta name="generator" content="Astro v2.7.3">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://scottnath.com/blahg/sharing-tests-between-components/">
@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Sharing Interaction Tests Between Components">
 <meta property="twitter:description" content="How to share testing-library UI tests between child and parent components">
 <meta property="twitter:image" content="https://scottnath.com/sharing-tests-with-a-handshake.png">
-	<link rel="stylesheet" href="/_astro/_...slug_.6d68f6fb.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
+	<link rel="stylesheet" href="/_astro/_...slug_.2477e28e.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
 !function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.7.6":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script></head>
 
 	<body>
@@ -192,144 +192,144 @@
 </ul>
 </li>
 </ul>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Ensure elements are present and have the correct attributes/content</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.header).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.title).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(elements.title).</span><span style="color: #D2A8FF">toHaveTextContent</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Acme'</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons).</span><span style="color: #D2A8FF">toHaveLength</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons).</span><span style="color: #D2A8FF">toHaveLength</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  }</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">...</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Ensure elements are present and have the correct attributes/content</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ensureElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(elements.header).</span><span style="color: #B392F0">toBeTruthy</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(elements.title).</span><span style="color: #B392F0">toBeTruthy</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(elements.title).</span><span style="color: #B392F0">toHaveTextContent</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">'Acme'</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (args.user) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(buttons).</span><span style="color: #B392F0">toHaveLength</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  } </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(buttons).</span><span style="color: #B392F0">toHaveLength</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">2</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">...</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h4 id="header-lets-button-test-itself">Header lets Button test itself</h4>
 <p>Because the Button component has it’s own tests, the Header component doesn’t need to know how the Button works. It only needs to know that the Button works.</p>
 <p>The Header tests each Button by using the Button’s <code>ensureElements</code> method.</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Import the Button's shared tests</span></span>
-<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { ensureElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> buttonEnsureElements } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">"./Button.shared-spec"</span><span style="color: #C9D1D9">;</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// Import the Button's shared tests</span></span>
+<span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> { ensureElements </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> buttonEnsureElements } </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">"./Button.shared-spec"</span><span style="color: #E1E4E8">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">...</span></span>
+<span class="line"><span style="color: #F97583">...</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">...</span><span style="color: #C9D1D9"> </span><span style="color: #8B949E">// Header's tests, see above</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ensureElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">...</span><span style="color: #E1E4E8"> </span><span style="color: #6A737D">// Header's tests, see above</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Recreates button configuration from Header</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log out'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
-<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log in'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonEnsureElements</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Sign up'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      primary: </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
-<span class="line"><span style="color: #C9D1D9">  }</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (args.user) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Recreates button configuration from Header</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonEnsureElements</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      label: </span><span style="color: #9ECBFF">'Log out'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      size: </span><span style="color: #9ECBFF">'small'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">  } </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonEnsureElements</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      label: </span><span style="color: #9ECBFF">'Log in'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      size: </span><span style="color: #9ECBFF">'small'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonEnsureElements</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      label: </span><span style="color: #9ECBFF">'Sign up'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      size: </span><span style="color: #9ECBFF">'small'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      primary: </span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span></code></pre>
 <h4 id="user-interactions-are-owned-by-button">User interactions are owned by Button</h4>
 <p>The only interactive elements in the Header are the Buttons, so the only thing the Header needs to test for is how a keyboard user gets to the Button(s). Everything else, including whether the <code>onLogout</code>, <code>onLogin</code>, and <code>onCreateAccount</code> functions are called, are owned by the Button.</p>
 <p>The Header tests it can get to the Button(s) by triggering a <code>tab</code> UserEvent within itself.</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Test keyboard interaction</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">buttons</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">header</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> elements;</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.user) {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// `focusTrap` keeps the user's keyboard within the `header` HTMLElement</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Test keyboard interaction</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">keyboardInteraction</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> { </span><span style="color: #79B8FF">buttons</span><span style="color: #E1E4E8">, </span><span style="color: #79B8FF">header</span><span style="color: #E1E4E8"> } </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> elements;</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (args.user) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// `focusTrap` keeps the user's keyboard within the `header` HTMLElement</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> userEvent.</span><span style="color: #B392F0">tab</span><span style="color: #E1E4E8">({ focusTrap: header });</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Log Out` button to have focus</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// we expect the `Log Out` button to have focus</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">]).</span><span style="color: #B392F0">toHaveFocus</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Uses Button's keyboard interaction tests</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      label: </span><span style="color: #A5D6FF">'Log out'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      size: </span><span style="color: #A5D6FF">'small'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">      onClick: args.onLogout,</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
-<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// again, starts within Header</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Uses Button's keyboard interaction tests</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonKeyboardInteraction</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      label: </span><span style="color: #9ECBFF">'Log out'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      size: </span><span style="color: #9ECBFF">'small'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">      onClick: args.onLogout,</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">  } </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// again, starts within Header</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> userEvent.</span><span style="color: #B392F0">tab</span><span style="color: #E1E4E8">({ focusTrap: header });</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Log In` button to have focus</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// we expect the `Log In` button to have focus</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">]).</span><span style="color: #B392F0">toHaveFocus</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// User hits `tab` once more</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">({ focusTrap: header });</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// User hits `tab` once more</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> userEvent.</span><span style="color: #B392F0">tab</span><span style="color: #E1E4E8">({ focusTrap: header });</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// we expect the `Sign Up` button to have focus</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]).</span><span style="color: #D2A8FF">toHaveFocus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// we expect the `Sign Up` button to have focus</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(buttons[</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">]).</span><span style="color: #B392F0">toHaveFocus</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Button tests for first button</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">...</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Button tests for first button</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonKeyboardInteraction</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">0</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #F97583">...</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Button tests for second button</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">buttonKeyboardInteraction</span><span style="color: #C9D1D9">({ button: buttons[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] }, {</span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">...</span></span>
-<span class="line"><span style="color: #C9D1D9">    });</span></span>
-<span class="line"><span style="color: #C9D1D9">  }</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Button tests for second button</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">buttonKeyboardInteraction</span><span style="color: #E1E4E8">({ button: buttons[</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">] }, {</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #F97583">...</span></span>
+<span class="line"><span style="color: #E1E4E8">    });</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h3 id="testing-the-page">Testing the Page</h3>
 <p>The Page component has no props, but in some frameworks the Page boilerplate component, relies on the JS Framework to control it’s state. All of the page content is inside the code (tsk tsk), so we’ll use the Header’s tests to test the Page.</p>
 <h4 id="elements-to-gather-from-the-page">Elements to gather from the Page</h4>
 <p>In this instance, we’ll use the Header’s <code>getElements</code> method to get the elements we need.</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Import the Button's shared tests</span></span>
-<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { getElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerGetElements } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'./Header.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// Import the Button's shared tests</span></span>
+<span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> { getElements </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> headerGetElements } </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'./Header.shared-spec'</span><span style="color: #E1E4E8">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Extract elements from an HTMLElement</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">screen</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">within</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Extract elements from an HTMLElement</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">canvasElement</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">screen</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">within</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// Header knows how to get it's own elements</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">headerElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerGetElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// Header knows how to get it's own elements</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">headerElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">headerGetElements</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// spreads the headerElements into this object</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">...</span><span style="color: #C9D1D9">headerElements,</span></span>
-<span class="line"><span style="color: #C9D1D9">    screen,</span></span>
-<span class="line"><span style="color: #C9D1D9">  };</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// spreads the headerElements into this object</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">...</span><span style="color: #E1E4E8">headerElements,</span></span>
+<span class="line"><span style="color: #E1E4E8">    screen,</span></span>
+<span class="line"><span style="color: #E1E4E8">  };</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h4 id="tests-that-pages-tests-will-run">Tests that Page’s tests will run</h4>
 <p>It’ll just use Header’s tests:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { </span></span>
-<span class="line"><span style="color: #C9D1D9">    ensureElements </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerEnsureElements,</span></span>
-<span class="line"><span style="color: #C9D1D9">    mouseInteraction </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerMouseInteraction,</span></span>
-<span class="line"><span style="color: #C9D1D9">    keyboardInteraction </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> headerKeyboardInteraction</span></span>
-<span class="line"><span style="color: #C9D1D9">} </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'./Header.shared-spec'</span><span style="color: #C9D1D9">;</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> { </span></span>
+<span class="line"><span style="color: #E1E4E8">    ensureElements </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> headerEnsureElements,</span></span>
+<span class="line"><span style="color: #E1E4E8">    mouseInteraction </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> headerMouseInteraction,</span></span>
+<span class="line"><span style="color: #E1E4E8">    keyboardInteraction </span><span style="color: #F97583">as</span><span style="color: #E1E4E8"> headerKeyboardInteraction</span></span>
+<span class="line"><span style="color: #E1E4E8">} </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'./Header.shared-spec'</span><span style="color: #E1E4E8">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Ensure elements are present and have the correct attributes/content</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerEnsureElements</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Ensure elements are present and have the correct attributes/content</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ensureElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">step</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">headerEnsureElements</span><span style="color: #E1E4E8">(elements, args, step, </span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Test mouse interaction</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerMouseInteraction</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Test mouse interaction</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">mouseInteraction</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">step</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">headerMouseInteraction</span><span style="color: #E1E4E8">(elements, args, step, </span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * Test keyboard interaction</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">elements</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">headerKeyboardInteraction</span><span style="color: #C9D1D9">(elements, args, step, </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * Test keyboard interaction</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">keyboardInteraction</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">elements</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">step</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">headerKeyboardInteraction</span><span style="color: #E1E4E8">(elements, args, step, </span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>Self-knowledge for components is the lynchpin with sharing tests. As deeply as possible, a component should know every possible change that can happen to it, and how to test for each possibility.</p>
 <p>Using this across a design-system, this should vastly reduce the testing footprint. As long as you’re writing <code>testing-library</code> tests, this concept should allow the <code>shared-spec</code> tests to be used within your unit tests in addition to being used by Storybook stories.</p>

@@ -13,7 +13,7 @@
 <!-- Global Metadata --><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="generator" content="Astro v2.3.0">
+<meta name="generator" content="Astro v2.7.3">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://scottnath.com/blahg/shared-storybook-tests/">
@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Reusable Storybook Interaction Tests">
 <meta property="twitter:description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage">
 <meta property="twitter:image" content="https://scottnath.com/storybook-shared-tests.jpeg">
-	<link rel="stylesheet" href="/_astro/_...slug_.6d68f6fb.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
+	<link rel="stylesheet" href="/_astro/_...slug_.2477e28e.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
 !function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.7.6":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script></head>
 
 	<body>
@@ -93,150 +93,150 @@
 <h3 id="question-1-what-was-rendered">Question 1. “What was rendered?”</h3>
 <p>We need to query for every possible testable element from the rendered UI. The function to find these elements should return an object representing each element(s), even if they return <code>null</code>.</p>
 <p>A simple example:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">HTMLElement</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">screen</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">within</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">canvasElement</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">HTMLElement</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">screen</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">within</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> { </span></span>
-<span class="line"><span style="color: #C9D1D9">    screen,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> { </span></span>
+<span class="line"><span style="color: #E1E4E8">    screen,</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Searches the canvasElement for a button</span></span>
-<span class="line"><span style="color: #C9D1D9">    button: </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> screen.</span><span style="color: #D2A8FF">queryByRole</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'button'</span><span style="color: #C9D1D9">),</span></span>
-<span class="line"><span style="color: #C9D1D9">  };</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// Searches the canvasElement for a button</span></span>
+<span class="line"><span style="color: #E1E4E8">    button: </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> screen.</span><span style="color: #B392F0">queryByRole</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">'button'</span><span style="color: #E1E4E8">),</span></span>
+<span class="line"><span style="color: #E1E4E8">  };</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <p>This returns an object with the rendered button and initial <code>HTMLElement</code>. Both are enhanced via <a href="https://testing-library.com/docs/dom-testing-library/api-within/">testing-library’s “within” method</a>. <strong><code>within(node)</code></strong> takes an <code>Element</code> and returns an object with all the testing-library queries bound to it.</p>
 <p><em>Note the use of <code>queryBy</code> instead of <code>getBy</code> or <code>findBy</code>.</em> This is because of <a href="https://testing-library.com/docs/queries/about#types-of-queries">the three testing-library query types</a>, <code>queryBy</code> will not throw an error if the element is not there. To make this function shareable, ideally it should not throw an error if any element it’s looking for is not there.</p>
 <h3 id="question-2-did-it-render-correctly">Question 2. “Did it render correctly?”</h3>
 <p>We know <em>what</em> was rendered, now we need to test it rendered as expected.</p>
 <p>We need a method with assertions which are conditionally applied, based on what a UI component received as <code>props</code>.</p>
 <p>This example uses a truncated version of the boilerplate Button component installed when initializing a new Storybook instance.</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// A Button component</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">Button</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> ({ </span><span style="color: #FFA657">primary</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">label</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">onClick</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> () </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> ({}) }) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">modeClass</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> primary </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'storybook-button--primary'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'storybook-button--secondary'</span><span style="color: #C9D1D9">;</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> (</span></span>
-<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">button</span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #79C0FF">type</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">"button"</span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #79C0FF">className</span><span style="color: #FF7B72">={</span><span style="color: #C9D1D9">modeClass</span><span style="color: #FF7B72">}</span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FFA198">@click=${onClick}</span></span>
-<span class="line"><span style="color: #C9D1D9">    ></span></span>
-<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">{</span><span style="color: #C9D1D9">label</span><span style="color: #FF7B72">}</span></span>
-<span class="line"><span style="color: #C9D1D9">    &#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
-<span class="line"><span style="color: #C9D1D9">  );</span></span>
-<span class="line"><span style="color: #C9D1D9">};</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// A Button component</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">Button</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> ({ </span><span style="color: #FFAB70">primary</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">false</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">label</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'Button'</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">onClick</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> () </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> ({}) }) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">modeClass</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> primary </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'storybook-button--primary'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'storybook-button--secondary'</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">return</span><span style="color: #E1E4E8"> (</span></span>
+<span class="line"><span style="color: #E1E4E8">    &#x3C;</span><span style="color: #85E89D">button</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #B392F0">type</span><span style="color: #F97583">=</span><span style="color: #9ECBFF">"button"</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #B392F0">className</span><span style="color: #F97583">=</span><span style="color: #E1E4E8">{modeClass}</span></span>
+<span class="line"><span style="color: #E1E4E8">      </span><span style="color: #FDAEB7; font-style: italic">@click=${onClick}</span></span>
+<span class="line"><span style="color: #E1E4E8">    ></span></span>
+<span class="line"><span style="color: #E1E4E8">      {label}</span></span>
+<span class="line"><span style="color: #E1E4E8">    &#x3C;/</span><span style="color: #85E89D">button</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">  );</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
 <p>This example method ensures the component rendered as expected. It contains conditional assertions which understand the expected output and adjusts tests accordingly.</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// `args` are the props used to configure the Button component</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">HTMLElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">ButtonProps</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// uses method from above</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">button</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// `args` are the props used to configure the Button component</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ensureElements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">canvasElement</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">HTMLElement</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ButtonProps</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// uses method from above</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> { </span><span style="color: #79B8FF">button</span><span style="color: #E1E4E8"> } </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// does the button exist?</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(button).</span><span style="color: #D2A8FF">toBeTruthy</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// does the button exist?</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(button).</span><span style="color: #B392F0">toBeTruthy</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// does the button have the right content?</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(button).</span><span style="color: #D2A8FF">toHaveTextContent</span><span style="color: #C9D1D9">(args.label);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// does the button have the right content?</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(button).</span><span style="color: #B392F0">toHaveTextContent</span><span style="color: #E1E4E8">(args.label);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// conditional tests</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (args.primary) {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(button).</span><span style="color: #D2A8FF">toHaveClass</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'storybook-button--primary'</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(button).</span><span style="color: #D2A8FF">toHaveClass</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'storybook-button--secondary'</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  }</span></span>
-<span class="line"><span style="color: #C9D1D9">};</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// conditional tests</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">if</span><span style="color: #E1E4E8"> (args.primary) {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(button).</span><span style="color: #B392F0">toHaveClass</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">'storybook-button--primary'</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  } </span><span style="color: #F97583">else</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(button).</span><span style="color: #B392F0">toHaveClass</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">'storybook-button--secondary'</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  }</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
 <h3 id="question-3-does-it-function-as-expected">Question 3: “Does it function as expected?”</h3>
 <p>If your component is interactive, you need to test for <em>all types of interactions</em>. This means, at a minimum, checking the component functions for <strong>both</strong> keyboard-only users and mouse users.</p>
 <p>We’ll create two methods this time. The methods will use <a href="https://testing-library.com/docs/user-event/intro">testing-library’s “user-event” library</a></p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// create a mockFunction as a backup if no `onClick` is in `args`</span></span>
-<span class="line"><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">mockOnClick</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> jest.</span><span style="color: #D2A8FF">fn</span><span style="color: #C9D1D9">();</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// create a mockFunction as a backup if no `onClick` is in `args`</span></span>
+<span class="line"><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">mockOnClick</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> jest.</span><span style="color: #B392F0">fn</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * test mouse interactions as though a user</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// uses method from above</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">button</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * test mouse interactions as though a user</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">mouseInteraction</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">canvasElement</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// uses method from above</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> { </span><span style="color: #79B8FF">button</span><span style="color: #E1E4E8"> } </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// ensures a function exists to test a mouse click</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> args.onClick </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> args.onClick </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> mockOnClick;</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// clicks the button</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(button);</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// tests the `onClick` function was called</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(onClick).</span><span style="color: #D2A8FF">toHaveBeenCalled</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// ensures a function exists to test a mouse click</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">onClick</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> args.onClick </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> args.onClick </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> mockOnClick;</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// clicks the button</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> userEvent.</span><span style="color: #B392F0">click</span><span style="color: #E1E4E8">(button);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// tests the `onClick` function was called</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(onClick).</span><span style="color: #B392F0">toHaveBeenCalled</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// ensures the event was only called once</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(onClick).</span><span style="color: #D2A8FF">toHaveBeenCalledTimes</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// clear out the mock which resets calls to zero</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> onClick.</span><span style="color: #D2A8FF">mockClear</span><span style="color: #C9D1D9">();</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// ensures the event was only called once</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(onClick).</span><span style="color: #B392F0">toHaveBeenCalledTimes</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// clear out the mock which resets calls to zero</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> onClick.</span><span style="color: #B392F0">mockClear</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #8B949E">/**</span></span>
-<span class="line"><span style="color: #8B949E"> * test keyboard interactions as though a user</span></span>
-<span class="line"><span style="color: #8B949E"> */</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// uses method from above</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> { </span><span style="color: #79C0FF">button</span><span style="color: #C9D1D9"> } </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<span class="line"><span style="color: #6A737D">/**</span></span>
+<span class="line"><span style="color: #6A737D"> * test keyboard interactions as though a user</span></span>
+<span class="line"><span style="color: #6A737D"> */</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">keyboardInteraction</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> (</span><span style="color: #FFAB70">canvasElement</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// uses method from above</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> { </span><span style="color: #79B8FF">button</span><span style="color: #E1E4E8"> } </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// ensures a function exists to test a key stroke</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">onClick</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> args.onClick </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> args.onClick </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> mockOnClick;</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// ensures a function exists to test a key stroke</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">onClick</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> args.onClick </span><span style="color: #F97583">?</span><span style="color: #E1E4E8"> args.onClick </span><span style="color: #F97583">:</span><span style="color: #E1E4E8"> mockOnClick;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// gives the user's focus to the button</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> button.</span><span style="color: #D2A8FF">focus</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// gives the user's focus to the button</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> button.</span><span style="color: #B392F0">focus</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// with the button focused, hitting `enter` triggers `@click`</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> userEvent.</span><span style="color: #D2A8FF">keyboard</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'{enter}'</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// tests the `onClick` function was called</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(onClick).</span><span style="color: #D2A8FF">toHaveBeenCalled</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// with the button focused, hitting `enter` triggers `@click`</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> userEvent.</span><span style="color: #B392F0">keyboard</span><span style="color: #E1E4E8">(</span><span style="color: #9ECBFF">'{enter}'</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// tests the `onClick` function was called</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(onClick).</span><span style="color: #B392F0">toHaveBeenCalled</span><span style="color: #E1E4E8">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// good thing we cleared the mock from above, or this would be `2`</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">expect</span><span style="color: #C9D1D9">(onClick).</span><span style="color: #D2A8FF">toHaveBeenCalledTimes</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">);</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// clear out the mock which resets calls to zero</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> onClick.</span><span style="color: #D2A8FF">mockClear</span><span style="color: #C9D1D9">();</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// good thing we cleared the mock from above, or this would be `2`</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">expect</span><span style="color: #E1E4E8">(onClick).</span><span style="color: #B392F0">toHaveBeenCalledTimes</span><span style="color: #E1E4E8">(</span><span style="color: #79B8FF">1</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// clear out the mock which resets calls to zero</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> onClick.</span><span style="color: #B392F0">mockClear</span><span style="color: #E1E4E8">();</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h2 id="how-theyre-using-in-storybook-interaction-tests">How they’re using in Storybook Interaction tests</h2>
 <p>See <a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">./src/Button.stories.js on codesandbox</a></p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">// Button.stories.js</span></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Primary</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    primary: </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">play</span><span style="color: #C9D1D9">: </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> ({ </span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">canvasElement</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">step</span><span style="color: #C9D1D9"> }) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "What was rendered?"</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elements</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getElements</span><span style="color: #C9D1D9">(canvasElement);</span></span>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// Button.stories.js</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">Primary</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  args: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    primary: </span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    label: </span><span style="color: #9ECBFF">'Button'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">play</span><span style="color: #E1E4E8">: </span><span style="color: #F97583">async</span><span style="color: #E1E4E8"> ({ </span><span style="color: #FFAB70">args</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">canvasElement</span><span style="color: #E1E4E8">, </span><span style="color: #FFAB70">step</span><span style="color: #E1E4E8"> }) </span><span style="color: #F97583">=></span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// "What was rendered?"</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">elements</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">getElements</span><span style="color: #E1E4E8">(canvasElement);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Did it render correctly?"</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">ensureElements</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// "Did it render correctly?"</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">ensureElements</span><span style="color: #E1E4E8">(elements, args, step);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Does it function as expected for mouse users?"</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseInteraction</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// "Does it function as expected for mouse users?"</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">mouseInteraction</span><span style="color: #E1E4E8">(elements, args, step);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// "Does it function as expected for keyboard-only users?"</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">keyboardInteraction</span><span style="color: #C9D1D9">(elements, args, step);</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
-<span class="line"><span style="color: #C9D1D9">};</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #6A737D">// "Does it function as expected for keyboard-only users?"</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">keyboardInteraction</span><span style="color: #E1E4E8">(elements, args, step);</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Secondary</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">Secondary</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  args: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    label: </span><span style="color: #9ECBFF">'Button'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// Reuse the exact same tests</span></span>
-<span class="line"><span style="color: #C9D1D9">  play: Primary.play,</span></span>
-<span class="line"><span style="color: #C9D1D9">};</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// Reuse the exact same tests</span></span>
+<span class="line"><span style="color: #E1E4E8">  play: Primary.play,</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Large</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {</span></span>
-<span class="line"><span style="color: #C9D1D9">  args: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    size: </span><span style="color: #A5D6FF">'large'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    label: </span><span style="color: #A5D6FF">'Button'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
+<span class="line"><span style="color: #F97583">export</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">Large</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> {</span></span>
+<span class="line"><span style="color: #E1E4E8">  args: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    size: </span><span style="color: #9ECBFF">'large'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    label: </span><span style="color: #9ECBFF">'Button'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
 <span class="line"></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #8B949E">// again and again</span></span>
-<span class="line"><span style="color: #C9D1D9">  play: Primary.play,</span></span>
-<span class="line"><span style="color: #C9D1D9">};</span></span></code></pre>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// again and again</span></span>
+<span class="line"><span style="color: #E1E4E8">  play: Primary.play,</span></span>
+<span class="line"><span style="color: #E1E4E8">};</span></span></code></pre>
 <p><strong>Next up, Part 2 “Sharing tests between a child and parent component”</strong></p>
 
 	</article>

@@ -13,7 +13,7 @@
 <!-- Global Metadata --><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="generator" content="Astro v2.3.0">
+<meta name="generator" content="Astro v2.7.3">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://scottnath.com/blahg/multi-framework-composition-storybook-ghpages/">
@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Deploying a multi-framework composition Storybook to GitHub Pages">
 <meta property="twitter:description" content="How to deploy multiple Storybooks to one repo's GitHub Pages site and use them in a multi-framework composition Storybook">
 <meta property="twitter:image" content="https://scottnath.com/storybook-composition-with-github-pages.png">
-	<link rel="stylesheet" href="/_astro/_...slug_.6d68f6fb.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
+	<link rel="stylesheet" href="/_astro/_...slug_.2477e28e.css" /><script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.7.6 - MIT builder.io */
 !function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.7.6":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script></head>
 
 	<body>
@@ -70,12 +70,12 @@
 	<p>How to deploy multiple Storybooks to one repo’s GitHub Pages site and display them inside a multi-framework composition Storybook</p>
 <h2 id="tldr">tl;dr</h2>
 <p>Add refs with a <code>url</code> pointing to the child storybook subdirectory like so:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FFA657">refs</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">preact</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FFA657">title</span><span style="color: #C9D1D9">: </span><span style="color: #A5D6FF">'preact'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FFA657">url</span><span style="color: #C9D1D9">: </span><span style="color: #A5D6FF">'&#x3C;GitHub-Pages-Root>/preact'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">refs</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">preact</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">title</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">'preact'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">url</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">'&#x3C;GitHub-Pages-Root>/preact'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <p>Put the child-Storybooks into subdirectories of your main storybook like so:</p>
 <ul class="directories">
   <li class="folder-open">storybook-static
@@ -102,24 +102,24 @@
 <p>then the child Storybook will be here:</p>
 <p><code>https://YOUR-GITHUB-ORG.github.io/YOUR-REPO/Child-Storybook-Name/</code></p>
 <p>meaning the <code>ref</code> in <code>.storybook/main.js</code> will be:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FFA657">refs</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #A5D6FF">"Child-Storybook-Name"</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    title: </span><span style="color: #A5D6FF">'Child-Storybook-Name'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    url: </span><span style="color: #A5D6FF">'/YOUR-REPO/Child-Storybook-Name/'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">refs</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #9ECBFF">"Child-Storybook-Name"</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    title: </span><span style="color: #9ECBFF">'Child-Storybook-Name'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    url: </span><span style="color: #9ECBFF">'/YOUR-REPO/Child-Storybook-Name/'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h4 id="storydocker-examples-example">StoryDocker-examples example</h4>
 <p>This article uses the <code>astro-framework-multiple</code> example from StoryDocker-examples, making the root storybook</p>
 <p><code>https://storydocker.github.io/storydocker-examples/astro-framework-multiple/</code></p>
 <p>and the child Preact Storybook:</p>
 <p><code>https://storydocker.github.io/storydocker-examples/astro-framework-multiple/preact/</code></p>
 <p>and the <code>ref</code> in <code>.storybook/main.js</code> will be:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FFA657">refs</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">preact</span><span style="color: #C9D1D9">: {</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FFA657">title</span><span style="color: #C9D1D9">: </span><span style="color: #A5D6FF">'preact'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FFA657">url</span><span style="color: #C9D1D9">: </span><span style="color: #A5D6FF">'/storydocker-examples/astro-framework-multiple/preact/'</span><span style="color: #C9D1D9">,</span></span>
-<span class="line"><span style="color: #C9D1D9">  },</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #B392F0">refs</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">preact</span><span style="color: #E1E4E8">: {</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">title</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">'preact'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">    </span><span style="color: #B392F0">url</span><span style="color: #E1E4E8">: </span><span style="color: #9ECBFF">'/storydocker-examples/astro-framework-multiple/preact/'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  },</span></span>
+<span class="line"><span style="color: #E1E4E8">}</span></span></code></pre>
 <h4 id="step-2-generate-the-main-composed-storybook">Step 2: Generate the main composed Storybook</h4>
 <p>Using <code>storybook build</code> we’ll first generate the main Storybook, which uses the default <code>storybook-static</code> directory.</p>
 <p><code>npm run build-storybook</code></p>
@@ -141,10 +141,10 @@
 <p><code>npm run build-storybook -- --config-dir .framework-storybooks/.storybook-preact -o storybook-static/preact</code></p>
 <p>Says to use the <code>build-storybook</code> npm script to generate a Storybook from the configuration found in <code>.framework-storybooks/.storybook-preact</code> and output it to the <code>storybook-static/preact</code> directory.</p>
 <p>Generating the whole set at once looks like this:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">npx concurrently "npm run build-storybook -- --config-dir .framework-storybooks/.storybook-preact -o storybook-static/preact" \</span></span>
-<span class="line"><span style="color: #c9d1d9">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-react -o storybook-static/react" \</span></span>
-<span class="line"><span style="color: #c9d1d9">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-svelte -o storybook-static/svelte" \</span></span>
-<span class="line"><span style="color: #c9d1d9">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-vue -o storybook-static/vue"</span></span></code></pre>
+<pre is:raw="" class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">npx concurrently "npm run build-storybook -- --config-dir .framework-storybooks/.storybook-preact -o storybook-static/preact" \</span></span>
+<span class="line"><span style="color: #e1e4e8">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-react -o storybook-static/react" \</span></span>
+<span class="line"><span style="color: #e1e4e8">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-svelte -o storybook-static/svelte" \</span></span>
+<span class="line"><span style="color: #e1e4e8">"npm run build-storybook -- --config-dir .framework-storybooks/.storybook-vue -o storybook-static/vue"</span></span></code></pre>
 <p>Generates:</p>
 <ul class="directories">
   <li class="folder-open">storybook-static

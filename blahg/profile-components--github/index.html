@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="en"><head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v3.2.3"><link rel="preload" as="image" href="/scott-nath-profile-pic.jpeg"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/profile-components--github/"><!-- Primary Meta Tags --><title>GitHub Profile Components as Native Web Components</title><meta name="title" content="GitHub Profile Components as Native Web Components"><meta name="description" content="Discover native web components that showcase GitHub profiles and repositories within the profile-components library."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/profile-components--github/"><meta property="og:title" content="GitHub Profile Components as Native Web Components"><meta property="og:description" content="Discover native web components that showcase GitHub profiles and repositories within the profile-components library."><meta property="og:image" content="https://scottnath.com/profile-components-blahg/profile-components-github-header-prod.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/profile-components--github/"><meta property="twitter:title" content="GitHub Profile Components as Native Web Components"><meta property="twitter:description" content="Discover native web components that showcase GitHub profiles and repositories within the profile-components library."><meta property="twitter:image" content="https://scottnath.com/profile-components-blahg/profile-components-github-header-prod.jpg"><link rel="stylesheet" href="/_astro/_...slug_.75c4fb51.css" />
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+</script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString(
+		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
+		'text/html',
+		{
+			includeShadowRoots: !0,
+		}
+	)
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
+</script>
+<script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.0 - MIT builder.io */
+!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script><style>[data-astro-transition-scope="astro-x5ucuxqb-1"] { view-transition-name: astro-x5ucuxqb-1; }@layer astro { ::view-transition-old(astro-x5ucuxqb-1) { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head><body><header data-astro-cid-3ef6ksr2><h2 data-astro-cid-3ef6ksr2>Scott Nath</h2><nav data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blahg</a><a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Resume</a></nav></header><main data-astro-transition-scope="astro-x5ucuxqb-1"><article><img width="720" height="360" src="/profile-components-blahg/profile-components-github-header-prod.jpg" alt=""><h1 class="title">GitHub Profile Components as Native Web Components</h1><time datetime="2023-10-11T00:00:00.000Z">Oct 11, 2023</time><hr><p>Discover native web components that showcase GitHub profiles and repositories within the profile-components library.</p>
+<p>GitHub profile native web components, which show a user and repositories, are included in the <a href="https://dev.to/scottnath/profile-components-display-social-profiles-in-native-web-components-49b2">profile-components library</a>. These are native web components, and can be used in any HTML page, framework-based site, or wherever you can use HTML.  You can access them via unpkg.com or include the NPM module in your project.</p>
+<p>Table of contents</p>
+<ul>
+<li><a href="#what">What are the GitHub profile components?</a></li>
+<li><a href="#how">How to use the GitHub profile components</a></li>
+<li><a href="#ssr">Server Side Rendering (Astro example)</a></li>
+<li><a href="#styles">Where do the styles come from?</a></li>
+</ul>
+<h2 id="tldr">tl;dr</h2>
+<h3 id="install-via-npm">install via npm:</h3>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">npm i profile-components</span></span></code></pre>
+<h3 id="use-via-unpkgcom">use via unpkg.com:</h3>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- add to HEAD --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">type</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"module"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">src</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"https://unpkg.com/profile-components-blahg/dist/github-user.js"</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;/</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A737D">&#x3C;!-- shows a GitHub profile with fetched content for user `scottnath` --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">username</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"scottnath"</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8">></span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- and a way to present repositories --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">type</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"module"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">src</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"https://unpkg.com/profile-components-blahg/dist/github-repository.js"</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;/</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #6A737D">&#x3C;!-- shows a GitHub repository with fetched content for repo `scottnath/profile-components` --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">full_name</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"scottnath/profile-components"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8">></span></span></code></pre>
+<h3 id="quick-links">Quick links</h3>
+<ul>
+<li>Check out the <a href="https://scottnath.com/profile-components/?path=/docs/github-github-user--docs">GitHub web components in Storybook</a> to see the full breadth of visual and content differences</li>
+<li><a href="https://www.npmjs.com/package/profile-components">profile-components on NPM</a></li>
+<li><a href="https://github.com/scottnath/profile-components">profile-components on GitHub</a></li>
+<li><a href="https://stackblitz.com/edit/profile-components">See demos on stackblitz</a></li>
+</ul>
+<h2 id="what-are-the-github-profile-components">What are the GitHub profile components? <a name="what"></a></h2>
+<ul>
+<li>100% native web components</li>
+<li>Zero dependencies</li>
+<li>Fetch profile and repository data from the GitHub API</li>
+<li>No api key required</li>
+<li>Present GitHub content as a profile widget</li>
+<li>Styled using GitHub’s CSS style variables from Primer</li>
+<li>Released in the <a href="https://dev.to/scottnath/profile-components-display-social-profiles-in-native-web-components-49b2">profile-components library</a></li>
+</ul>
+<h3 id="includes-two-components-user-and-repository">Includes two components: user and repository</h3>
+<p>There are two components for GitHub (so far.)</p>
+<h4 id="github-repository">GitHub repository</h4>
+<p>The repository web component displays details about a GitHub repository.</p>
+<table>
+<tbody><tr>
+<td><figure><img src="/profile-components-blahg/github-dark-repo-freecode-400px.png" width="400" alt="GitHub popular repo web component"><figcaption>GitHub popular repo web component</figcaption></figure></td><td><figure>
+<img width="300" src="/profile-components-blahg/github-light-repo-pc-300px.png" alt="GitHub new repository web componen"><figcaption>GitHub new repository web component</figcaption></figure></td>
+</tr>
+</tbody></table>
+<h4 id="github-user">GitHub user</h4>
+<p>The user web component displays details about a GitHub user, it may include a list of repositories. If repositories are included, the UI for a repository comes from the repository web component.</p>
+<table>
+<tbody><tr>
+<td><figure><img src="/profile-components-blahg/github-dark-sorhus-300px.png" width="300" alt="GitHub user web component"><figcaption>GitHub user web component</figcaption></figure></td><td><figure>
+<img width="400" src="/profile-components-blahg/github-dark-scottnath-with-repos-400px.png" alt="GitHub user with repositories"><figcaption>GitHub user with repositories</figcaption></figure></td>
+</tr>
+</tbody></table>
+<h2 id="how-to-use-the-github-profile-components">How to use the GitHub profile components <a name="how"></a></h2>
+<p>These components can be used on any HTML page - whether built via framework or just plain HTML. They are available via unpkg.com or you can add the NPM module to your project.</p>
+<h3 id="using-the-unpkg-distribution-for-a-user">Using the unpkg distribution for a User</h3>
+<ol>
+<li>
+<p>Add the script tag to your HTML page’s HEAD:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- add to HEAD --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">script</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">type</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"module"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">src</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"https://unpkg.com/profile-components/dist/github-user.js"</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;/</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8">></span></span></code></pre>
+</li>
+<li>
+<p>Add the component to your HTML page’s BODY:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- shows a user's profile --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">username</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"scottnath"</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-light-scottnath-400px.png" alt="GitHub user with fetched content"></p>
+</li>
+<li>
+<p>Include a list of repositories with the profile</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-user</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">username</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"scottnath"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">repos</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">'["scottnath/profile-components", "storydocker/storydocker"]'</span></span>
+<span class="line"><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-light-scottnath-repos-400px.png" alt="GitHub user with fetched content"></p>
+</li>
+<li>
+<p>Write your own content instead of fetching from GitHub:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-user</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">username</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"scottnath"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">name</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"Meowy McMeowerstein"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">bio</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"Spending time purring and sleepin"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">followers</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"500000"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">following</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"2980"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">avatar_url</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"/MY_LOCAL_AVATAR_IMAGE.png"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">repos</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">'[{</span></span>
+<span class="line"><span style="color: #9ECBFF">    "full_name":"scottnath/profile-components",</span></span>
+<span class="line"><span style="color: #9ECBFF">    "description":"Cool thing, does stuff",</span></span>
+<span class="line"><span style="color: #9ECBFF">    "language":"HTML"</span></span>
+<span class="line"><span style="color: #9ECBFF">  }]'</span></span>
+<span class="line"><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-user</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-light-fetch-overrides-400px.png" alt="GitHub user with user-derived content"></p>
+</li>
+</ol>
+<h3 id="using-the-unpkg-distribution-for-a-repository">Using the unpkg distribution for a Repository</h3>
+<ol>
+<li>
+<p>Add the <em>repository</em> script tag to your HTML page’s HEAD:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- add to HEAD --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">script</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">type</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"module"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">src</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"https://unpkg.com/profile-components/dist/github-repository.js"</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;/</span><span style="color: #85E89D">script</span><span style="color: #E1E4E8">></span></span></code></pre>
+</li>
+<li>
+<p>Add the component to your HTML page’s BODY:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- shows a repository's information --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">full_name</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"freeCodeCamp/freeCodeCamp"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-light-repo-freecode-400px.png" alt="GitHub repository with fetched content"></p>
+</li>
+<li>
+<p>Add a theme to the repository component:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">&#x3C;!-- shows a repository's information --></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">full_name</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"freeCodeCamp/freeCodeCamp"</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">fetch</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"true"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">theme</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"dark"</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-dark-repo-freecode-400px.png" alt="GitHub repository with a theme"></p>
+</li>
+<li>
+<p>Write your own content instead of fetching from GitHub:</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8"> </span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">full_name</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"just-another/c-plus-plus-repo"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">language</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"C++"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">stargazers_count</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"123"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">forks_count</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"456"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">subscribers_count</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"789"</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #B392F0">description</span><span style="color: #E1E4E8">=</span><span style="color: #9ECBFF">"This is meow meow."</span><span style="color: #E1E4E8">>&#x3C;/</span><span style="color: #85E89D">github-repository</span><span style="color: #E1E4E8">></span></span></code></pre>
+<p><img src="/profile-components-blahg/github-dark-repo-local-data-400px.png" alt="GitHub repository with local content"></p>
+</li>
+</ol>
+<h2 id="server-side-rendering-astro-example">Server Side Rendering (Astro example) <a name="ssr"></a></h2>
+<p>Because these components were built with separate HTML, CSS, and JS files, you can use those pieces to generate HTML on the server. This example is what I did to make an <a href="https://github.com/scottnath/scottnath.com/blob/main/workspaces/website/src/components/GitHubUser.astro">Astro component for scottnath.com</a>.</p>
+<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #6A737D">// GitHubUser.astro</span></span>
+<span class="line"><span style="color: #F97583">---</span></span>
+<span class="line"><span style="color: #F97583">import</span><span style="color: #E1E4E8"> github </span><span style="color: #F97583">from</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'profile-components/github-utils'</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">user</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> github.user;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">repos</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">JSON</span><span style="color: #E1E4E8">.</span><span style="color: #B392F0">stringify</span><span style="color: #E1E4E8">([</span><span style="color: #9ECBFF">'scottnath/profile-components'</span><span style="color: #E1E4E8">, </span><span style="color: #9ECBFF">'storydocker/storydocker'</span><span style="color: #E1E4E8">]);</span></span>
+<span class="line"><span style="color: #F97583">const</span><span style="color: #E1E4E8"> </span><span style="color: #79B8FF">userContent</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">await</span><span style="color: #E1E4E8"> user.</span><span style="color: #B392F0">generateContent</span><span style="color: #E1E4E8">({</span></span>
+<span class="line"><span style="color: #E1E4E8">  login: </span><span style="color: #9ECBFF">'scottnath'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  </span><span style="color: #6A737D">// a local profile image helps performance</span></span>
+<span class="line"><span style="color: #E1E4E8">  avatar_url: </span><span style="color: #9ECBFF">'/scott-nath-profile-pic.jpeg'</span><span style="color: #E1E4E8">,</span></span>
+<span class="line"><span style="color: #E1E4E8">  repos</span></span>
+<span class="line"><span style="color: #E1E4E8">},</span><span style="color: #79B8FF">true</span><span style="color: #E1E4E8">);</span></span>
+<span class="line"><span style="color: #F97583">let</span><span style="color: #E1E4E8"> userHTML </span><span style="color: #F97583">=</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'&#x3C;style>'</span><span style="color: #E1E4E8"> </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> user.styles </span><span style="color: #F97583">+</span><span style="color: #E1E4E8"> </span><span style="color: #9ECBFF">'&#x3C;/style>'</span><span style="color: #E1E4E8">;</span></span>
+<span class="line"><span style="color: #E1E4E8">userHTML </span><span style="color: #F97583">+=</span><span style="color: #E1E4E8"> user.</span><span style="color: #B392F0">html</span><span style="color: #E1E4E8">(userContent);</span></span>
+<span class="line"><span style="color: #F97583">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;</span><span style="color: #79B8FF">github-user</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">  &#x3C;</span><span style="color: #85E89D">template</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">shadowrootmode</span><span style="color: #F97583">=</span><span style="color: #9ECBFF">"open"</span><span style="color: #E1E4E8"> </span><span style="color: #B392F0">set</span><span style="color: #E1E4E8">:</span><span style="color: #B392F0">html</span><span style="color: #F97583">=</span><span style="color: #E1E4E8">{userHTML}></span></span>
+<span class="line"><span style="color: #E1E4E8">  &#x3C;/</span><span style="color: #85E89D">template</span><span style="color: #E1E4E8">></span></span>
+<span class="line"><span style="color: #E1E4E8">&#x3C;/</span><span style="color: #79B8FF">github-user</span><span style="color: #E1E4E8">></span></span></code></pre>
+<h2 id="where-do-the-styles-come-from">Where do the styles come from? <a name="styles"></a></h2>
+<p>The best way to have the look n feel of an external site is to integrate their design language as much as possible. The GitHub components use the same source for styles as GitHub itself, the <a href="https://primer.style/design/">Primer Design System</a>.</p>
+<h3 id="primer-design-system">Primer Design System</h3>
+<p><a href="https://primer.style/design/">https://primer.style/design/</a></p>
+<p>”<em>Primer is a set of guidelines, principles, and patterns for designing and building UI at GitHub.</em>”</p>
+<p>Primer is the source for all of GitHub’s root UI foundations (color text, and border-styles), iconography and basic UI patterns. The primer.style site is a massive resource for details about Primer and it’s use by GitHub, so check that out if you have more Primer-specific questions.</p>
+<h4 id="color-themes">Color themes</h4>
+<p>GitHub (via Primer) has two sets of themes, light and dark, and each set contains a few variations. Check out <a href="https://primer.style/design/foundations/css-utilities/colors">Primer’s Storybook docs for colors</a> to play around with the colors and see the different themes.</p>
+<ul>
+<li>light: ‘Light’</li>
+<li>light_colorblind: ‘Light Protanopia &#x26; Deuteranopia’</li>
+<li>light_tritanopia: ‘Light Tritanopia’</li>
+<li>light_high_contrast: ‘Light High Contrast’</li>
+<li>dark: ‘Dark’</li>
+<li>dark_dimmed: ‘Dark Dimmed’</li>
+<li>dark_colorblind: ‘Dark Protanopia &#x26; Deuteranopia’</li>
+<li>dark_tritanopia: ‘Dark Tritanopia’</li>
+<li>dark_high_contrast: ‘Dark High Contrast’</li>
+</ul>
+<h4 id="primatives-and-iconography">Primatives and iconography</h4>
+<p>These components are styled with variables generated from Primer’s npm packages.</p>
+<ul>
+<li><a href="https://github.com/primer/primitives">primer/primatives</a> for colors, borders, and typography</li>
+<li><a href="https://github.com/primer/octicons">primer/octicons</a> is the source for all icons used on GitHub.</li>
+<li><a href="https://primer.style/design/foundations/icons">storybook docs for Octicons</a></li>
+</ul>
+<h4 id="auto-captured-styles">Auto-captured styles</h4>
+<p>CSS variables and svg icons are pulled from Primer’s npm packages. The generated variables are used to style the components. To make the styles easy to update when Primer makes changes, there is a suite of functions which pull the CSS variables and icons from Primer’s NPM packages. The functions are detailed in <a href="https://github.com/scottnath/profile-components/blob/main/src/github/utils/README.md#module_Primer-Utilities">this README about the Primer-utilities on profile-components</a>.</p></article></main><footer data-astro-cid-sz7xmlte><hr data-astro-cid-sz7xmlte>
+&copy; 2023&nbsp;Scott Nath All rights reserved.
+</footer></body></html>

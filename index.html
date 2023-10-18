@@ -529,7 +529,7 @@ section[itemscope] {
     display: block;
     text-align: center;
     align-items: center;
-    padding: calc(var(--row-spacing) * 2) 0;
+    padding: var(--row-spacing) 0;
 
     [itemprop="image"] {
       display: block;
@@ -589,7 +589,7 @@ section[itemscope] {
   }
 
   [itemprop="description"] {
-    margin: calc(var(--row-spacing) * 2) 0;
+    margin-bottom: var(--row-spacing);
   }
 
   & dl:has([itemprop="follows"]),
@@ -972,6 +972,7 @@ span[itemscope] {
 }
 span[itemscope].post {
   [itemprop="url"] {
+    background: var(--card-bg);
     display: flex;
     flex-direction: column;
     gap: var(--row-spacing);
@@ -987,7 +988,7 @@ span[itemscope].post {
         flex: 1 1 9em;
       }
       [itemprop="name"] {
-        flex: 1 0 calc(100% - 9em);
+        flex: 1 0 calc(100% - 10em);
         display: inline-block;
         font-size: var(--font-size-light)
       }
@@ -1214,16 +1215,6 @@ former IBM, NBCUniversal</p>
     </span>
   </dd>
             
-            
-              <dt>Popular post</dt>
-              <dd>
-    <span class="post" itemscope itemtype="http://schema.org/Article">
-      <a href="https://dev.to/scottnath/running-a-local-multi-framework-composition-storybook-506l" itemprop="url" aria-label="read post Running a local multi-framework composition Storybook">
-        <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--vyFzl9Ml--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jv4luam96ya9sxsjotjx.png" itemprop="image" alt="Cover image for post Running a local multi-framework composition Storybook" />
-        <span itemprop="name">Running a local multi-framework composition Storybook</span>
-      </a>
-    </span>
-  </dd>
             
           </dl>
         

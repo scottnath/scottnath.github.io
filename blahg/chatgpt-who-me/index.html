@@ -1,98 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v3.2.3"><link rel="preload" as="image" href="/scott-nath-profile-pic.jpeg"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/chatgpt-who-me/"><!-- Primary Meta Tags --><title>Who Me: Notes on creating a custom Chat GPT</title><meta name="title" content="Who Me: Notes on creating a custom Chat GPT"><meta name="description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/chatgpt-who-me/"><meta property="og:title" content="Who Me: Notes on creating a custom Chat GPT"><meta property="og:description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><meta property="og:image" content="https://scottnath.com/who-me/brady-bunch-who-me-grid.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/chatgpt-who-me/"><meta property="twitter:title" content="Who Me: Notes on creating a custom Chat GPT"><meta property="twitter:description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><meta property="twitter:image" content="https://scottnath.com/who-me/brady-bunch-who-me-grid.jpg"><link rel="stylesheet" href="/_astro/_...slug_.d1c9ce33.css" />
+<!DOCTYPE html><html lang="en"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.0.3"><link rel="preload" as="image" href="/scott-nath-profile-pic.jpeg"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/chatgpt-who-me/"><!-- Primary Meta Tags --><title>Who Me: Notes on creating a custom Chat GPT</title><meta name="title" content="Who Me: Notes on creating a custom Chat GPT"><meta name="description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/chatgpt-who-me/"><meta property="og:title" content="Who Me: Notes on creating a custom Chat GPT"><meta property="og:description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><meta property="og:image" content="https://scottnath.com/who-me/brady-bunch-who-me-grid.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/chatgpt-who-me/"><meta property="twitter:title" content="Who Me: Notes on creating a custom Chat GPT"><meta property="twitter:description" content="Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E"><meta property="twitter:image" content="https://scottnath.com/who-me/brady-bunch-who-me-grid.jpg"><link rel="stylesheet" href="/_astro/_slug_.F592C6HL.css" />
 <style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
 </style><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
-</script>
-<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
-/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
-var N = Object.defineProperty;
-var i = (t, n) => () => (t && (n = t((t = 0))), n);
-var b = (t, n) => {
-	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
-};
-function s() {
-	if (d === void 0) {
-		let t = document.createElement('div');
-		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
-			(d = !!t.firstElementChild.shadowRoot);
-	}
-	return d;
-}
-var d,
-	m = i(() => {});
-var p,
-	c,
-	f,
-	u = i(() => {
-		(p = (t) => t.parentElement === null),
-			(c = (t) => t.tagName === 'TEMPLATE'),
-			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
-	});
-var h,
-	E = i(() => {
-		m();
-		u();
-		h = (t) => {
-			var n;
-			if (s()) return;
-			let a = [],
-				e = t.firstElementChild;
-			for (; e !== t && e !== null; )
-				if (c(e)) a.push(e), (e = e.content);
-				else if (e.firstElementChild !== null) e = e.firstElementChild;
-				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
-				else {
-					let o;
-					for (; e !== t && e !== null; )
-						if (p(e)) {
-							o = a.pop();
-							let r = o.parentElement,
-								l = o.getAttribute('shadowroot');
-							if (((e = o), l === 'open' || l === 'closed')) {
-								let y = o.hasAttribute('shadowrootdelegatesfocus');
-								try {
-									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
-								} catch {}
-							} else o = void 0;
-						} else {
-							let r = e.nextElementSibling;
-							if (r != null) {
-								(e = r), o !== void 0 && o.parentElement.removeChild(o);
-								break;
-							}
-							let l =
-								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
-							if (l != null) {
-								(e = l), o !== void 0 && o.parentElement.removeChild(o);
-								break;
-							}
-							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
-						}
-				}
-		};
-	});
-var w = i(() => {
-	E();
-});
-var v = {};
-b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
-var S = i(() => {
-	m();
-	w();
-});
-async function g() {
-	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
-	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
-}
-var x = new DOMParser()
-	.parseFromString(
-		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
-		'text/html',
-		{
-			includeShadowRoots: !0,
-		}
-	)
-	.querySelector('p');
-(!x || !x.shadowRoot) && g();
 </script>
 <script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.0 - MIT builder.io */
 !function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);</script><style>[data-astro-transition-scope="astro-x5ucuxqb-1"] { view-transition-name: astro-x5ucuxqb-1; }@layer astro { ::view-transition-old(astro-x5ucuxqb-1) { 
@@ -121,10 +29,9 @@ var x = new DOMParser()
 			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
 	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
 			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
-	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head><body><header data-astro-cid-3ef6ksr2><dope-stripes data-astro-cid-3ef6ksr2><template shadowrootmode="open" data-astro-cid-3ef6ksr2><style>.stripes{width:100%;--left-width: 20%;--angle-width: 50px;--stripe-height: 20px;--stripe-angle: 39deg}.stripe{display:flex;align-items:left;margin:0 0 -1px;width:100%;--stripe-color: #ffe27a}.stripe span,.stripe:before,.stripe:after{content:" ";height:var(--stripe-height);display:block;background-color:var(--stripe-color);--rotated-height: calc(var(--angle-width) * tan(var(--stripe-angle)))}.stripe span{transform:skewY(var(--stripe-angle));transform-origin:0% 0%;flex:0 0 auto;width:calc(var(--angle-width));height:var(--stripe-height)}.stripe:before{width:var(--left-width);flex:0 0 auto}.stripe:after{flex:1 1 auto;transform:translateY(var(--rotated-height))}.blue{--stripe-color: rgb(0, 0, 255)}.yellow{--stripe-color: #ffe27a}.orange{--stripe-color: #ffa64d}.dark-orange{--stripe-color: #ff7f1a}
-</style><div class="stripes" part="stripes">
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <header data-astro-cid-3ef6ksr2> <dope-stripes data-astro-cid-fb7ufwnd> <template shadowrootmode="open" data-astro-cid-fb7ufwnd><style>.stripes{width:100%;--left-width: 20%;--angle-width: 50px;--stripe-height: 20px;--stripe-angle: 39deg}.stripe{display:flex;align-items:left;margin:0 0 -1px;width:100%;--stripe-color: #ffe27a}.stripe span,.stripe:before,.stripe:after{content:" ";height:var(--stripe-height);display:block;background-color:var(--stripe-color);--rotated-height: calc(var(--angle-width) * tan(var(--stripe-angle)))}.stripe span{transform:skewY(var(--stripe-angle));transform-origin:0% 0%;flex:0 0 auto;width:calc(var(--angle-width));height:var(--stripe-height)}.stripe:before{width:var(--left-width);flex:0 0 auto}.stripe:after{flex:1 1 auto;transform:translateY(var(--rotated-height))}.blue{--stripe-color: rgb(0, 0, 255)}.yellow{--stripe-color: #ffe27a}.orange{--stripe-color: #ffa64d}.dark-orange{--stripe-color: #ff7f1a}</style><div class="stripes" part="stripes">
     <div class="stripe" style="--stripe-color: #ffd273"><span></span></div><div class="stripe" style="--stripe-color: #ffbf57"><span></span></div><div class="stripe" style="--stripe-color: #ffa43b"><span></span></div><div class="stripe" style="--stripe-color: #ff8920"><span></span></div><div class="stripe" style="--stripe-color: #ff6e05"><span></span></div>
-  </div></template></dope-stripes><div class="content" data-astro-cid-3ef6ksr2><h2 data-astro-cid-3ef6ksr2>Scott Nath</h2><h3 data-astro-cid-3ef6ksr2>Front-end architect</h3><img src="/_astro/scott-nath-profile-photo.9542d3da.jpeg" alt="Scott Nath picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2><nav data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Home</a><a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Blahg</a><a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg>Resume</a></nav><address class="socials" aria-label="Also find me on these sites" data-astro-cid-3ef6ksr2><a rel="me" href="https://dev.to/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/dev.1840ced8.svg" alt="DEV logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>DEV</span></a><a rel="me" href="https://github.com/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/github-inverse.e77c6bb5.svg" alt="GitHub logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>GitHub</span></a><a rel="me" href="https://www.linkedin.com/in/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/linkedin.198bb753.svg" alt="LinkedIn logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>LinkedIn</span></a><a rel="me" href="https://mastodon.social/@scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/Mastodon.8aa126f2.svg" alt="Mastodon logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>Mastodon</span></a></address></div></header><main data-astro-transition-scope="astro-x5ucuxqb-1"><article class="blog-post"><img width="100%" height="auto" src="/who-me/brady-bunch-who-me-grid.jpg" alt=""><h1 class="title">Who Me: Notes on creating a custom Chat GPT</h1><time datetime="2023-12-01T00:00:00.000Z">Dec 1, 2023</time><hr><p>Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E</p>
+  </div></template> </dope-stripes>  <div class="content" data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> Scott Nath </h2> <h3 data-astro-cid-3ef6ksr2>Front-end architect</h3> <img src="/_astro/scott-nath-profile-photo.f4fELnzA.jpeg" alt="Scott Nath picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Home </a>  <a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Blahg </a>  <a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Resume </a>  </nav> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-3ef6ksr2> <a rel="me" href="https://dev.to/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/dev.z8gCfEYq.svg" alt="DEV logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>DEV</span></a> <a rel="me" href="https://github.com/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/github-inverse.OXObEoN4.svg" alt="GitHub logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>GitHub</span></a> <a rel="me" href="https://www.linkedin.com/in/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/linkedin.vdjjPjup.svg" alt="LinkedIn logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>LinkedIn</span></a> <a rel="me" href="https://mastodon.social/@scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/Mastodon.EGgauW9X.svg" alt="Mastodon logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>Mastodon</span></a> </address> </div> </header>  <main data-astro-transition-scope="astro-x5ucuxqb-1">  <article class="blog-post"> <img width="100%" height="auto" src="/who-me/brady-bunch-who-me-grid.jpg" alt=""> <h1 class="title">Who Me: Notes on creating a custom Chat GPT</h1> <time datetime="2023-12-01T00:00:00.000Z"> Dec 1, 2023 </time>  <hr>  <p>Some notes on creating a custom Chat GPT that can consistently generate specific styles of characters using Dall-E</p>
 <h2 id="tldr">tl;dr</h2>
 <h3 id="the-who-me-custom-gpt-is-public-and-live-now">The <em>Who Me</em> custom GPT is public and live now!</h3>
 <p><a href="https://chat.openai.com/g/g-AJHS0XQ6K-who-me">https://chat.openai.com/g/g-AJHS0XQ6K-who-me</a></p>
@@ -174,10 +81,10 @@ var x = new DOMParser()
 <p>PRO TIP: Add the phrase “show me the Dall-E prompt and ask for approval before you send it” (saves a lot of time waiting on image generation)</p>
 <h3 id="lesson-5-chat-gpt-is-not-consistent-even-with-strict-instructions">Lesson 5: Chat GPT is not consistent even with strict instructions</h3>
 <p>At this point, I was <em>mostly</em> not getting errors and it was giving me <em>whimsical and Who-like</em> creatures. But <em>Who-like</em> is not the goal, so I set about describing Who’s. My initial work iterated on descriptions of Who’s.</p>
-<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">whimsical, human/leporid/kangaroo-like hybrid creatures, </span></span>
-<span class="line"><span style="color: #e1e4e8">notably humanlike, with snouts and button-like noses, </span></span>
-<span class="line"><span style="color: #e1e4e8">known for their warm hearts and welcoming spirits. </span></span>
-<span class="line"><span style="color: #e1e4e8">They would pass as humans easily.</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>whimsical, human/leporid/kangaroo-like hybrid creatures, </span></span>
+<span class="line"><span>notably humanlike, with snouts and button-like noses, </span></span>
+<span class="line"><span>known for their warm hearts and welcoming spirits. </span></span>
+<span class="line"><span>They would pass as humans easily.</span></span></code></pre>
 <p>The examples below used variations of the above prompt with a bit of other secret sauce. I’ve noted the relevant changes that caused the output images</p>
 
 
@@ -237,45 +144,45 @@ var x = new DOMParser()
 <p>I gave it specific questions like ”<em>How many People</em>” and “How many Animals”. I had it extract specific details by analyzing each person and each animal. Hair? Clothes? What type of animals?</p>
 <h3 id="i-helped-it-describe-what-it-saw-via-few-shot">I helped it describe what it saw via Few Shot</h3>
 <p>I included examples (called <a href="https://dev.to/ganderzz/improve-your-prompts-for-llms-simple-and-effective-techniques-20j9#few-shot-prompting">Few Shot programming</a>) like so:</p>
-<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">* [AGE]: about how old are they? </span></span>
-<span class="line"><span style="color: #e1e4e8">    (e.g. "50s", "teenager", "early 30s", etc)</span></span>
-<span class="line"><span style="color: #e1e4e8">* [HAIR]: what stands out about their hair? </span></span>
-<span class="line"><span style="color: #e1e4e8">    (e.g. "wavy brown hair", "gray curls, thin on top", etc)</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>* [AGE]: about how old are they? </span></span>
+<span class="line"><span>    (e.g. "50s", "teenager", "early 30s", etc)</span></span>
+<span class="line"><span>* [HAIR]: what stands out about their hair? </span></span>
+<span class="line"><span>    (e.g. "wavy brown hair", "gray curls, thin on top", etc)</span></span></code></pre>
 <h3 id="i-put-heavy-guardrails-on-the-dall-e-prompt-creation">I put heavy guardrails on the Dall-E prompt creation</h3>
 <p>Since I knew Chat GPT loves to improvise, I removed the wiggle room. I turn it’s analysis into tightly structured data.</p>
 <p>My polished Dall-E was prefixed with this:</p>
-<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">**Creature description text, DO NOT CHANGE**: The prompt in triple-double quotes </span></span>
-<span class="line"><span style="color: #e1e4e8">below is a pre-made and specifically-worded. **You are not allowed to change this </span></span>
-<span class="line"><span style="color: #e1e4e8">text in any way**. Store this as [CREATURE_DESC]</span></span>
-<span class="line"><span style="color: #e1e4e8">"""</span></span>
-<span class="line"><span style="color: #e1e4e8">[my cool prompt that is cool and secret]</span></span>
-<span class="line"><span style="color: #e1e4e8">"""</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>**Creature description text, DO NOT CHANGE**: The prompt in triple-double quotes </span></span>
+<span class="line"><span>below is a pre-made and specifically-worded. **You are not allowed to change this </span></span>
+<span class="line"><span>text in any way**. Store this as [CREATURE_DESC]</span></span>
+<span class="line"><span>"""</span></span>
+<span class="line"><span>[my cool prompt that is cool and secret]</span></span>
+<span class="line"><span>"""</span></span></code></pre>
 <p>Each person is turned into a creature with a data structure called [CREATURE] animals are now [PETS].</p>
 <p>I created a [PROMPT_START] block that included the overall [SCENE] in the original image.</p>
 <p>This is how I programmed CGPT to write the prompt:</p>
-<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">**Final prompt**: Create the final prompt by combining the content. Remember - it is </span></span>
-<span class="line"><span style="color: #e1e4e8">unacceptable to make any alterations to [CREATURE_DESC] - **even if there are no </span></span>
-<span class="line"><span style="color: #e1e4e8">people and only animals: DO NOT CHANGE A SINGLE WORD IN [CREATURE_DESC]**. The final </span></span>
-<span class="line"><span style="color: #e1e4e8">prompt must follow the exact structure below:</span></span>
-<span class="line"><span style="color: #e1e4e8">"""</span></span>
-<span class="line"><span style="color: #e1e4e8">[PROMPT_START]</span></span>
-<span class="line"><span style="color: #e1e4e8">[CREATURE_DESC]</span></span>
-<span class="line"><span style="color: #e1e4e8">[CREATURE_n] (one for each [CREATURE])</span></span>
-<span class="line"><span style="color: #e1e4e8">[PET_n] (one for each [PET])</span></span>
-<span class="line"><span style="color: #e1e4e8">"""</span></span>
-<span class="line"><span style="color: #e1e4e8"></span></span>
-<span class="line"><span style="color: #e1e4e8">**Using DALL-E**: Send the exact prompt to DALL-E as detailed above without changes.</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>**Final prompt**: Create the final prompt by combining the content. Remember - it is </span></span>
+<span class="line"><span>unacceptable to make any alterations to [CREATURE_DESC] - **even if there are no </span></span>
+<span class="line"><span>people and only animals: DO NOT CHANGE A SINGLE WORD IN [CREATURE_DESC]**. The final </span></span>
+<span class="line"><span>prompt must follow the exact structure below:</span></span>
+<span class="line"><span>"""</span></span>
+<span class="line"><span>[PROMPT_START]</span></span>
+<span class="line"><span>[CREATURE_DESC]</span></span>
+<span class="line"><span>[CREATURE_n] (one for each [CREATURE])</span></span>
+<span class="line"><span>[PET_n] (one for each [PET])</span></span>
+<span class="line"><span>"""</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>**Using DALL-E**: Send the exact prompt to DALL-E as detailed above without changes.</span></span></code></pre>
 <h3 id="i-let-it-write-a-poem-as-a-treat">I let it write a poem, as a treat</h3>
 <p>The last instruction CGPT received is permission to write a poem.</p>
-<pre class="astro-code github-dark" style="background-color: #24292e; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color: #e1e4e8">You will be imaginative and engaging, always in a friendly and enthusiastic manner. </span></span>
-<span class="line"><span style="color: #e1e4e8">You will always be brief and you will always rhyme.</span></span>
-<span class="line"><span style="color: #e1e4e8">- Write in playful and creative rhymes of four lines max.</span></span>
-<span class="line"><span style="color: #e1e4e8">- Only one poem per at a time - make it count!</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span>You will be imaginative and engaging, always in a friendly and enthusiastic manner. </span></span>
+<span class="line"><span>You will always be brief and you will always rhyme.</span></span>
+<span class="line"><span>- Write in playful and creative rhymes of four lines max.</span></span>
+<span class="line"><span>- Only one poem per at a time - make it count!</span></span></code></pre>
 <p>I also told it that y’all love it’s poetry. So be sure to thank it for the poem too!</p>
 <hr>
 <h2 id="play-with-the-who-me-gpt">Play with the Who Me GPT</h2>
 <p>(requires Chat GPT plus account)</p>
 <p><a href="https://chat.openai.com/g/g-AJHS0XQ6K-who-me"><img src="/who-me-chat-gpt.png" alt="Who Me: I make you a Dr. Seuss Who and your friends and pets too!"></a></p>
-<p><a href="https://chat.openai.com/g/g-AJHS0XQ6K-who-me">https://chat.openai.com/g/g-AJHS0XQ6K-who-me</a></p></article></main><footer data-astro-cid-sz7xmlte><hr data-astro-cid-sz7xmlte>
+<p><a href="https://chat.openai.com/g/g-AJHS0XQ6K-who-me">https://chat.openai.com/g/g-AJHS0XQ6K-who-me</a></p>  </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
 &copy; 2023&nbsp;Scott Nath All rights reserved.
-</footer></body></html>
+</footer>  </body></html>

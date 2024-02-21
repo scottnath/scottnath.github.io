@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <script type="text/partytown" defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.4.2"><link rel="preload" as="image" href="/scott-nath-profile-pic.jpeg"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/profile-components--dsd/"><!-- Primary Meta Tags --><title>Profile Components: SSR with Declarative Shadow DOM</title><meta name="title" content="Profile Components: SSR with Declarative Shadow DOM"><meta name="description" content="Enhancing Profile Components with Declarative Shadow DOM and showing examples for Server Side Rendering"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/profile-components--dsd/"><meta property="og:title" content="Profile Components: SSR with Declarative Shadow DOM"><meta property="og:description" content="Enhancing Profile Components with Declarative Shadow DOM and showing examples for Server Side Rendering"><meta property="og:image" content="https://scottnath.com/profile-components-blahg/profile-components-dsd-header.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/profile-components--dsd/"><meta property="twitter:title" content="Profile Components: SSR with Declarative Shadow DOM"><meta property="twitter:description" content="Enhancing Profile Components with Declarative Shadow DOM and showing examples for Server Side Rendering"><meta property="twitter:image" content="https://scottnath.com/profile-components-blahg/profile-components-dsd-header.png"><link rel="stylesheet" href="/_astro/_slug_.Xn3YLocu.css" />
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+</script>
+<script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.0 - MIT builder.io */
+!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script><style>[data-astro-transition-scope="astro-x5ucuxqb-1"] { view-transition-name: astro-x5ucuxqb-1; }@layer astro { ::view-transition-old(astro-x5ucuxqb-1) { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-duration: 90ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both, both;
+	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-duration: 210ms, 220ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
+	animation-delay: 30ms;
+	animation-fill-mode: both, both;
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <header data-astro-cid-3ef6ksr2> <dope-stripes data-astro-cid-fb7ufwnd> <template shadowrootmode="open" data-astro-cid-fb7ufwnd><style>.stripes{width:100%;--left-width: 20%;--angle-width: 50px;--stripe-height: 20px;--stripe-angle: 39deg}.stripe{display:flex;align-items:left;margin:0 0 -1px;width:100%;--stripe-color: #ffe27a}.stripe span,.stripe:before,.stripe:after{content:" ";height:var(--stripe-height);display:block;background-color:var(--stripe-color);--rotated-height: calc(var(--angle-width) * tan(var(--stripe-angle)))}.stripe span{transform:skewY(var(--stripe-angle));transform-origin:0% 0%;flex:0 0 auto;width:calc(var(--angle-width));height:var(--stripe-height)}.stripe:before{width:var(--left-width);flex:0 0 auto}.stripe:after{flex:1 1 auto;transform:translateY(var(--rotated-height))}.blue{--stripe-color: rgb(0, 0, 255)}.yellow{--stripe-color: #ffe27a}.orange{--stripe-color: #ffa64d}.dark-orange{--stripe-color: #ff7f1a}</style><div class="stripes" part="stripes">
+    <div class="stripe" style="--stripe-color: #ffd273"><span></span></div><div class="stripe" style="--stripe-color: #ffbf57"><span></span></div><div class="stripe" style="--stripe-color: #ffa43b"><span></span></div><div class="stripe" style="--stripe-color: #ff8920"><span></span></div><div class="stripe" style="--stripe-color: #ff6e05"><span></span></div>
+  </div></template> </dope-stripes>  <div class="content" data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> Scott Nath </h2> <h3 data-astro-cid-3ef6ksr2>Front-end architect</h3> <img src="/_astro/scott-nath-profile-photo.B_h8QufM.jpeg" alt="Scott Nath picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Home </a>  <a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Blahg </a>  <a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Resume </a>  </nav> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-3ef6ksr2> <a rel="me" href="https://dev.to/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/dev.DPyAJ8Ri.svg" alt="DEV logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>DEV</span></a> <a rel="me" href="https://github.com/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>GitHub</span></a> <a rel="me" href="https://www.linkedin.com/in/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>LinkedIn</span></a> <a rel="me" href="https://mastodon.social/@scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>Mastodon</span></a> </address> </div> </header>  <main data-astro-transition-scope="astro-x5ucuxqb-1">  <article class="blog-post"> <img width="100%" height="auto" src="/profile-components-blahg/profile-components-dsd-header.png" alt=""> <h1 class="title">Profile Components: SSR with Declarative Shadow DOM</h1> <time datetime="2024-02-21T00:00:00.000Z"> Feb 21, 2024 </time>  <hr>  <p>With the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/123#html">official release of <code>shadowrootmode</code>-supporting Firefox v123</a>, it’s time to upgrade the profile components with Declarative Shadow DOM functionality!</p>
+<h2 id="tldr">tl;dr</h2>
+<ul>
+<li><a href="https://scottnath.com/profile-components/?path=/docs/github-declarative-shadow-dom--docs">DSD docs for GitHub profile components</a></li>
+<li><a href="https://scottnath.com/profile-components/?path=/docs/devto-declarative-shadow-dom--docs">DSD docs for dev.to profile components</a></li>
+<li><a href="https://stackblitz.com/edit/profile-components?file=github-dsd.html&#x26;initialpath=github-dsd.html&#x26;view=preview">See the Stackblitz client-side example</a></li>
+</ul>
+<hr>
+<h2 id="what-is-this">What is this?</h2>
+<p>Four new methods have been added to allow generating a <code>template</code> tag with <code>shadowrootmode</code> containing the generated HTML and styles of a profile component. This was fairly trivial to add due to the Javascript, HTML and CSS living in separate files. (see <a href="/blahg/profile-components/#%F0%9F%91%B7">👷 DX: Separate files for Javascript, HTML, and CSS</a>).</p>
+<p>Each of the four components now have a <code>dsd</code> method which can be used to generate something like this:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">template</span><span style="color:#B392F0"> shadowrootmode</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"open"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#FDAEB7;font-style:italic">styles</span><span style="color:#E1E4E8">>(...css styles for GitHub component)&#x3C;/</span><span style="color:#FDAEB7;font-style:italic">styles</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">section</span><span style="color:#B392F0"> (...rest</span><span style="color:#B392F0"> of</span><span style="color:#B392F0"> generated</span><span style="color:#B392F0"> HTML)</span><span style="color:#FDAEB7;font-style:italic">&#x3C;/section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">template</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>This generated <code>template</code> can be used server-side when generating HTML output, or client-side after page load. Although…doing this client-side is weird frankly…like…they’re web components, just use them as they were written…who knows though, maybe someone has a use for that feature 🤷.</p>
+<h2 id="how-to-use-the-declarative-shadow-dom-methods">How to use the Declarative Shadow DOM methods</h2>
+<p>Below are some examples of usage of the GitHub component (<a href="https://scottnath.com/profile-components/?path=/docs/github-declarative-shadow-dom--docs">see GitHub DSD docs</a>). Usage of the DEV components is pretty much the same - <a href="https://scottnath.com/profile-components/?path=/docs/devto-declarative-shadow-dom--docs">check out the dev.to DSD docs</a> for DEV usage examples.</p>
+<p>The main value of these is when create HTML <em>before</em> it is rendered by the browser. Then when the browser renders it, the browser converts the DSD into actual Shadow DOM. These components are only presentational and do not have functionality added by the customElement - so DSD or regular web component usage results in the same thing!</p>
+<h3 id="ssr-server-side-rendering-html-in-nodejs">SSR (Server Side Rendering) HTML in Node.js</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// import from npm module</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { dsd } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'profile-components/github-utils'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> repos</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">([</span></span>
+<span class="line"><span style="color:#9ECBFF">  'scottnath/profile-components'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  'storydocker/storydocker'</span></span>
+<span class="line"><span style="color:#E1E4E8">]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> generatedTemplate</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> dsd</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  login: </span><span style="color:#9ECBFF">'scottnath'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  avatar_url: profilePic.src,</span></span>
+<span class="line"><span style="color:#E1E4E8">  repos</span></span>
+<span class="line"><span style="color:#E1E4E8">},</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D">generatedTemplate contains:</span></span>
+<span class="line"><span style="color:#6A737D">&#x3C;template shadowrootmode="open"></span></span>
+<span class="line"><span style="color:#6A737D">  &#x3C;styles>(...css styles for GitHub component)&#x3C;/styles></span></span>
+<span class="line"><span style="color:#6A737D">  &#x3C;section (...rest of generated HTML)&#x3C;/section></span></span>
+<span class="line"><span style="color:#6A737D">&#x3C;/template></span></span>
+<span class="line"><span style="color:#6A737D">*/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// use this variable in a file pre-render to have a DSD-pre-populated element</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> componentHTML</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `&#x3C;github-user>${</span><span style="color:#E1E4E8">generatedTemplate</span><span style="color:#9ECBFF">}&#x3C;/github-user>`</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="server-side-render-in-an-astro-component">Server side render in an Astro component</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">---</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> {dsd} </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'profile-components/github-utils'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> repos</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">([</span><span style="color:#9ECBFF">'scottnath/profile-components'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'storydocker/storydocker'</span><span style="color:#E1E4E8">]);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> declaredDOM</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> dsd</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  login: </span><span style="color:#9ECBFF">'scottnath'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  repos</span></span>
+<span class="line"><span style="color:#E1E4E8">},</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">github-user</span></span>
+<span class="line"><span style="color:#B392F0">  data-theme</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"light_high_contrast"</span></span>
+<span class="line"><span style="color:#B392F0">  set</span><span style="color:#E1E4E8">:</span><span style="color:#B392F0">html</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{declaredDOM}></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#79B8FF">github-user</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="client-side-rendering-via-unpkg">Client side rendering via unpkg</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">&#x3C;!-- add empty elements to HTML --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">github-repository</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">github-repository</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">hr</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">github-user</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">github-user</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">script</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"module"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">  // import from unpkg</span></span>
+<span class="line"><span style="color:#F97583">  import</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    user,</span></span>
+<span class="line"><span style="color:#E1E4E8">    repo,</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'https://unpkg.com/profile-components/dist/github-utils.js'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // repo has it's own DSD method:</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> dsdRepo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> repo.dsd;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  /**</span></span>
+<span class="line"><span style="color:#6A737D">    * Polyfill for Declarative Shadow DOM which, when triggered, converts</span></span>
+<span class="line"><span style="color:#6A737D">    *  the template element into actual shadow DOM.</span></span>
+<span class="line"><span style="color:#6A737D">    * This is only needed when injecting _after_ page is loaded</span></span>
+<span class="line"><span style="color:#6A737D">    * @see https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#polyfill</span></span>
+<span class="line"><span style="color:#6A737D">    */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> triggerAttachShadowRoots</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#F97583">function</span><span style="color:#B392F0"> attachShadowRoots</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">root</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      root</span></span>
+<span class="line"><span style="color:#E1E4E8">        .</span><span style="color:#B392F0">querySelectorAll</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'template[shadowrootmode]'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        .</span><span style="color:#B392F0">forEach</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">template</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">          const</span><span style="color:#79B8FF"> mode</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> template.</span><span style="color:#B392F0">getAttribute</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'shadowrootmode'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">          const</span><span style="color:#79B8FF"> shadowRoot</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> template.parentNode.</span><span style="color:#B392F0">attachShadow</span><span style="color:#E1E4E8">({ mode });</span></span>
+<span class="line"><span style="color:#E1E4E8">          shadowRoot.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(template.content);</span></span>
+<span class="line"><span style="color:#E1E4E8">          template.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">          attachShadowRoots</span><span style="color:#E1E4E8">(shadowRoot);</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    })(document);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  /**</span></span>
+<span class="line"><span style="color:#6A737D">    * Uses the "dsd" method to generate DSD, add the string of DSD content</span></span>
+<span class="line"><span style="color:#6A737D">    *  to the element, then trigger the polyfill to convert the template</span></span>
+<span class="line"><span style="color:#6A737D">    */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> injectDSD</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> dsdHTML</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> dsd</span><span style="color:#E1E4E8">({ username: </span><span style="color:#9ECBFF">'scottnath'</span><span style="color:#E1E4E8"> }, </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'github-user'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dsdHTML;</span></span>
+<span class="line"><span style="color:#6A737D">    // now that the HTML is async-created, the polyfill can convert it</span></span>
+<span class="line"><span style="color:#B392F0">    triggerAttachShadowRoots</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#B392F0">  injectDSD</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  /**</span></span>
+<span class="line"><span style="color:#6A737D">    * Uses the "dsdRepo" method to generate DSD, add the string of DSD content</span></span>
+<span class="line"><span style="color:#6A737D">    *  to the element, then trigger the polyfill to convert the template</span></span>
+<span class="line"><span style="color:#6A737D">    */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> injectRepoDSD</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> dsdHTML</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> dsdRepo</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">      { full_name: </span><span style="color:#9ECBFF">'scottnath/profile-components'</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#79B8FF">      true</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'github-repository'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dsdHTML;</span></span>
+<span class="line"><span style="color:#6A737D">    // now that the HTML is async-created, the polyfill can convert it</span></span>
+<span class="line"><span style="color:#B392F0">    triggerAttachShadowRoots</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#B392F0">  injectRepoDSD</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span></code></pre>
+<iframe width="100%" height="500" src="https://stackblitz.com/edit/profile-components?embed=1&#x26;file=github-dsd.html&#x26;view=preview&#x26;initialpath=github-dsd.html"></iframe>  </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
+&copy; 2024&nbsp;Scott Nath All rights reserved.
+</footer>  </body></html>

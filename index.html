@@ -388,7 +388,7 @@ section[itemscope] {
   overflow-wrap: anywhere;
   overflow: hidden;
 }
-:host header {
+:host header:first-child {
   background-color: var(--bg-color-light);
   padding: var(--row-spacing);
 
@@ -396,7 +396,7 @@ section[itemscope] {
   gap: var(--svg-gap);
   height: calc(var(--logo-size) + var(--logo-outline-offset) * 2);
 
-  > span:has([itemprop="memberOf"]) {
+  [itemprop="memberOf"] {
     background-color: var(--color-normal);
     width: var(--logo-size);
     height: var(--logo-size);
@@ -522,7 +522,7 @@ section[itemscope] {
       mask-image: var(--svg-people);
     }
 
-    > span {
+    :is(div) {
       display: inline-flex;
       flex-direction: row-reverse;
       flex-wrap: nowrap;
@@ -564,17 +564,17 @@ section[itemscope] {
 }
 </style>
       <section aria-label="GitHub user profile" itemscope itemtype="http://schema.org/Person">
-        <header>
-          <span><span itemprop="memberOf">GitHub</span> user</span> 
-          <span itemprop="alternativeName">scottnath</span>
+        <header aria-label="GitHub user Scott Nath, username scottnath">
+          <span itemprop="memberOf" aria-hidden="true">GitHub</span>
+          <span itemprop="alternativeName" aria-hidden="true">scottnath</span>
         </header>
         <div part="main">
           <address>
-            <a href="https://github.com/scottnath" aria-label="View @scottnath's profile on GitHub" itemprop="url">
+            <a href="https://github.com/scottnath" aria-label="Scott Nath's profile on GitHub" itemprop="url">
               <span class="avatar" itemprop="image">
-                <img src="/scott-nath-profile-photo.avif" alt="Avatar for 0" loading="lazy" />
+                <img src="/scott-nath-profile-photo.avif" alt="Avatar for Scott Nath" loading="lazy" />
               </span>
-              <span itemprop="creator">
+              <span itemprop="creator" aria-hidden="true">
                 <span itemprop="name">Scott Nath</span>
                 <span itemprop="alternativeName">scottnath</span>
               </span>
@@ -582,34 +582,35 @@ section[itemscope] {
           </address>
           <p itemprop="description">Front-end UI DevOps architect. Efficiency in all things and productivity will follow. former IBM, NBCUniversal</p>
           
-            <dl>
+            <dl aria-label="GitHub user stats">
             
-              <span><dt>followers</dt>
-              <dd itemprop="followee">
-                <span aria-hidden="true">11</span>
+              <div aria-label="followers: 11">
+              <dt aria-hidden="true">followers</dt>
+              <dd itemprop="followee" aria-hidden="true">
+                <span>11</span>
                 <span class="sr-only">11</span>
-              </dd></span>
+              </dd></div>
             
             
-              <span><dt>following</dt>
-              <dd itemprop="follows">
-                <span aria-hidden="true">18</span>
+              <div aria-label="following: 18">
+              <dt aria-hidden="true">following</dt>
+              <dd itemprop="follows" aria-hidden="true">
+                <span>18</span>
                 <span class="sr-only">18</span>
-              </dd></span>
+              </dd></div>
             
             </dl>
           
           
-            <dl>
-              <dt>Pinned repositories</dt>
+            <header aria-label="Pinned repositories">Pinned repositories</header>
+            
               
-                <dd>
-    <div aria-label="GitHub repository" class="repo" itemscope itemtype="http://schema.org/SoftwareSourceCode">
-      <a href="https://github.com/scottnath/profile-components" itemprop="codeRepository">
+    <section aria-label="GitHub repository" class="repo" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+      <a href="https://github.com/scottnath/profile-components" itemprop="codeRepository" aria-label="scottnath/profile-components repository on GitHub">
         
-          <span itemprop="maintainer">scottnath /</span>
+          <span itemprop="maintainer" aria-hidden="true">scottnath /</span>
         
-        <span itemprop="name">profile-components</span>
+        <span itemprop="name" aria-hidden="true">profile-components</span>
       </a>
       
         <p itemprop="about">Web components which display profile information from various websites</p>
@@ -629,16 +630,16 @@ section[itemscope] {
         
         
       </dl>
-    </div>
-  </dd>
+    </section>
+  
+            
               
-                <dd>
-    <div aria-label="GitHub repository" class="repo" itemscope itemtype="http://schema.org/SoftwareSourceCode">
-      <a href="https://github.com/storydocker/storydocker" itemprop="codeRepository">
+    <section aria-label="GitHub repository" class="repo" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+      <a href="https://github.com/storydocker/storydocker" itemprop="codeRepository" aria-label="storydocker/storydocker repository on GitHub">
         
-          <span itemprop="maintainer">storydocker /</span>
+          <span itemprop="maintainer" aria-hidden="true">storydocker /</span>
         
-        <span itemprop="name">storydocker</span>
+        <span itemprop="name" aria-hidden="true">storydocker</span>
       </a>
       
         <p itemprop="about">Storybook, but as a microservice</p>
@@ -655,10 +656,9 @@ section[itemscope] {
         
         
       </dl>
-    </div>
-  </dd>
-              
-            </dl>
+    </section>
+  
+            
           
         </div>
       </section>
@@ -918,14 +918,14 @@ section[itemscope] {
   box-shadow: 0 0 0 1px var(--color-shadow);
   background: var(--card-bg);
 
-  & header {
+  header:first-child {
     &::before {
       content: " ";
       display: block;
       background-color: var(--color-profile);
       height: var(--heading-height);
     }
-    & span:has([itemprop="memberOf"]) {
+    span:has([itemprop="memberOf"]) {
       display: inline-block;
       background: var(--svg-dev-logo) no-repeat white;
       background-position: center -2px;
@@ -940,7 +940,7 @@ section[itemscope] {
       right: var(--side-spacing);
       top: calc(calc(var(--heading-height) - var(--logo-size)) / 2);
 
-      & span {
+      span {
         position: absolute;
         top: calc(var(--logo-size) * -3);
         font-size: .1em;
@@ -1055,16 +1055,19 @@ section[itemscope] {
       }
     }
 
-    & dl:has(.post) {
+    div:has(.post) {
       border-bottom: 1px solid var(--color-shadow);
       padding-bottom: 1em;
 
-      & dt {
+      header {
         color: var(--color-light);
         font-size: var(--font-size-light);
         font-weight: var(--font-weight-light);
         border-top: 1px solid var(--color-shadow);
         margin-top: .5em;
+        &::before {
+          display: none;
+        }
       }
     }
   }
@@ -1097,14 +1100,14 @@ section[itemscope] {
 }
 </style>
     <section aria-label="dev.to user profile" itemscope itemtype="http://schema.org/Person">
-      <header>
-        <span><span itemprop="memberOf">dev.to</span> <span>user</span></span> 
+      <header aria-label="dev.to user Scott Nath, username scottnath">
+        <span aria-hidden="true"><span itemprop="memberOf">dev.to</span></span> 
         <address>
-          <a href="https://dev.to/scottnath" aria-label="View @scottnath's profile on dev.to" itemprop="url">
+          <a href="https://dev.to/scottnath" aria-label="Scott Nath's profile on dev.to" itemprop="url">
             <span itemprop="image">
               <img src="/scott-nath-profile-photo.avif" alt="Avatar for Scott Nath" loading="lazy" />
             </span>
-            <span itemprop="name">Scott Nath</span>
+            <span itemprop="name" aria-hidden="true">Scott Nath</span>
           </a>
         </address>
       </header>
@@ -1114,30 +1117,30 @@ former IBM, NBCUniversal</p>
         <p>Joined on <time itemprop="startDate" datetime="2023-03-30">Mar 30, 2023</time></p>
         <p class="post_count">16 posts published</p>
         
-          <dl>
+          <div>
             
-              <dt>Latest post</dt>
-              <dd>
+              <header aria-label="Latest post">Latest post</header>
+              
     <span aria-label="dev.to article" class="post" itemscope itemtype="http://schema.org/Article">
-      <a href="https://dev.to/scottnath/storybook-setup-virtual-screen-reader-with-web-components-1h6p" itemprop="url" aria-label="read post Storybook setup: Virtual Screen Reader with Web Components">
-        <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ffazqd52av9cyf7tjb19u.png" itemprop="image" alt="Cover image for post Storybook setup: Virtual Screen Reader with Web Components" />
-        <span itemprop="name">Storybook setup: Virtual Screen Reader with Web Components</span>
+      <a href="https://dev.to/scottnath/storybook-setup-virtual-screen-reader-with-web-components-1h6p" itemprop="url" aria-label="article Storybook setup: Virtual Screen Reader with Web Components">
+        <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ffazqd52av9cyf7tjb19u.png" itemprop="image" alt="Cover image for article Storybook setup: Virtual Screen Reader with Web Components" />
+        <span itemprop="name" aria-hidden="true">Storybook setup: Virtual Screen Reader with Web Components</span>
       </a>
     </span>
-  </dd>
+  
             
             
-              <dt>Popular post</dt>
-              <dd>
+              <header aria-label="Popular post">Popular post</header>
+              
     <span aria-label="dev.to article" class="post" itemscope itemtype="http://schema.org/Article">
-      <a href="https://dev.to/scottnath/dev-profile-web-components-embed-your-devto-profile-anywhere-4o0b" itemprop="url" aria-label="read post DEV Profile Web Components: embed your dev.to profile anywhere">
-        <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fe41sgv69y6rw4fztggz3.jpeg" itemprop="image" alt="Cover image for post DEV Profile Web Components: embed your dev.to profile anywhere" />
-        <span itemprop="name">DEV Profile Web Components: embed your dev.to profile anywhere</span>
+      <a href="https://dev.to/scottnath/dev-profile-web-components-embed-your-devto-profile-anywhere-4o0b" itemprop="url" aria-label="article DEV Profile Web Components: embed your dev.to profile anywhere">
+        <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fe41sgv69y6rw4fztggz3.jpeg" itemprop="image" alt="Cover image for article DEV Profile Web Components: embed your dev.to profile anywhere" />
+        <span itemprop="name" aria-hidden="true">DEV Profile Web Components: embed your dev.to profile anywhere</span>
       </a>
     </span>
-  </dd>
+  
             
-          </dl>
+          </div>
         
       </div>
       <footer>

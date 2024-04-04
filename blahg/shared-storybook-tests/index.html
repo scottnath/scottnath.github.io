@@ -1,37 +1,308 @@
-<!DOCTYPE html><html lang="en"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <script defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js" type="text/partytown"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.4.2"><link rel="preload" as="image" href="/storybook-shared-tests.jpeg"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/shared-storybook-tests/"><!-- Primary Meta Tags --><title>Reusable Storybook Interaction Tests</title><meta name="title" content="Reusable Storybook Interaction Tests"><meta name="description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/shared-storybook-tests/"><meta property="og:title" content="Reusable Storybook Interaction Tests"><meta property="og:description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><meta property="og:image" content="https://scottnath.com/storybook-shared-tests.jpeg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/shared-storybook-tests/"><meta property="twitter:title" content="Reusable Storybook Interaction Tests"><meta property="twitter:description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><meta property="twitter:image" content="https://scottnath.com/storybook-shared-tests.jpeg"><link rel="stylesheet" href="/_astro/_slug_.CF1cFZIF.css" />
-<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
-</style><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+<!DOCTYPE html><html lang="en-US"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <script defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js" type="text/partytown"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.4.2"><link rel="preload" as="image" href="/blahg-assets/storybook-shared-tests.avif"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/shared-storybook-tests/"><!-- Primary Meta Tags --><title>Reusable Storybook Interaction Tests</title><meta name="title" content="Reusable Storybook Interaction Tests"><meta name="description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/shared-storybook-tests/"><meta property="og:title" content="Reusable Storybook Interaction Tests"><meta property="og:description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><meta property="og:image" content="https://scottnath.com/blahg-assets/storybook-shared-tests.avif"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/shared-storybook-tests/"><meta property="twitter:title" content="Reusable Storybook Interaction Tests"><meta property="twitter:description" content="Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage"><meta property="twitter:image" content="https://scottnath.com/blahg-assets/storybook-shared-tests.avif"><link rel="stylesheet" href="/_astro/_slug_.BZZEeUR_.css" /><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+</script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString(
+		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
+		'text/html',
+		{
+			includeShadowRoots: !0,
+		}
+	)
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
 </script>
 <script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.0 - MIT builder.io */
-!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script><style>[data-astro-transition-scope="astro-x5ucuxqb-1"] { view-transition-name: astro-x5ucuxqb-1; }@layer astro { ::view-transition-old(astro-x5ucuxqb-1) { 
+!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script><style>[data-astro-transition-scope="astro-x3xkme5z-1"] { view-transition-name: astro-x3xkme5z-1; }@layer astro { ::view-transition-old(astro-x3xkme5z-1) { 
 	animation-duration: 90ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both, both;
-	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x3xkme5z-1) { 
 	animation-duration: 210ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-delay: 30ms;
 	animation-fill-mode: both, both;
-	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x5ucuxqb-1) { 
-	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x5ucuxqb-1) { 
-	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x3xkme5z-1) { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x3xkme5z-1) { 
+	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
 	animation-duration: 90ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both, both;
-	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
 	animation-duration: 210ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-delay: 30ms;
 	animation-fill-mode: both, both;
-	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
-	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
-	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <header data-astro-cid-3ef6ksr2> <dope-stripes data-astro-cid-fb7ufwnd> <template shadowrootmode="open" data-astro-cid-fb7ufwnd><style>.stripes{width:100%;--left-width: 20%;--angle-width: 50px;--stripe-height: 20px;--stripe-angle: 39deg}.stripe{display:flex;align-items:left;margin:0 0 -1px;width:100%;--stripe-color: #ffe27a}.stripe span,.stripe:before,.stripe:after{content:" ";height:var(--stripe-height);display:block;background-color:var(--stripe-color);--rotated-height: calc(var(--angle-width) * tan(var(--stripe-angle)))}.stripe span{transform:skewY(var(--stripe-angle));transform-origin:0% 0%;flex:0 0 auto;width:calc(var(--angle-width));height:var(--stripe-height)}.stripe:before{width:var(--left-width);flex:0 0 auto}.stripe:after{flex:1 1 auto;transform:translateY(var(--rotated-height))}.blue{--stripe-color: rgb(0, 0, 255)}.yellow{--stripe-color: #ffe27a}.orange{--stripe-color: #ffa64d}.dark-orange{--stripe-color: #ff7f1a}</style><div class="stripes" part="stripes">
-    <div class="stripe" style="--stripe-color: #ffd273"><span></span></div><div class="stripe" style="--stripe-color: #ffbf57"><span></span></div><div class="stripe" style="--stripe-color: #ffa43b"><span></span></div><div class="stripe" style="--stripe-color: #ff8920"><span></span></div><div class="stripe" style="--stripe-color: #ff6e05"><span></span></div>
-  </div></template> </dope-stripes>  <div class="content" data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> Scott Nath </h2> <h3 data-astro-cid-3ef6ksr2>Front-end architect</h3> <img src="/scott-nath-profile-photo.avif" alt="Scott Nath picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Home </a>  <a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Blahg </a>  <a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Resume </a>  </nav> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-3ef6ksr2> <a rel="me" href="https://dev.to/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/dev.DPyAJ8Ri.svg" alt="DEV logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>DEV</span></a> <a rel="me" href="https://github.com/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>GitHub</span></a> <a rel="me" href="https://www.linkedin.com/in/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>LinkedIn</span></a> <a rel="me" href="https://mastodon.social/@scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>Mastodon</span></a> </address> </div> </header>  <main data-astro-transition-scope="astro-x5ucuxqb-1">  <article class="blog-post"> <img width="100%" height="auto" src="/storybook-shared-tests.jpeg" alt=""> <h1 class="title">Reusable Storybook Interaction Tests</h1> <p>Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage</p> <time datetime="2023-04-20T00:00:00.000Z"> Apr 20, 2023 </time>  <hr>  <h2 id="tldr">tl;dr</h2>
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <a href="#main" id="skip-to-main">Skip to main content</a> <header data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> <span class="name" data-astro-cid-3ef6ksr2>Scott Nath</span> <span class="title" data-astro-cid-3ef6ksr2>Frontend Architect</span> </h2> <nav data-astro-cid-2hp2wczs> <dope-stripes data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>:host{display:block;position:relative;--angle-x-start: 35%;--angle-width: 5%;--angle-y-end: 40px;--stripe-height: 16px;--stripe-color: #ffe27a;width:100%;min-height:var(--stripe-height)}::slotted(dope-stripe),dope-stripe{--no-top-margin: -1}dope-stripe:first-child{--no-top-margin: 0}.stripes:not(:has(dope-stripe)) ::slotted(dope-stripe:first-child){--no-top-margin: 0}</style><!--lit-part grV36YUwDSo=--><div class="stripes" part="stripes" exportparts="stripe">
+      <!--lit-part--><!--/lit-part-->
+      <slot></slot>
+  </div><!--/lit-part--></template> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffd273"><slot></slot></div><!--/lit-part--></template> <a href="/" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>home</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffbf57"><slot></slot></div><!--/lit-part--></template> <a href="/whoami" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>whoami</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffa43b"><slot></slot></div><!--/lit-part--></template> <a href="/blahg" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>blahg</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff8920"><slot></slot></div><!--/lit-part--></template> <a href="/resume" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>resume</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff6e05"><slot></slot></div><!--/lit-part--></template></dope-stripe> </dope-stripes> </nav>  <img src="/scott-nath-profile-photo.avif" alt="Scott Nath's picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-6jz5wqfy> <a rel="me" href="https://github.com/scottnath" aria-label="Scott Nath on GitHub" data-astro-cid-6jz5wqfy><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>GitHub</span></a><a rel="me" href="https://dev.to/scottnath" aria-label="Scott Nath's articles on dev.to" data-astro-cid-6jz5wqfy><img src="/_astro/dev.DPyAJ8Ri.svg" alt="dev.to logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>dev.to</span></a><a rel="me" href="https://linkedin.com/in/scottnath" aria-label="Connect with Scott Nath on LinkedIn" data-astro-cid-6jz5wqfy><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>LinkedIn</span></a><a rel="me" href="https://mastodon.social/@scottnath" aria-label="Read Scott Nath blah on Mastodon" data-astro-cid-6jz5wqfy><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>Mastodon</span></a> </address>  </header>  <main id="main" data-astro-transition-scope="astro-x3xkme5z-1">  <article class="blog-post"> <img width="100%" height="auto" src="/blahg-assets/storybook-shared-tests.avif" alt=""> <h1 class="title">Reusable Storybook Interaction Tests</h1> <p>Learn about a working concept for writing reusable tests which can be shared within and between components to reduce your testing footprint while increasing coverage</p> <time datetime="2023-04-20T00:00:00.000Z"> Apr 20, 2023 </time>  <hr> <div class="readable"> <h2 id="tldr">tl;dr</h2>
 <p>Writing reusable tests means they can be shared within and between components.</p>
 <p>Goal: reduce your testing footprint while increasing coverage</p>
 <ul>
@@ -57,150 +328,150 @@
 <h3 id="question-1-what-was-rendered">Question 1. “What was rendered?”</h3>
 <p>We need to query for every possible testable element from the rendered UI. The function to find these elements should return an object representing each element(s), even if they return <code>null</code>.</p>
 <p>A simple example:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> getElements</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">canvasElement</span><span style="color:#F97583">:</span><span style="color:#B392F0"> HTMLElement</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> screen</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> within</span><span style="color:#E1E4E8">(canvasElement);</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> getElements</span><span style="color:#D4D4D4"> =</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0"> HTMLElement</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#9CDCFE"> screen</span><span style="color:#D4D4D4"> =</span><span style="color:#DCDCAA"> within</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> { </span></span>
-<span class="line"><span style="color:#E1E4E8">    screen,</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#E6E6E6"> { </span></span>
+<span class="line"><span style="color:#9CDCFE">    screen</span><span style="color:#E6E6E6">,</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">    // Searches the canvasElement for a button</span></span>
-<span class="line"><span style="color:#E1E4E8">    button: </span><span style="color:#F97583">await</span><span style="color:#E1E4E8"> screen.</span><span style="color:#B392F0">queryByRole</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'button'</span><span style="color:#E1E4E8">),</span></span>
-<span class="line"><span style="color:#E1E4E8">  };</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<span class="line"><span style="color:#6A9955">    // Searches the canvasElement for a button</span></span>
+<span class="line"><span style="color:#9CDCFE">    button:</span><span style="color:#C586C0"> await</span><span style="color:#9CDCFE"> screen</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">queryByRole</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'button'</span><span style="color:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#E6E6E6">  };</span></span>
+<span class="line"><span style="color:#E6E6E6">}</span></span></code></pre>
 <p>This returns an object with the rendered button and initial <code>HTMLElement</code>. Both are enhanced via <a href="https://testing-library.com/docs/dom-testing-library/api-within/">testing-library’s “within” method</a>. <strong><code>within(node)</code></strong> takes an <code>Element</code> and returns an object with all the testing-library queries bound to it.</p>
 <p><em>Note the use of <code>queryBy</code> instead of <code>getBy</code> or <code>findBy</code>.</em> This is because of <a href="https://testing-library.com/docs/queries/about#types-of-queries">the three testing-library query types</a>, <code>queryBy</code> will not throw an error if the element is not there. To make this function shareable, ideally it should not throw an error if any element it’s looking for is not there.</p>
 <h3 id="question-2-did-it-render-correctly">Question 2. “Did it render correctly?”</h3>
 <p>We know <em>what</em> was rendered, now we need to test it rendered as expected.</p>
 <p>We need a method with assertions which are conditionally applied, based on what a UI component received as <code>props</code>.</p>
 <p>This example uses a truncated version of the boilerplate Button component installed when initializing a new Storybook instance.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// A Button component</span></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> Button</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">primary</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">label</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'Button'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">onClick</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> ({}) }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> modeClass</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> primary </span><span style="color:#F97583">?</span><span style="color:#9ECBFF"> 'storybook-button--primary'</span><span style="color:#F97583"> :</span><span style="color:#9ECBFF"> 'storybook-button--secondary'</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
-<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">button</span></span>
-<span class="line"><span style="color:#B392F0">      type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"button"</span></span>
-<span class="line"><span style="color:#B392F0">      className</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{modeClass}</span></span>
-<span class="line"><span style="color:#FDAEB7;font-style:italic">      @click=${onClick}</span></span>
-<span class="line"><span style="color:#E1E4E8">    ></span></span>
-<span class="line"><span style="color:#E1E4E8">      {label}</span></span>
-<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">  );</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// A Button component</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> Button</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> ({ </span><span style="color:#9CDCFE">primary</span><span style="color:#D4D4D4"> =</span><span style="color:#569CD6"> false</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">label</span><span style="color:#D4D4D4"> =</span><span style="color:#CE9178"> 'Button'</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">onClick</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> () </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> ({}) }) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#9CDCFE"> modeClass</span><span style="color:#D4D4D4"> =</span><span style="color:#9CDCFE"> primary</span><span style="color:#D4D4D4"> ?</span><span style="color:#CE9178"> 'storybook-button--primary'</span><span style="color:#D4D4D4"> :</span><span style="color:#CE9178"> 'storybook-button--secondary'</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#E6E6E6"> (</span></span>
+<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">button</span></span>
+<span class="line"><span style="color:#9CDCFE">      type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"button"</span></span>
+<span class="line"><span style="color:#9CDCFE">      className</span><span style="color:#D4D4D4">=</span><span style="color:#569CD6">{</span><span style="color:#9CDCFE">modeClass</span><span style="color:#569CD6">}</span></span>
+<span class="line"><span style="color:#F44747">      @click=${onClick}</span></span>
+<span class="line"><span style="color:#808080">    ></span></span>
+<span class="line"><span style="color:#569CD6">      {</span><span style="color:#9CDCFE">label</span><span style="color:#569CD6">}</span></span>
+<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#E6E6E6">  );</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span></code></pre>
 <p>This example method ensures the component rendered as expected. It contains conditional assertions which understand the expected output and adjusts tests accordingly.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// `args` are the props used to configure the Button component</span></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> ensureElements</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">canvasElement</span><span style="color:#F97583">:</span><span style="color:#B392F0"> HTMLElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">args</span><span style="color:#F97583">:</span><span style="color:#B392F0"> ButtonProps</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">  // uses method from above</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">button</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getElements</span><span style="color:#E1E4E8">(canvasElement);</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// `args` are the props used to configure the Button component</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> ensureElements</span><span style="color:#D4D4D4"> =</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0"> HTMLElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#D4D4D4">:</span><span style="color:#4EC9B0"> ButtonProps</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#6A9955">  // uses method from above</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6"> } </span><span style="color:#D4D4D4">=</span><span style="color:#DCDCAA"> getElements</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // does the button exist?</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(button).</span><span style="color:#B392F0">toBeTruthy</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A9955">  // does the button exist?</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toBeTruthy</span><span style="color:#E6E6E6">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // does the button have the right content?</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(button).</span><span style="color:#B392F0">toHaveTextContent</span><span style="color:#E1E4E8">(args.label);</span></span>
+<span class="line"><span style="color:#6A9955">  // does the button have the right content?</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveTextContent</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">label</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // conditional tests</span></span>
-<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (args.primary) {</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(button).</span><span style="color:#B392F0">toHaveClass</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'storybook-button--primary'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(button).</span><span style="color:#B392F0">toHaveClass</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'storybook-button--secondary'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  }</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<span class="line"><span style="color:#6A9955">  // conditional tests</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">primary</span><span style="color:#E6E6E6">) {</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveClass</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'storybook-button--primary'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  } </span><span style="color:#C586C0">else</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveClass</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'storybook-button--secondary'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  }</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span></code></pre>
 <h3 id="question-3-does-it-function-as-expected">Question 3: “Does it function as expected?”</h3>
 <p>If your component is interactive, you need to test for <em>all types of interactions</em>. This means, at a minimum, checking the component functions for <strong>both</strong> keyboard-only users and mouse users.</p>
 <p>We’ll create two methods this time. The methods will use <a href="https://testing-library.com/docs/user-event/intro">testing-library’s “user-event” library</a></p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// create a mockFunction as a backup if no `onClick` is in `args`</span></span>
-<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> mockOnClick</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> jest.</span><span style="color:#B392F0">fn</span><span style="color:#E1E4E8">();</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// create a mockFunction as a backup if no `onClick` is in `args`</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#9CDCFE"> mockOnClick</span><span style="color:#D4D4D4"> =</span><span style="color:#9CDCFE"> jest</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">fn</span><span style="color:#E6E6E6">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">/**</span></span>
-<span class="line"><span style="color:#6A737D"> * test mouse interactions as though a user</span></span>
-<span class="line"><span style="color:#6A737D"> */</span></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> mouseInteraction</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">canvasElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">  // uses method from above</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">button</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getElements</span><span style="color:#E1E4E8">(canvasElement);</span></span>
+<span class="line"><span style="color:#6A9955">/**</span></span>
+<span class="line"><span style="color:#6A9955"> * test mouse interactions as though a user</span></span>
+<span class="line"><span style="color:#6A9955"> */</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> mouseInteraction</span><span style="color:#D4D4D4"> =</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#6A9955">  // uses method from above</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6"> } </span><span style="color:#D4D4D4">=</span><span style="color:#DCDCAA"> getElements</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // ensures a function exists to test a mouse click</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> onClick</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> args.onClick </span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> args.onClick </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> mockOnClick;</span></span>
-<span class="line"><span style="color:#E1E4E8">  </span></span>
-<span class="line"><span style="color:#6A737D">  // clicks the button</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> userEvent.</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">(button);</span></span>
-<span class="line"><span style="color:#E1E4E8">  </span></span>
-<span class="line"><span style="color:#6A737D">  // tests the `onClick` function was called</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(onClick).</span><span style="color:#B392F0">toHaveBeenCalled</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A9955">  // ensures a function exists to test a mouse click</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#9CDCFE"> onClick</span><span style="color:#D4D4D4"> =</span><span style="color:#9CDCFE"> args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">onClick</span><span style="color:#D4D4D4"> ?</span><span style="color:#9CDCFE"> args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">onClick</span><span style="color:#D4D4D4"> :</span><span style="color:#9CDCFE"> mockOnClick</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#E6E6E6">  </span></span>
+<span class="line"><span style="color:#6A9955">  // clicks the button</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#9CDCFE"> userEvent</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">click</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  </span></span>
+<span class="line"><span style="color:#6A9955">  // tests the `onClick` function was called</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">onClick</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveBeenCalled</span><span style="color:#E6E6E6">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // ensures the event was only called once</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(onClick).</span><span style="color:#B392F0">toHaveBeenCalledTimes</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  </span></span>
-<span class="line"><span style="color:#6A737D">  // clear out the mock which resets calls to zero</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> onClick.</span><span style="color:#B392F0">mockClear</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A9955">  // ensures the event was only called once</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">onClick</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveBeenCalledTimes</span><span style="color:#E6E6E6">(</span><span style="color:#B5CEA8">1</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  </span></span>
+<span class="line"><span style="color:#6A9955">  // clear out the mock which resets calls to zero</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#9CDCFE"> onClick</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">mockClear</span><span style="color:#E6E6E6">();</span></span>
+<span class="line"><span style="color:#E6E6E6">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">/**</span></span>
-<span class="line"><span style="color:#6A737D"> * test keyboard interactions as though a user</span></span>
-<span class="line"><span style="color:#6A737D"> */</span></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> keyboardInteraction</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">canvasElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">  // uses method from above</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">button</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getElements</span><span style="color:#E1E4E8">(canvasElement);</span></span>
+<span class="line"><span style="color:#6A9955">/**</span></span>
+<span class="line"><span style="color:#6A9955"> * test keyboard interactions as though a user</span></span>
+<span class="line"><span style="color:#6A9955"> */</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#DCDCAA"> keyboardInteraction</span><span style="color:#D4D4D4"> =</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#6A9955">  // uses method from above</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">button</span><span style="color:#E6E6E6"> } </span><span style="color:#D4D4D4">=</span><span style="color:#DCDCAA"> getElements</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // ensures a function exists to test a key stroke</span></span>
-<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> onClick</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> args.onClick </span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> args.onClick </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> mockOnClick;</span></span>
+<span class="line"><span style="color:#6A9955">  // ensures a function exists to test a key stroke</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#9CDCFE"> onClick</span><span style="color:#D4D4D4"> =</span><span style="color:#9CDCFE"> args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">onClick</span><span style="color:#D4D4D4"> ?</span><span style="color:#9CDCFE"> args</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">onClick</span><span style="color:#D4D4D4"> :</span><span style="color:#9CDCFE"> mockOnClick</span><span style="color:#E6E6E6">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // gives the user's focus to the button</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> button.</span><span style="color:#B392F0">focus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A9955">  // gives the user's focus to the button</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#9CDCFE"> button</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">focus</span><span style="color:#E6E6E6">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // with the button focused, hitting `enter` triggers `@click`</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> userEvent.</span><span style="color:#B392F0">keyboard</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'{enter}'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  </span></span>
-<span class="line"><span style="color:#6A737D">  // tests the `onClick` function was called</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(onClick).</span><span style="color:#B392F0">toHaveBeenCalled</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A9955">  // with the button focused, hitting `enter` triggers `@click`</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#9CDCFE"> userEvent</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">keyboard</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'{enter}'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  </span></span>
+<span class="line"><span style="color:#6A9955">  // tests the `onClick` function was called</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">onClick</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveBeenCalled</span><span style="color:#E6E6E6">();</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // good thing we cleared the mock from above, or this would be `2`</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(onClick).</span><span style="color:#B392F0">toHaveBeenCalledTimes</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  </span></span>
-<span class="line"><span style="color:#6A737D">  // clear out the mock which resets calls to zero</span></span>
-<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> onClick.</span><span style="color:#B392F0">mockClear</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<span class="line"><span style="color:#6A9955">  // good thing we cleared the mock from above, or this would be `2`</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">onClick</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toHaveBeenCalledTimes</span><span style="color:#E6E6E6">(</span><span style="color:#B5CEA8">1</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  </span></span>
+<span class="line"><span style="color:#6A9955">  // clear out the mock which resets calls to zero</span></span>
+<span class="line"><span style="color:#C586C0">  await</span><span style="color:#9CDCFE"> onClick</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">mockClear</span><span style="color:#E6E6E6">();</span></span>
+<span class="line"><span style="color:#E6E6E6">}</span></span></code></pre>
 <h2 id="how-theyre-using-in-storybook-interaction-tests">How they’re using in Storybook Interaction tests</h2>
 <p>See <a href="https://codesandbox.io/p/sandbox/github/storydocker/storydocker/main/package/storybook-setup">./src/Button.stories.js on codesandbox</a></p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// Button.stories.js</span></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> Primary</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  args: {</span></span>
-<span class="line"><span style="color:#E1E4E8">    primary: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">    label: </span><span style="color:#9ECBFF">'Button'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
-<span class="line"><span style="color:#B392F0">  play</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">canvasElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">step</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // "What was rendered?"</span></span>
-<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> elements</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> getElements</span><span style="color:#E1E4E8">(canvasElement);</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// Button.stories.js</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#9CDCFE"> Primary</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  args:</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    primary:</span><span style="color:#569CD6"> true</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#9CDCFE">    label:</span><span style="color:#CE9178"> 'Button'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
+<span class="line"><span style="color:#DCDCAA">  play</span><span style="color:#9CDCFE">:</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> ({ </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6"> }) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // "What was rendered?"</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#9CDCFE"> elements</span><span style="color:#D4D4D4"> =</span><span style="color:#C586C0"> await</span><span style="color:#DCDCAA"> getElements</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">    // "Did it render correctly?"</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> ensureElements</span><span style="color:#E1E4E8">(elements, args, step);</span></span>
+<span class="line"><span style="color:#6A9955">    // "Did it render correctly?"</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> ensureElements</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">elements</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">    // "Does it function as expected for mouse users?"</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> mouseInteraction</span><span style="color:#E1E4E8">(elements, args, step);</span></span>
+<span class="line"><span style="color:#6A9955">    // "Does it function as expected for mouse users?"</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> mouseInteraction</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">elements</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6">);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">    // "Does it function as expected for keyboard-only users?"</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> keyboardInteraction</span><span style="color:#E1E4E8">(elements, args, step);</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#6A9955">    // "Does it function as expected for keyboard-only users?"</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> keyboardInteraction</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">elements</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> Secondary</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  args: {</span></span>
-<span class="line"><span style="color:#E1E4E8">    label: </span><span style="color:#9ECBFF">'Button'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#9CDCFE"> Secondary</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  args:</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    label:</span><span style="color:#CE9178"> 'Button'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // Reuse the exact same tests</span></span>
-<span class="line"><span style="color:#E1E4E8">  play: Primary.play,</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#6A9955">  // Reuse the exact same tests</span></span>
+<span class="line"><span style="color:#9CDCFE">  play:</span><span style="color:#9CDCFE"> Primary</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">play</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> Large</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  args: {</span></span>
-<span class="line"><span style="color:#E1E4E8">    size: </span><span style="color:#9ECBFF">'large'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">    label: </span><span style="color:#9ECBFF">'Button'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#9CDCFE"> Large</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  args:</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    size:</span><span style="color:#CE9178"> 'large'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#9CDCFE">    label:</span><span style="color:#CE9178"> 'Button'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A737D">  // again and again</span></span>
-<span class="line"><span style="color:#E1E4E8">  play: Primary.play,</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
-<p><strong>Next up, Part 2 “Sharing tests between a child and parent component”</strong></p>  </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
+<span class="line"><span style="color:#6A9955">  // again and again</span></span>
+<span class="line"><span style="color:#9CDCFE">  play:</span><span style="color:#9CDCFE"> Primary</span><span style="color:#E6E6E6">.</span><span style="color:#9CDCFE">play</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span></code></pre>
+<p><strong>Next up, Part 2 “Sharing tests between a child and parent component”</strong></p> </div> </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
 &copy; 2024&nbsp;Scott Nath All rights reserved.
 </footer>  </body></html>

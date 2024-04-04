@@ -1,37 +1,308 @@
-<!DOCTYPE html><html lang="en"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <script defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js" type="text/partytown"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.4.2"><link rel="preload" as="image" href="/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.png"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><!-- Primary Meta Tags --><title>Storybook setup: Virtual Screen Reader in Web Components</title><meta name="title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta name="description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><meta property="og:title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta property="og:description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><meta property="og:image" content="https://scottnath.com/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><meta property="twitter:title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta property="twitter:description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><meta property="twitter:image" content="https://scottnath.com/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.png"><link rel="stylesheet" href="/_astro/_slug_.CF1cFZIF.css" />
-<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
-</style><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+<!DOCTYPE html><html lang="en-US"> <head><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script> <script defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js" type="text/partytown"></script> <!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta name="generator" content="Astro v4.4.2"><link rel="preload" as="image" href="/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.avif"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><!-- Primary Meta Tags --><title>Storybook setup: Virtual Screen Reader in Web Components</title><meta name="title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta name="description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><meta property="og:title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta property="og:description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><meta property="og:image" content="https://scottnath.com/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.avif"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/virtual-screen-reader-with-web-components/"><meta property="twitter:title" content="Storybook setup: Virtual Screen Reader in Web Components"><meta property="twitter:description" content="How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup's Virtual Screen Reader."><meta property="twitter:image" content="https://scottnath.com/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.avif"><link rel="stylesheet" href="/_astro/_slug_.BZZEeUR_.css" /><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+</script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString(
+		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
+		'text/html',
+		{
+			includeShadowRoots: !0,
+		}
+	)
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
 </script>
 <script>!(function(w,p,f,c){c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.0 - MIT builder.io */
-!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script><style>[data-astro-transition-scope="astro-x5ucuxqb-1"] { view-transition-name: astro-x5ucuxqb-1; }@layer astro { ::view-transition-old(astro-x5ucuxqb-1) { 
+!function(t,e,n,i,r,o,a,d,s,c,l,p){function u(){p||(p=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),e.querySelector(o.sandboxParent||"body").appendChild(c)}function f(n,r){for(w(),i==t&&(o.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<s.length;n++)(r=e.createElement("script")).innerHTML=s[n].innerHTML,e.head.appendChild(r);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script><style>[data-astro-transition-scope="astro-x3xkme5z-1"] { view-transition-name: astro-x3xkme5z-1; }@layer astro { ::view-transition-old(astro-x3xkme5z-1) { 
 	animation-duration: 90ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both, both;
-	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x5ucuxqb-1) { 
+	animation-name: astroFadeOut, astroSlideToLeft; }::view-transition-new(astro-x3xkme5z-1) { 
 	animation-duration: 210ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-delay: 30ms;
 	animation-fill-mode: both, both;
-	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x5ucuxqb-1) { 
-	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x5ucuxqb-1) { 
-	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back]::view-transition-old(astro-x3xkme5z-1) { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back]::view-transition-new(astro-x3xkme5z-1) { 
+	animation-name: astroFadeIn, astroSlideFromLeft; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
 	animation-duration: 90ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both, both;
-	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
+	animation-name: astroFadeOut, astroSlideToLeft; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
 	animation-duration: 210ms, 220ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1), cubic-bezier(0.76, 0, 0.24, 1);
 	animation-delay: 30ms;
 	animation-fill-mode: both, both;
-	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
-	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x5ucuxqb-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x5ucuxqb-1"] { 
-	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <header data-astro-cid-3ef6ksr2> <dope-stripes data-astro-cid-fb7ufwnd> <template shadowrootmode="open" data-astro-cid-fb7ufwnd><style>.stripes{width:100%;--left-width: 20%;--angle-width: 50px;--stripe-height: 20px;--stripe-angle: 39deg}.stripe{display:flex;align-items:left;margin:0 0 -1px;width:100%;--stripe-color: #ffe27a}.stripe span,.stripe:before,.stripe:after{content:" ";height:var(--stripe-height);display:block;background-color:var(--stripe-color);--rotated-height: calc(var(--angle-width) * tan(var(--stripe-angle)))}.stripe span{transform:skewY(var(--stripe-angle));transform-origin:0% 0%;flex:0 0 auto;width:calc(var(--angle-width));height:var(--stripe-height)}.stripe:before{width:var(--left-width);flex:0 0 auto}.stripe:after{flex:1 1 auto;transform:translateY(var(--rotated-height))}.blue{--stripe-color: rgb(0, 0, 255)}.yellow{--stripe-color: #ffe27a}.orange{--stripe-color: #ffa64d}.dark-orange{--stripe-color: #ff7f1a}</style><div class="stripes" part="stripes">
-    <div class="stripe" style="--stripe-color: #ffd273"><span></span></div><div class="stripe" style="--stripe-color: #ffbf57"><span></span></div><div class="stripe" style="--stripe-color: #ffa43b"><span></span></div><div class="stripe" style="--stripe-color: #ff8920"><span></span></div><div class="stripe" style="--stripe-color: #ff6e05"><span></span></div>
-  </div></template> </dope-stripes>  <div class="content" data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> Scott Nath </h2> <h3 data-astro-cid-3ef6ksr2>Front-end architect</h3> <img src="/scott-nath-profile-photo.avif" alt="Scott Nath picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Home </a>  <a href="/blahg" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Blahg </a>  <a href="/resume" data-astro-cid-3ef6ksr2 data-astro-cid-eimmu3lg> Resume </a>  </nav> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-3ef6ksr2> <a rel="me" href="https://dev.to/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/dev.DPyAJ8Ri.svg" alt="DEV logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>DEV</span></a> <a rel="me" href="https://github.com/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>GitHub</span></a> <a rel="me" href="https://www.linkedin.com/in/scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>LinkedIn</span></a> <a rel="me" href="https://mastodon.social/@scottnath" data-astro-cid-3ef6ksr2><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2>Mastodon</span></a> </address> </div> </header>  <main data-astro-transition-scope="astro-x5ucuxqb-1">  <article class="blog-post"> <img width="100%" height="auto" src="/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.png" alt=""> <h1 class="title">Storybook setup: Virtual Screen Reader in Web Components</h1> <p>How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup&#39;s Virtual Screen Reader.</p> <time datetime="2024-03-07T00:00:00.000Z"> Mar 7, 2024 </time>  <hr>  <p>Simulated user testing is difficult with web components due to the unique nature of the <code>shadowroot</code> - but it can be done in Storybook! This article details the basic setup with examples to get you writing tests for customElements that simulate user behavior.</p>
+	animation-name: astroFadeIn, astroSlideFromRight; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
+	animation-name: astroFadeOut, astroSlideToRight; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-x3xkme5z-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-x3xkme5z-1"] { 
+	animation-name: astroFadeIn, astroSlideFromLeft; }</style></head> <body> <a href="#main" id="skip-to-main">Skip to main content</a> <header data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> <span class="name" data-astro-cid-3ef6ksr2>Scott Nath</span> <span class="title" data-astro-cid-3ef6ksr2>Frontend Architect</span> </h2> <nav data-astro-cid-2hp2wczs> <dope-stripes data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>:host{display:block;position:relative;--angle-x-start: 35%;--angle-width: 5%;--angle-y-end: 40px;--stripe-height: 16px;--stripe-color: #ffe27a;width:100%;min-height:var(--stripe-height)}::slotted(dope-stripe),dope-stripe{--no-top-margin: -1}dope-stripe:first-child{--no-top-margin: 0}.stripes:not(:has(dope-stripe)) ::slotted(dope-stripe:first-child){--no-top-margin: 0}</style><!--lit-part grV36YUwDSo=--><div class="stripes" part="stripes" exportparts="stripe">
+      <!--lit-part--><!--/lit-part-->
+      <slot></slot>
+  </div><!--/lit-part--></template> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffd273"><slot></slot></div><!--/lit-part--></template> <a href="/" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>home</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffbf57"><slot></slot></div><!--/lit-part--></template> <a href="/whoami" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>whoami</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffa43b"><slot></slot></div><!--/lit-part--></template> <a href="/blahg" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>blahg</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff8920"><slot></slot></div><!--/lit-part--></template> <a href="/resume" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>resume</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff6e05"><slot></slot></div><!--/lit-part--></template></dope-stripe> </dope-stripes> </nav>  <img src="/scott-nath-profile-photo.avif" alt="Scott Nath's picture" width="400" height="400" class="avatar" data-astro-cid-3ef6ksr2> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-6jz5wqfy> <a rel="me" href="https://github.com/scottnath" aria-label="Scott Nath on GitHub" data-astro-cid-6jz5wqfy><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>GitHub</span></a><a rel="me" href="https://dev.to/scottnath" aria-label="Scott Nath's articles on dev.to" data-astro-cid-6jz5wqfy><img src="/_astro/dev.DPyAJ8Ri.svg" alt="dev.to logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>dev.to</span></a><a rel="me" href="https://linkedin.com/in/scottnath" aria-label="Connect with Scott Nath on LinkedIn" data-astro-cid-6jz5wqfy><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>LinkedIn</span></a><a rel="me" href="https://mastodon.social/@scottnath" aria-label="Read Scott Nath blah on Mastodon" data-astro-cid-6jz5wqfy><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>Mastodon</span></a> </address>  </header>  <main id="main" data-astro-transition-scope="astro-x3xkme5z-1">  <article class="blog-post"> <img width="100%" height="auto" src="/blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.avif" alt=""> <h1 class="title">Storybook setup: Virtual Screen Reader in Web Components</h1> <p>How to set up Storybook to test shadowroot elements in web components using shadow-dom-testing-library and Guidepup&#39;s Virtual Screen Reader.</p> <time datetime="2024-03-07T00:00:00.000Z"> Mar 7, 2024 </time>  <hr> <div class="readable"> <p>Simulated user testing is difficult with web components due to the unique nature of the <code>shadowroot</code> - but it can be done in Storybook! This article details the basic setup with examples to get you writing tests for customElements that simulate user behavior.</p>
 <h2 id="tldr">tl;dr</h2>
 <p>Two modules, <code>@guidepup/virtual-screen-reader</code> and <code>shadow-dom-testing-library</code> give your Storybook the power to test web components inside Storybook’s Interaction Tests. This means you can test the user-interactions and screen reader output of your web components. But beware … <code>testing-library/user-test</code> can’t simulate <code>TAB</code> navigation inside shadowroots yet.</p>
 <ul>
@@ -78,87 +349,87 @@
 <h3 id="step-2a-install-shadow-dom-testing-library">Step 2a. install shadow-dom-testing-library</h3>
 <p><code>npm i shadow-dom-testing-library -D</code></p>
 <h3 id="step-2b-use-within-from-shadow-dom-testing-library-i-alias-it-to-shadowwithin">Step 2b. use <code>within</code> from <code>shadow-dom-testing-library</code> (I alias it to <code>shadowWithin</code>)</h3>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// CSF file: MyElement.stories.js</span></span>
-<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { within </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> shadowWithin } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'shadow-dom-testing-library'</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { expect } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@storybook/test'</span><span style="color:#E1E4E8">;</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// CSF file: MyElement.stories.js</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">within</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> shadowWithin</span><span style="color:#E6E6E6"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> 'shadow-dom-testing-library'</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">expect</span><span style="color:#E6E6E6"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> '@storybook/test'</span><span style="color:#E6E6E6">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  title: </span><span style="color:#9ECBFF">'MyElement'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">  component: </span><span style="color:#9ECBFF">'my-element'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#B392F0">  render</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#9ECBFF"> `&#x3C;my-element count=${</span><span style="color:#E1E4E8">args</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">count</span><span style="color:#9ECBFF">}>&#x3C;/my-element>`</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#C586C0"> default</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  title:</span><span style="color:#CE9178"> 'MyElement'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  component:</span><span style="color:#CE9178"> 'my-element'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#DCDCAA">  render</span><span style="color:#9CDCFE">:</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#CE9178"> `&#x3C;my-element count=</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">args</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">count</span><span style="color:#569CD6">}</span><span style="color:#CE9178">>&#x3C;/my-element>`</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span></code></pre>
 <h3 id="step-2c-use-shadow-dom-testing-library-screen-queries-then-test">Step 2c. use shadow-dom-testing-library screen queries, then test</h3>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// ...CSF file contents...</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// ...CSF file contents...</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> SomeExample</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  args: {</span></span>
-<span class="line"><span style="color:#E1E4E8">    count: </span><span style="color:#79B8FF">0</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
-<span class="line"><span style="color:#B392F0">  play</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">canvasElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">step</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">    // get a screen from the canvasElement generated by Storybook</span></span>
-<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> screen</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> shadowWithin</span><span style="color:#E1E4E8">(canvasElement);</span></span>
-<span class="line"><span style="color:#6A737D">    // get the button from within the shadowroot with `queryBy`</span></span>
-<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> myButton</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> screen.</span><span style="color:#B392F0">queryByShadowRole</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'button'</span><span style="color:#E1E4E8">)</span></span>
-<span class="line"><span style="color:#6A737D">    // test the button exists</span></span>
-<span class="line"><span style="color:#B392F0">    expect</span><span style="color:#E1E4E8">(myButton).</span><span style="color:#B392F0">toBeTruthy</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">  }</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#9CDCFE"> SomeExample</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  args:</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    count:</span><span style="color:#B5CEA8"> 0</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
+<span class="line"><span style="color:#DCDCAA">  play</span><span style="color:#9CDCFE">:</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> ({ </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6"> }) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#6A9955">    // get a screen from the canvasElement generated by Storybook</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#9CDCFE"> screen</span><span style="color:#D4D4D4"> =</span><span style="color:#DCDCAA"> shadowWithin</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#6A9955">    // get the button from within the shadowroot with `queryBy`</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#9CDCFE"> myButton</span><span style="color:#D4D4D4"> =</span><span style="color:#C586C0"> await</span><span style="color:#9CDCFE"> screen</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">queryByShadowRole</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'button'</span><span style="color:#E6E6E6">)</span></span>
+<span class="line"><span style="color:#6A9955">    // test the button exists</span></span>
+<span class="line"><span style="color:#DCDCAA">    expect</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">myButton</span><span style="color:#E6E6E6">).</span><span style="color:#DCDCAA">toBeTruthy</span><span style="color:#E6E6E6">();</span></span>
+<span class="line"><span style="color:#E6E6E6">  }</span></span>
+<span class="line"><span style="color:#E6E6E6">}</span></span></code></pre>
 <hr>
 <h2 id="3-how-to-test-web-components-with-virtual-screen-reader">3. How to test web components with virtual-screen-reader</h2>
 <p>You’ll be capturing your element with <code>queryByShadowMEOW('the-meow')</code> (<code>MEOW</code> of course being whatever query you’re using from the <a href="https://testing-library.com/docs/queries/about">testing-library core API queries</a>). After you have your element, using virtual-screen-reader is the same as the usage broken down in <a href="https://dev.to/scottnath/simple-setup-virtual-screen-reader-in-storybook-2efo">Simple setup: Virtual Screen Reader in Storybook</a>.</p>
 <h3 id="step-3a-install-virtual-screen-reader-vsr">Step 3a. install virtual-screen-reader (VSR)</h3>
 <p><code>npm i @guidepup/virtual-screen-reader -D</code></p>
 <h3 id="step-3b-import-it-into-your-stories">Step 3b. import it into your stories</h3>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// CSF file: MyElement.stories.js, now with VSR!</span></span>
-<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { within </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> shadowWithin } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'shadow-dom-testing-library'</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { virtual } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@guidepup/virtual-screen-reader'</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { expect } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@storybook/test'</span><span style="color:#E1E4E8">;</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// CSF file: MyElement.stories.js, now with VSR!</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">within</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> shadowWithin</span><span style="color:#E6E6E6"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> 'shadow-dom-testing-library'</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">virtual</span><span style="color:#E6E6E6"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> '@guidepup/virtual-screen-reader'</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#E6E6E6"> { </span><span style="color:#9CDCFE">expect</span><span style="color:#E6E6E6"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> '@storybook/test'</span><span style="color:#E6E6E6">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  title: </span><span style="color:#9ECBFF">'MyElement'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#E1E4E8">  component: </span><span style="color:#9ECBFF">'my-element'</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#B392F0">  render</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#9ECBFF"> `&#x3C;my-element count=${</span><span style="color:#E1E4E8">args</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">count</span><span style="color:#9ECBFF">}>&#x3C;/my-element>`</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#C586C0"> default</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  title:</span><span style="color:#CE9178"> 'MyElement'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  component:</span><span style="color:#CE9178"> 'my-element'</span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#DCDCAA">  render</span><span style="color:#9CDCFE">:</span><span style="color:#E6E6E6"> (</span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">) </span><span style="color:#569CD6">=></span><span style="color:#CE9178"> `&#x3C;my-element count=</span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">args</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">count</span><span style="color:#569CD6">}</span><span style="color:#CE9178">>&#x3C;/my-element>`</span><span style="color:#E6E6E6">;</span></span>
+<span class="line"><span style="color:#E6E6E6">};</span></span></code></pre>
 <h3 id="step-3c-once-you-have-your-main-shadow-container-give-it-to-vsr">Step 3c: once you have your main Shadow container, give it to VSR</h3>
 <p>If the HTML in your shadowroot is…</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">&#x3C;!-- note: `section` by default has an aria-role of `region` --></span></span>
-<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#B392F0"> aria-label</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"My Element"</span><span style="color:#E1E4E8">>&#x3C;</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">>my button&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">&#x3C;!-- note: `section` by default has an aria-role of `region` --></span></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">section</span><span style="color:#9CDCFE"> aria-label</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"My Element"</span><span style="color:#808080">>&#x3C;</span><span style="color:#569CD6">button</span><span style="color:#808080">></span><span style="color:#E6E6E6">my button</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">>&#x3C;/</span><span style="color:#569CD6">section</span><span style="color:#808080">></span></span></code></pre>
 <p>…then your story’s play method will be like:</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">// ...CSF file contents...</span></span>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A9955">// ...CSF file contents...</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> SomeExample</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">  args: {</span></span>
-<span class="line"><span style="color:#E1E4E8">    count: </span><span style="color:#79B8FF">0</span></span>
-<span class="line"><span style="color:#E1E4E8">  },</span></span>
-<span class="line"><span style="color:#B392F0">  play</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">canvasElement</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">step</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">    // make a `screen` from the canvasElement by finding it's shadowroot</span></span>
-<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> screen</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> shadowWithin</span><span style="color:#E1E4E8">(canvasElement);</span></span>
-<span class="line"><span style="color:#6A737D">    // get the outer-most SECTION element in the shadowroot with `aria-label="My Element"`</span></span>
-<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> myShadowContainer</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> screen.</span><span style="color:#B392F0">findByShadowLabelText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">/</span><span style="color:#DBEDFF">My Element</span><span style="color:#9ECBFF">/</span><span style="color:#F97583">i</span><span style="color:#E1E4E8">)</span></span>
-<span class="line"><span style="color:#6A737D">    // Start up the Virtual Screen Reader, giving it the SECTION container</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">start</span><span style="color:#E1E4E8">({ container: myShadowContainer });</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // Breakdown of elements-found, in order:</span></span>
-<span class="line"><span style="color:#6A737D">    // 1. `virtual` starts on the container, a `SECTION` has the role `region`, </span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">lastSpokenPhrase</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">toEqual</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'region, My Element'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // 2. Go to next speak-able text</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // 3. we're now on `BUTTON`</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">lastSpokenPhrase</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">toEqual</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'button, my button'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // 4. Go to next speak-able text</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
-<span class="line"><span style="color:#6A737D">    // 5. We're done and VSR says so by closing the `region`:</span></span>
-<span class="line"><span style="color:#F97583">    await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">await</span><span style="color:#E1E4E8"> virtual.</span><span style="color:#B392F0">lastSpokenPhrase</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">toEqual</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'end of region, My Element'</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">  }</span></span>
-<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> const</span><span style="color:#9CDCFE"> SomeExample</span><span style="color:#D4D4D4"> =</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  args:</span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    count:</span><span style="color:#B5CEA8"> 0</span></span>
+<span class="line"><span style="color:#E6E6E6">  },</span></span>
+<span class="line"><span style="color:#DCDCAA">  play</span><span style="color:#9CDCFE">:</span><span style="color:#569CD6"> async</span><span style="color:#E6E6E6"> ({ </span><span style="color:#9CDCFE">args</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">, </span><span style="color:#9CDCFE">step</span><span style="color:#E6E6E6"> }) </span><span style="color:#569CD6">=></span><span style="color:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#6A9955">    // make a `screen` from the canvasElement by finding it's shadowroot</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#9CDCFE"> screen</span><span style="color:#D4D4D4"> =</span><span style="color:#DCDCAA"> shadowWithin</span><span style="color:#E6E6E6">(</span><span style="color:#9CDCFE">canvasElement</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#6A9955">    // get the outer-most SECTION element in the shadowroot with `aria-label="My Element"`</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#9CDCFE"> myShadowContainer</span><span style="color:#D4D4D4"> =</span><span style="color:#C586C0"> await</span><span style="color:#9CDCFE"> screen</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">findByShadowLabelText</span><span style="color:#E6E6E6">(</span><span style="color:#D16969">/My Element/</span><span style="color:#569CD6">i</span><span style="color:#E6E6E6">)</span></span>
+<span class="line"><span style="color:#6A9955">    // Start up the Virtual Screen Reader, giving it the SECTION container</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">start</span><span style="color:#E6E6E6">({ </span><span style="color:#9CDCFE">container:</span><span style="color:#9CDCFE"> myShadowContainer</span><span style="color:#E6E6E6"> });</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // Breakdown of elements-found, in order:</span></span>
+<span class="line"><span style="color:#6A9955">    // 1. `virtual` starts on the container, a `SECTION` has the role `region`, </span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">lastSpokenPhrase</span><span style="color:#E6E6E6">()).</span><span style="color:#DCDCAA">toEqual</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'region, My Element'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // 2. Go to next speak-able text</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">next</span><span style="color:#E6E6E6">();</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // 3. we're now on `BUTTON`</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">lastSpokenPhrase</span><span style="color:#E6E6E6">()).</span><span style="color:#DCDCAA">toEqual</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'button, my button'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // 4. Go to next speak-able text</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">next</span><span style="color:#E6E6E6">();</span></span>
+<span class="line"><span style="color:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#6A9955">    // 5. We're done and VSR says so by closing the `region`:</span></span>
+<span class="line"><span style="color:#C586C0">    await</span><span style="color:#DCDCAA"> expect</span><span style="color:#E6E6E6">(</span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> virtual</span><span style="color:#E6E6E6">.</span><span style="color:#DCDCAA">lastSpokenPhrase</span><span style="color:#E6E6E6">()).</span><span style="color:#DCDCAA">toEqual</span><span style="color:#E6E6E6">(</span><span style="color:#CE9178">'end of region, My Element'</span><span style="color:#E6E6E6">);</span></span>
+<span class="line"><span style="color:#E6E6E6">  }</span></span>
+<span class="line"><span style="color:#E6E6E6">}</span></span></code></pre>
 <hr>
 <h2 id="conclusion">Conclusion</h2>
 <p>I hope this gets you unstuck. Web components are definitely the new hotness, the DevX tooling just needs a little help still.</p>
 <p>Bonus content for reading this far - check out <a href="https://github.com/scottnath/storybook-web-components-testing/blob/main/src/helper-vsr-tabnodes.js">this hacky workaround that uses VSR to find all tabbable nodes inside a shadowroot</a>!</p>
-<hr>  </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
+<hr> </div> </article>  </main> <footer data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte>
 &copy; 2024&nbsp;Scott Nath All rights reserved.
 </footer>  </body></html>

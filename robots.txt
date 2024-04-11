@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scottnath.com/sitemap-index.xml

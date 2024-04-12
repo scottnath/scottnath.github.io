@@ -129,6 +129,12 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
     "url": "apple-touch-icon-180x180.png",
     "revision": "4c4cba04f68564b5242d504c13f64c62"
   }, {
+    "url": "blahg-assets/astro-multiframework-storybook.avif",
+    "revision": "a77af60a34379c8e179a2917f663962c"
+  }, {
+    "url": "blahg-assets/bug-screenshot-vite-storybook.avif",
+    "revision": "d23a59f0645cc513594785928af88fcf"
+  }, {
     "url": "blahg-assets/fullsize/astro-multiframework-storybook.png",
     "revision": "864b541f578fc0da86185d3e9bfbf8f8"
   }, {
@@ -155,6 +161,33 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
   }, {
     "url": "blahg-assets/fullsize/vitest-shared-tests-basic.png",
     "revision": "5e225b63a550c03e5aafc65410c5f430"
+  }, {
+    "url": "blahg-assets/js-framework-share-tests.avif",
+    "revision": "59019fc3e9ce391afc7f0eb0dd7f58bf"
+  }, {
+    "url": "blahg-assets/sharing-tests-with-a-handshake.avif",
+    "revision": "c8a6c891a2151e58f8f086ebbc9a2c90"
+  }, {
+    "url": "blahg-assets/simple-setup-guidepup-virtual-screen-reader-with-storybook.avif",
+    "revision": "c3307ac4ea6ab13f2c523cab1eae95e9"
+  }, {
+    "url": "blahg-assets/storybook-composition-with-github-pages.avif",
+    "revision": "fc1c960a7601c16150a5b03b2c3ec854"
+  }, {
+    "url": "blahg-assets/storybook-interaction-tests-showing-virtual-screen-reader.avif",
+    "revision": "876171dfd4f1eae22ee21b3e8828d957"
+  }, {
+    "url": "blahg-assets/storybook-setup-virtual-screen-reader-with-web-components.avif",
+    "revision": "af0860c5236b42edda867bc8ca3a7811"
+  }, {
+    "url": "blahg-assets/storybook-shared-tests.avif",
+    "revision": "899d7be5ba29eadc849d48ea33ea9de2"
+  }, {
+    "url": "blahg-assets/storydocker-underwater.avif",
+    "revision": "f7d84a02c4028567bb14b96bc1442a32"
+  }, {
+    "url": "blahg-assets/vitest-shared-tests-basic.avif",
+    "revision": "15ab339bacdcd1edb2deaf66683b7399"
   }, {
     "url": "blahg/bug-multiple-vite-storybooks/index.html",
     "revision": "2e0f03a159216e9c0683ba98f79dae7d"
@@ -216,6 +249,9 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
     "url": "favicon.svg",
     "revision": "52d135c9ba1b12751f747cfab9352db5"
   }, {
+    "url": "ferris-end-scene.avif",
+    "revision": "b592267493ef6dd9fc478012eaac7e40"
+  }, {
     "url": "github/index.html",
     "revision": "2e05ee0ca70d9902a9354d6f93e596ea"
   }, {
@@ -224,6 +260,12 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
   }, {
     "url": "maskable-icon-512x512.png",
     "revision": "a8b3ac4534260dd52d64a82ea11d42ca"
+  }, {
+    "url": "profile-components-blahg/devto-200px-wide.avif",
+    "revision": "1dd67cb13d72a85af0b6bae51679699a"
+  }, {
+    "url": "profile-components-blahg/devto-400px-wide.avif",
+    "revision": "0e0f26206a3b96211047c4c6851845c3"
   }, {
     "url": "profile-components-blahg/devto-post-300px.png",
     "revision": "49121a57ad00e968d50a367d0a198f5c"
@@ -282,6 +324,18 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
     "url": "profile-components-blahg/github-light-scottnath-repos-400px.png",
     "revision": "c37afde8e3b7c0eb61a5ef5899e9b84f"
   }, {
+    "url": "profile-components-blahg/profile-components-devto-header.avif",
+    "revision": "88b8a532cd746c00a9ae0e48cbb819cd"
+  }, {
+    "url": "profile-components-blahg/profile-components-dsd-header.avif",
+    "revision": "26cefb5b3e4d713388164e6d7be99ca0"
+  }, {
+    "url": "profile-components-blahg/profile-components-github-header-prod.avif",
+    "revision": "c309c23015940cad0a5e46b64321e314"
+  }, {
+    "url": "profile-components-blahg/profile-components-header-prod.avif",
+    "revision": "d226427ffbfa236439433713d0beaad1"
+  }, {
     "url": "profile-components-blahg/profile-components-header.png",
     "revision": "cd4ae21de2deca6ed5d2148f078e05ee"
   }, {
@@ -303,8 +357,14 @@ define(['./workbox-ce62b1cc'], (function (workbox) { 'use strict';
     "url": "robots.txt",
     "revision": "06b4ac3e9b82136d9205f00f9ed9ed71"
   }, {
+    "url": "scott-nath-profile-photo.avif",
+    "revision": "855f3bcfcd0ac2e603d3c78a8889ed5f"
+  }, {
     "url": "who-me-chat-gpt.png",
     "revision": "64c812e939ca78195d235d0110c389ad"
+  }, {
+    "url": "who-me/brady-bunch-who-me-grid.avif",
+    "revision": "a54aa099066e088bcebd89d48e2f2970"
   }, {
     "url": "who-me/train-fail.png",
     "revision": "e90a8762267b4fb4e1632e1416739e90"

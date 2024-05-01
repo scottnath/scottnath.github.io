@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en-US"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon-mind-blown.ico" id="favicon"><meta http-equiv="content-language" content="en-us"><link rel="sitemap" href="/sitemap.xml"><meta name="generator" content="Macromedia Dreamweaver 6.0"><link rel="preload" as="image" href="/blahg-assets/microdata-html--boost-seo-schema.org-validator.avif"><link rel="alternate" type="application/rss+xml" title="Blah blah blahg by Scott Nath, Articles and rambling-on by Scott Nath" href="https://scottnath.com/rss.xml"><link rel="webmention" href="https://webmention.io/scottnath.com/webmention"><link rel="pingback" href="https://webmention.io/scottnath.com/xmlrpc"><!-- Canonical URL --><link rel="canonical" href="https://scottnath.com/blahg/microdata-with-html/"><!-- Primary Meta Tags --><title>How to Boost SEO by Enhancing HTML with Microdata</title><meta name="title" content="How to Boost SEO by Enhancing HTML with Microdata"><meta name="description" content="Boost SEO with microdata in HTML. Gain better visibility, higher click-through rates, and improved indexing. Includes code examples and schema output."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://scottnath.com/blahg/microdata-with-html/"><meta property="og:title" content="How to Boost SEO by Enhancing HTML with Microdata"><meta property="og:description" content="Boost SEO with microdata in HTML. Gain better visibility, higher click-through rates, and improved indexing. Includes code examples and schema output."><meta property="og:image" content="https://scottnath.com/blahg-assets/microdata-html--boost-seo-schema.org-validator.avif"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://scottnath.com/blahg/microdata-with-html/"><meta property="twitter:title" content="How to Boost SEO by Enhancing HTML with Microdata"><meta property="twitter:description" content="Boost SEO with microdata in HTML. Gain better visibility, higher click-through rates, and improved indexing. Includes code examples and schema output."><meta property="twitter:image" content="https://scottnath.com/blahg-assets/microdata-html--boost-seo-schema.org-validator.avif"><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.js" type="text/partytown"></script><script defer data-domain="scottnath.com" src="https://plausible.io/js/script.outbound-links.js" type="text/partytown"></script><link rel="stylesheet" href="/_astro/_slug_.ChK8hFDu.css"><script type="module">const e=()=>{const i=document.querySelector("#favicon");if(document.hidden){const n=i?.href;document.initialFavicon=n,i.href="/favicon-clown.ico"}else document.initialFavicon!==""&&(i.href=document.initialFavicon)};document.addEventListener("visibilitychange",e,!0);document.initialFavicon=document.querySelector("#favicon").href;
+</script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString(
+		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
+		'text/html',
+		{
+			includeShadowRoots: !0,
+		}
+	)
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
+</script>
+<script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.8.2 - MIT builder.io */
+!function(t,e,n,i,o,r,a,s,d,c,l,p){function u(){p||(p=1,"/"==(a=(r.lib||"/~partytown/")+(r.debug?"debug/":""))[0]&&(d=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(s=setTimeout(f,1e4),e.addEventListener("pt0",w),o?h(1):n.serviceWorker?n.serviceWorker.register(a+(r.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.style.display="block",c.style.width="0",c.style.height="0",c.style.border="0",c.style.visibility="hidden",c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.8.2":"sandbox-sw.html?"+Date.now()),e.querySelector(r.sandboxParent||"body").appendChild(c)}function f(n,o){for(w(),i==t&&(r.forward||[]).map((function(e){delete t[e.split(".")[0]]})),n=0;n<d.length;n++)(o=e.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=r.nonce,e.head.appendChild(o);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(s)}r=t.partytown||{},i==t&&(r.forward||[]).map((function(e){l=t,e.split(".").map((function(e,n,i){l=l[i[n]]=n+1<i.length?"push"==i[n+1]?[]:l[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);;((d,s)=>(s=d.currentScript,d.addEventListener('astro:before-swap',()=>s.remove(),{once:true})))(document);</script></head> <body> <a href="#main" id="skip-to-main">Skip to main content</a> <header id="scottnath" itemprop="author" itemscope itemtype="https://schema.org/Person" data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2> <span class="name" itemprop="name" data-astro-cid-3ef6ksr2>Scott Nath</span> <span class="title" itemprop="jobTitle" data-astro-cid-3ef6ksr2>Frontend Architect</span> </h2> <nav data-astro-cid-2hp2wczs> <dope-stripes data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>:host{display:block;position:relative;--angle-x-start: 35%;--angle-width: 5%;--angle-y-end: 40px;--stripe-height: 16px;--stripe-color: #ffe27a;width:100%;min-height:var(--stripe-height)}::slotted(dope-stripe),dope-stripe{--no-top-margin: -1}dope-stripe:first-child{--no-top-margin: 0}.stripes:not(:has(dope-stripe)) ::slotted(dope-stripe:first-child){--no-top-margin: 0}</style><!--lit-part grV36YUwDSo=--><div class="stripes" part="stripes" exportparts="stripe">
+      <!--lit-part--><!--/lit-part-->
+      <slot></slot>
+  </div><!--/lit-part--></template> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffd273"><slot></slot></div><!--/lit-part--></template> <a href="https://scottnath.com" itemprop="url" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>home</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffbf57"><slot></slot></div><!--/lit-part--></template> <a href="/whoami" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>whoami</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ffa43b"><slot></slot></div><!--/lit-part--></template> <a href="/blahg" class="active" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>blahg</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff8920"><slot></slot></div><!--/lit-part--></template> <a href="/resume" data-astro-cid-2hp2wczs data-astro-cid-eimmu3lg> <span data-astro-cid-2hp2wczs>resume</span> </a>  </dope-stripe> <dope-stripe defer-hydration data-astro-cid-2hp2wczs="true"><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      --angle-x-start: 35%;
+      --angle-width: 5%;
+      --angle-y-end: 40px;
+      --stripe-height: 16px;
+      --stripe-color:#ffe27a;
+      --top-margin: var(--no-top-margin, 0);
+
+      --angle-x-end: calc(var(--angle-x-start) + var(--angle-width));
+      --stripe-box-height: calc(var(--angle-y-end) + var(--stripe-height));
+      --angle-y-right-bottom: calc(var(--angle-y-end) + var(--stripe-height));
+
+      --polygon-path: 
+        0 0, 
+        var(--angle-x-start) 0, 
+        var(--angle-x-end) var(--angle-y-end), 
+        100% var(--angle-y-end), 
+        100% var(--stripe-box-height), 
+        var(--angle-x-end) var(--stripe-box-height), 
+        var(--angle-x-start) var(--stripe-height), 
+        0 var(--stripe-height);
+
+      width: 100%;
+      position: relative;
+      display: block;
+      margin-top: calc((var(--angle-y-end) + 1px) * var(--top-margin));
+      clip-path: polygon(var(--polygon-path));
+    }
+
+    [part=stripe] {
+      background-color: var(--stripe-color);
+      width: 100%;
+      height: var(--stripe-box-height);
+      position: relative;
+    }
+  </style><!--lit-part 2hRJq3MaOiM=--><!--lit-node 0--><div part="stripe" style="--stripe-color: #ff6e05"><slot></slot></div><!--/lit-part--></template></dope-stripe> </dope-stripes> </nav>  <img src="/scott-nath-profile-photo.avif" alt="Scott Nath's picture" width="400" height="400" class="avatar" itemprop="image" data-astro-cid-3ef6ksr2> <address class="socials" aria-label="Also find me on these sites" data-astro-cid-6jz5wqfy> <a rel="me" href="https://github.com/scottnath" aria-label="Scott Nath on GitHub" data-astro-cid-6jz5wqfy><img src="/_astro/github-inverse.5c5sSg3g.svg" alt="GitHub logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>GitHub</span></a><a rel="me" href="https://dev.to/scottnath" aria-label="Scott Nath's articles on dev.to" data-astro-cid-6jz5wqfy><img src="/_astro/dev.DPyAJ8Ri.svg" alt="dev.to logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>dev.to</span></a><a rel="me" href="https://linkedin.com/in/scottnath" aria-label="Connect with Scott Nath on LinkedIn" data-astro-cid-6jz5wqfy><img src="/_astro/linkedin.C92OM-O6.svg" alt="LinkedIn logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>LinkedIn</span></a><a rel="me" href="https://mastodon.social/@scottnath" aria-label="Read Scott Nath blah on Mastodon" data-astro-cid-6jz5wqfy><img src="/_astro/Mastodon.QaBq5b1c.svg" alt="Mastodon logo" aria-hidden="true" data-astro-cid-6jz5wqfy><span data-astro-cid-6jz5wqfy>Mastodon</span></a> </address>  </header>  <main id="main">  <article class="blog-post" itemscope itemtype="https://schema.org/TechArticle" itemref="scottnath"> <header> <img width="100%" height="auto" itemprop="image" src="/blahg-assets/microdata-html--boost-seo-schema.org-validator.avif" alt="Article header image shows the output from the Schema.org validator for an Article with the same headline and summary as this article"> <h1 class="title" itemprop="headline">How to Boost SEO by Enhancing HTML with Microdata</h1> <p itemprop="description">Boost SEO with microdata in HTML. Gain better visibility, higher click-through rates, and improved indexing. Includes code examples and schema output.</p> <dl class="article-dates"> <div> <dt>Published</dt> <dd><time datetime="2024-05-01T00:00:00.000Z" itemprop="datePublished"> May 1, 2024 </time></dd> </div>  </dl> </header> <hr> <div class="readable" itemprop="articleBody"> <h2 id="tldr">tl;dr</h2>
+<p>I’ve been re-writing the HTML of my site and added <strong>structured data</strong>, in the form of microdata attributes, following the <a href="https://schema.org">Schema.org</a> vocabulary set. Structured data can be understood by search engines and other machines, giving your content structure and context.</p>
+<p>The following is what I’ve learned so far, with some code examples.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p itemprop="dependencies">You understand HTML</p>
+<h2 id="what-is-all-this-technology">What is all this technology?</h2>
+<p>There are a few different technologies involved, but in general this is about how to include <strong>strucuted data</strong> in your HTML markup. Structured data falls under the <strong>semantic web</strong> label which rolls up into the new hotness of Web 3.0. This article is not about Web 3.0, I’m only at the what-I-read-on-wikipedia level of knowledge about the next web. This article will focus on microdata, Schema.org vocabulary and how to add it to your HTML.</p>
+<p>Here’s some short bits about each of those, with links to learn more.</p>
+<h3 id="what-is-structured-data">What is structured data?</h3>
+<p>There is a vast amount of information out there about <strong>structured data</strong> and this article is more of a <em>how</em> than a <em>what</em>. Brevity is the soul of wit and all that, so I’ll (try to) be brief and give you links to dive deeper. To shortcut “what is structured data”, lemme just reference this article: <a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">Google explains structured data</a>, which is an <em>excellent</em> primer on the subject. Low on time? Just watch the 1st video in the article for a great sum-up.</p>
+<p>My sum-up: <strong>structured data</strong> is a way to include machine-readable key-value versions of the content on your page alongside (or integrated with) your HTML markup.</p>
+<h3 id="what-is-the-semantic-web">What is the semantic web?</h3>
+<p>In short - a machine-readable internet.</p>
+<p>More details are out-of-scope for this article. <a href="https://www.smashingmagazine.com/2020/10/developing-semantic-web/">This Smashing Mag article</a> has a nice primer with charts and stuff.</p>
+<h3 id="what-is-schemaorg-what-is-their-vocabulary">What is Schema.org? What is their vocabulary?</h3>
+<p>The term “vocabulary” means the names and expected structure of each type of data.</p>
+<p>Founded by Google, Microsoft, Yahoo and Yandex, <a href="https://schema.org">Schema.org</a> vocabularies are developed by an open community process. e.g. the largest search providers got together and came up with a shared way to document content on the web.</p>
+<p>The concept is that a shared vocabulary makes it easier for webmasters and developers to decide on a schema and get the maximum benefit for their efforts. The benefit being, web developers can document their content with data structures that work across all the major search players.</p>
+<p><strong>huge caveat:</strong> <em>this helps search engine <strong>accuracy</strong>, it does not help ranking</em>. (this disclaimer is repeated across all the Search Engines’ docs about structued data)</p>
+<ul>
+<li><a href="https://schema.org">Schema.org</a></li>
+<li><a href="https://schema.org/docs/gs.html">microdata usage guide</a></li>
+<li><a href="https://schema.org/Person">example: the <strong>Person</strong> type</a></li>
+<li><a href="https://schema.org/Article">example: the <strong>Article</strong> type</a></li>
+</ul>
+<h4 id="schemaorg-type-inheritance">Schema.org type inheritance</h4>
+<p>The Schema.org vocabulary is made up of “types” which build upon each other with ever-more increasing specificity in properties. The most root type is the <a href="https://schema.org/Thing">Thing type</a>. <strong>Thing</strong> contains a set of generic properties like name, url, description. All other types generally derive from Thing. Person, Place, Action, etc. - they all fall under Thing which means they all automatically have the Thing properties (name, url, etc) and add their own on top.</p>
+<p>For instance, the <a href="https://schema.org/Article">Article type</a> is a superset of the <a href="https://schema.org/CreativeWork">Creative Work type</a>. <strong>Creative Work</strong> adds a ton of properties on top of Thing, such as author, about, dateCreated and headline. <strong>Article</strong> then has more properties in addition to what is in Creative Work, such as articleBody, backstory, and wordCount.</p>
+<h2 id="how-i-chose-microdata-to-document-my-content">How I chose <code>microdata</code> to document my content</h2>
+<p>To document your data in your HTML, you have four choices: microdata, JSON-LD, RDFa, and microformats</p>
+<p>rejected: microformats, due to limited structures and it being more focused on webmentions, not the whole-of-your-content</p>
+<p>rejected: RDFa had outdated docs and uses a different vocabulary from schema.org</p>
+<p>So that left microdata and JSON-LD.</p>
+<ul>
+<li><a href="https://jsonld.com/why-json-ld/">jsonld.com: Why JSON-LD?</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Microdata_(HTML)#Global_attributes">micridata primer</a></li>
+<li>8 minutes that explain the difference: <a href="https://youtu.be/Yj8ujUfAJM8">YouTube: Microdata vs JSON-LD: Which Structured Data Format Wins?</a></li>
+</ul>
+<h3 id="json-ld">JSON-LD</h3>
+<p>A fairly common argument for JSON-LD says that JSON-LD is easier to maintain due to not being directly tied to HTML structure. You just create your data-mapping and when your system is writing your pages, it also writes the JSON-LD.</p>
+<p>Downside? That duplicates all your content into <code>&#x3C;script></code> tags. It also requires you to write or manage a system to generate them (since it is separate from your HTML). If you have unknown data or hand-written HTML, it’s harder to add and maintain.</p>
+<p>Upside? Lots of plugins and tools our there to automate adding JSON-LD. (doesn’t help me on <a href="https://scottnath.com">scottnath.com</a> because I do a lot of one-off HTML and I mostly don’t use a CMS)</p>
+<h3 id="microdata-spoiler-alert-i-chose-this">Microdata (spoiler alert: I chose this)</h3>
+<p>Microdata is added, mostly, by adding attributes to your HTML elements.</p>
+<p>I added microdata across <a href="https://scottnath.com">scottnath.com</a> where using microdata made sense because I was writing the HTML in bespoke little components. It was fairly simple to add to my pages because I already use semantic HTML, and microdata expects your HTML to reflect the structure of your content.</p>
+<p>It also doesn’t add a whole lot of new stuff, for instance, the title on my articles went from this:</p>
+<p><code>&#x3C;h1>{title}&#x3C;/h1></code></p>
+<p>to this:</p>
+<p><code>&#x3C;h1 itemprop="headline">{title}&#x3C;/h1></code></p>
+<p>Pretty easy to add!</p>
+<p>FYI - I initially started this work wanting to write HTML for JSON Resume which conformed more stringently to a resume’s hierarchical content. HTML is a programming language after all. That work is coming in next article - a semantic JSON Resume!</p>
+<h2 id="how-to-add-microdata-to-html">How to add microdata to HTML</h2>
+<p>Did you know that HTML already has global attributes <em>specifically</em> for including microdata?</p>
+<p>These attributes can go on most HTML elements and they follow a specific structure in their usage. The three you’ll most often use are:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemscope">itemscope</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemtype">itemtype</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop">itemprop</a></li>
+</ul>
+<p>There is also <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemref">itemref</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemid">itemid</a>, but those won’t be used in this tutorial.</p>
+<h3 id="itemscope-and-itemtype"><code>itemscope</code> and <code>itemtype</code></h3>
+<p>These both are always together on a container element, although some examples show just using <code>itemscope</code>, but without <code>itemtype</code> the <code>itemscope</code> just denotes that everything contained within that element is related to the scope. For this learning, we only care about documenting our content for SEO, so we need <code>itemtype</code> to point to a type at schema.org to know what the <code>itemscope</code> is documenting.</p>
+<p><em>Scope</em> in this case, means a related chunk of content. When parsing microdata within an HTML element with the boolean <code>itemscope</code> attribute, it is expected that every <code>itemprop</code> inside that element falls under <em>scope</em> of <code>itemscope</code>.</p>
+<p><code>itemtype</code> is always a URL. In this case, a URL to a schema.org type. So, if you had an article with a title and summary, it would match the <a href="https://schema.org/Article">schema.org Article type</a> and your HTML container would be like so:</p>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">article</span><span style="color:#9CDCFE"> itemscope</span><span style="color:#9CDCFE"> itemtype</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://schema.org/Article"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#E6E6E6">  ...article contents</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li><code>itemscope</code> is boolean, so it is <em>never</em> <code>itemscope="meow"</code></li>
+<li><code>itemtype</code> denotes what <em>type</em> of content is being described by pointing to the documentation about that type</li>
+</ul>
+<h3 id="itemprop"><code>itemprop</code></h3>
+<p><code>itemprop</code> adds properties to a scope.
+e.g. it adds data that is a subset of it’s main <code>itemscope</code>
+e.g. if <code>itemscope</code> is an <em>object</em>, <code>itemprop</code> is a <em>property</em> on that <em>object</em></p>
+<p>Assuming this is the main article on a page, the title should be the top heading, an <code>&#x3C;h1></code>. The properties of an article are detailed on the <a href="https://schema.org/Article">schema.org Article type page</a> From that type, we’ll be using <code>headline</code>, a property inherited from <a href="https://schema.org/CreativeWork">Creative Work</a> and expected to be <code>Text</code> (plain text) and described as “Headline of the article.” With <code>itemprop</code>, our HTML becomes:</p>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">article</span><span style="color:#9CDCFE"> itemscope</span><span style="color:#9CDCFE"> itemtype</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://schema.org/Article"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">h1</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"headline"</span><span style="color:#808080">></span><span style="color:#E6E6E6">An important article about things</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">h1</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"></span></code></pre>
+<p>Adding in a main article image, we can document that as well. We’ll be using <code>image</code>, which is part of <a href="https://schema.org/Thing">Thing</a>. Remember, the hierarchy goes Thing->Creative Work->Article in order to know the properties available.</p>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">article</span><span style="color:#9CDCFE"> itemscope</span><span style="color:#9CDCFE"> itemtype</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://schema.org/Article"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">h1</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"headline"</span><span style="color:#808080">></span><span style="color:#E6E6E6">An important article about things</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">h1</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">img</span><span style="color:#9CDCFE"> src</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://example.com/image.jpg"</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"image"</span><span style="color:#808080"> /></span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"></span></code></pre>
+<h4 id="what-data-do-we-know-so-far">What data do we know so far?</h4>
+<p>This would be the output when reading our microdata:</p>
+<pre>Article
+  @type     Article
+  headline  An important article about things
+  image     https://example.com/image.jpg
+</pre>
+<h3 id="itemprop-which-is-an-itemscope"><code>itemprop</code> which is an <code>itemscope</code></h3>
+<p>This is the <strong>structure</strong> part of structured data.</p>
+<p>Let’s add an author! Under the Creative Work type, there is a property <code>author</code> (<a href="https://schema.org/author">schema.org/author</a>), but it must be either a Person type or Organization type. These can only be documented via an <code>itemscope</code>. The author will be a <a href="https://schema.org/Person">schema.org/Person</a>, which means we can have lots of author-specific properties documented.</p>
+<pre class="astro-code slack-dark" style="background-color:#222222;color:#E6E6E6; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">article</span><span style="color:#9CDCFE"> itemscope</span><span style="color:#9CDCFE"> itemtype</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://schema.org/Article"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">h1</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"headline"</span><span style="color:#808080">></span><span style="color:#E6E6E6">An important article about things</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">h1</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">img</span><span style="color:#9CDCFE"> src</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://example.com/image.jpg"</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"image"</span><span style="color:#808080"> /></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;</span><span style="color:#569CD6">p</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"author"</span><span style="color:#9CDCFE"> itemscope</span><span style="color:#9CDCFE"> itemtype</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://schema.org/Person"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#E6E6E6">    Written by </span></span>
+<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"url"</span><span style="color:#9CDCFE"> href</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"https://example.com"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"name"</span><span style="color:#808080">></span><span style="color:#E6E6E6">Scott Nath</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">span</span><span style="color:#808080">></span><span style="color:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> itemprop</span><span style="color:#E6E6E6">=</span><span style="color:#CE9178">"jobTitle"</span><span style="color:#808080">></span><span style="color:#E6E6E6">Open Source Developer</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">span</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">a</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">  &#x3C;/</span><span style="color:#569CD6">p</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"></span></code></pre>
+<h4 id="what-do-we-know-from-the-above-html">What do we know from the above HTML?</h4>
+<p>Author has been added as it’s own section and has sub-properties:</p>
+<pre>Article
+  @type     Article
+  headline  An important article about things
+  image     https://example.com/image.jpg
+  author
+      @type     Person
+      url       https://example.com/
+      name      Scott Nath
+      jobTitle	Open Source Developer
+</pre>
+<h2 id="how-to-parse-out-and-validate-your-microdata">How to parse-out and validate your microdata</h2>
+<p>Sure you added microdata, but how do you check it?</p>
+<p>There are two main validators, <a href="https://validator.schema.org">Schema.org’s validator</a> and <a href="https://search.google.com/test/rich-results">Google’s Rich Results Test</a>.</p>
+<p>They both accept a URL or a snippet of HTML, parse the HTML, then return whatever data it could find. The difference is Google’s only parses a subset of the Schema.org vocabulary - the rest of your microdata will be ignored by Google. Both returned the same results for our HTML snippet from above.</p>
+<h3 id="google-rich-results-test">Google Rich Results Test</h3>
+<p><strong><a href="https://search.google.com/test/rich-results">search.google.com/test/rich-results</a></strong></p>
+<p>Google recommends that you start with the Rich Results Test to see what Google rich results can be generated for your page. You’ll need to reference <a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery?hl=en">Google’s list of structured data types they support</a>, which is a <em>subset</em> of the Schema.org types. If the type you use ain’t on Google’s list, it ain’t gonna get read by Google (the other search engines will read it tho.)</p>
+<p><img src="/blahg-assets/metadata-html--article-rich-results.avif" alt="Screenshot image shows the Rich Results Test output for the Article HTML snippet"></p>
+<h3 id="schemaorg-validator">Schema.org validator</h3>
+<p><strong><a href="https://validator.schema.org">validator.schema.org</a></strong></p>
+<p>For generic schema validation, use the Schema Markup Validator to test all types of schema.org markup, without Google-specific validation.</p>
+<p><img src="/blahg-assets/metadata-html--article-validator.schema.org-results.avif" alt="Screenshot image shows the Schema.org validatory output for the Article HTML snippet"></p>
+<h2 id="not-the-end">Not The End</h2>
+<p>So that’s a high-level overview of how and why to add microdata to your HTML. I added microdata across my site but so far, my findings are inconclusive on how it helps with SEO. It takes a while for crawlers to fully index, so hopefully after I’ve written the article on JSON Resume with microdata, I’ll have some kinda noticeable outcome. Stay tuned!</p> </div> </article>  </main> <footer data-astro-cid-sz7xmlte style="--navBorder: #ffd273;"> <nav data-astro-cid-sz7xmlte style="--navBorder: #ffd273;"> <a href="/" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">home</a> <a href="/whoami" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">whoami</a> <a href="/blahg" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">blahg</a> <a href="/resume" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">resume</a> <a href="/rss.xml" target="_blank" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">rss feed</a> </nav> <p data-astro-cid-sz7xmlte style="--navBorder: #ffd273;">&copy; 2001-2024&nbsp;Scott Nath All rights reserved.</p> <div data-astro-cid-mtzrixcv style="--navBorder: #ffd273;"> <p data-astro-cid-mtzrixcv style="--navBorder: #ffd273;">CS.Sjoy.lol <a href="https://cs.sjoy.lol" data-astro-cid-mtzrixcv style="--navBorder: #ffd273;">webring</a></p> <div data-astro-cid-mtzrixcv style="--navBorder: #ffd273;"> <a href="https://webri.ng/webring/cssjoy/previous?via=https://scottnath.com" aria-label="previous site" data-astro-cid-mtzrixcv style="--navBorder: #ffd273;">← Prev</a> <a href="https://webri.ng/webring/cssjoy/random?via=https://scottnath.com" aria-label="random site" data-astro-cid-mtzrixcv style="--navBorder: #ffd273;">🎲</a> <a href="https://webri.ng/webring/cssjoy/next?via=https://scottnath.com" aria-label="next site" data-astro-cid-mtzrixcv style="--navBorder: #ffd273;">Next →</a> </div> </div>  <a href="/" class="you-still-here" title="You're still here? Go Home" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;"><img src="/ferris-end-scene.avif" loading="lazy" width="381" height="177" alt="You're still here? (Screen shot from Ferris Bueller's Day Off)" data-astro-cid-sz7xmlte style="--navBorder: #ffd273;"></a> </footer>  </body></html>
